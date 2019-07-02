@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Box from '@material-ui/core/Box';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { Typography } from '@material-ui/core';
+import { Box, List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import coin from './../../img/icons/vp_icon.png';
+import brick from './../../img/icons/brick_icon.png';
+import stick from './../../img/icons/stick_icon.png';
+import stone from './../../img/icons/stone_icon.png';
+import wolf from './../../img/icons/wolf_icon.png';
 import './statsComponent.css';
 
 class Stats extends Component {
@@ -12,6 +13,7 @@ class Stats extends Component {
       <Box border={1} width="15%">
         <List>
           <ListItem>
+            <img src={coin} alt="" style={{ width: 25, height: 25 }} />
             <ListItemText 
               disableTypography
               primary={<Typography className="Key">Coins</Typography>}
@@ -29,6 +31,7 @@ class Stats extends Component {
             />
           </ListItem>
           <ListItem>
+            <img src={brick} alt="" style={{ width: 25, height: 25 }} />
             <ListItemText 
               disableTypography
               primary={<Typography className="SubKey">Bricks</Typography>}
@@ -49,6 +52,7 @@ class Stats extends Component {
             />
           </ListItem>
           <ListItem>
+            <img src={stick} alt="" style={{ width: 25, height: 25 }} />
             <ListItemText 
               disableTypography
               primary={<Typography className="SubKey">Sticks</Typography>}
@@ -59,6 +63,7 @@ class Stats extends Component {
             />
           </ListItem>
           <ListItem>
+            <img src={stone} alt="" style={{ width: 25, height: 25 }} />
             <ListItemText 
               disableTypography
               primary={<Typography className="SubKey">Stones</Typography>}
@@ -79,8 +84,9 @@ class Stats extends Component {
               primary={<Typography className="Value">n/a</Typography>}
             />
           </ListItem>
-          
+
           <ListItem>
+            <img src={wolf} alt="" style={{ width: 25, height: 25 }} />
             <ListItemText 
               disableTypography
               primary={<Typography className="Key">Wolves</Typography>}
