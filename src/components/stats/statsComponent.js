@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Box, List, ListItem, ListItemText, Typography } from '@material-ui/core';
 import coin from './../../img/icons/coin_icon.png';
 import brick from './../../img/icons/brick_icon.png';
@@ -9,7 +9,7 @@ import wolf from './../../img/icons/wolf_icon.png';
 import './statsComponent.css';
 
 const Stats = ({ numCoins, numBricks, numSticks, numMud, numStones, numWolves }) => (
-  <Box border={1} width="35%">
+  <Box border={1} width="35%" margin={5}>
     <List>
       <ListItem>
         <img src={coin} alt="" style={{ width: 25, height: 25 }} />
@@ -34,11 +34,11 @@ const Stats = ({ numCoins, numBricks, numSticks, numMud, numStones, numWolves })
           <img src={brick} alt="" style={{ width: 25, height: 32.5 }} />
           <ListItemText 
             disableTypography
-            primary={<Typography className="SubKey">{numBricks}</Typography>}
+            primary={<Typography className="SubKey">Bricks</Typography>}
           />
           <ListItemText 
             disableTypography
-            primary={<Typography className="Value">0</Typography>}
+            primary={<Typography className="Value">{numBricks}</Typography>}
           />
         </ListItem>
 
