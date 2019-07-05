@@ -1,0 +1,93 @@
+[
+    {
+        "description": "Brick",
+        "cardType": "Resource",
+        "costType": "None",
+        "costNum": 0,
+        "rewardType": "Brick",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Stick",
+        "cardType": "Resource",
+        "costType": "None",
+        "costNum": 0,
+        "rewardType": "Stick",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Stone",
+        "cardType": "Resource",
+        "costType": "None",
+        "costNum": 0,
+        "rewardType": "Stone",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Mud",
+        "cardType": "Resource",
+        "costType": "None",
+        "costNum": 0,
+        "rewardType": "Mud",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Water",
+        "cardType": "Resource",
+        "costType": "None",
+        "costNum": 0,
+        "rewardType": "Water",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Stone_Stick",
+        "cardType": "Resource",
+        "costType": "Coin",
+        "costNum": 1,
+        "rewardType": "Stone",
+        "rewardType2": "Stick",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Wolf_Brick",
+        "cardType": "Wolf",
+        "costType": "Brick",
+        "costNum": 1,
+        "rewardType": "Wolf",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Wolf_Stick",
+        "cardType": "Wolf",
+        "costType": "Stick",
+        "costNum": 1,
+        "rewardType": "Wolf",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Wolf_Stone",
+        "cardType": "Wolf",
+        "costType": "Stone",
+        "costNum": 1,
+        "rewardType": "Wolf",
+        "rewardNum": 1,
+        "phase": 1
+    },
+    {
+        "description": "Glass",
+        "cardType": "Appliance",
+        "costType": "Water",
+        "costNum": 1,
+        "rewardType": "Glass",
+        "rewardNum": 1,
+        "phase": 1
+    }
+]
