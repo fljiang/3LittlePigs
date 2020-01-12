@@ -9,7 +9,7 @@ import wolf from './../../img/icons/wolf_icon.png';
 import './statsComponent.css';
 
 const Stats = ({ numCoins, numBricks, numSticks, numMud, numStones, numWolves }) => (
-  <Box border={1} width="35%" margin={5}>
+  <Box border={1} width="35%">
     <List>
       <ListItem>
         <img src={coin} alt="" style={{ width: 25, height: 25 }} />
