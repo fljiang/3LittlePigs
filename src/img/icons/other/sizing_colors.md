@@ -6,19 +6,21 @@
 
 3 icons: 30%
 
-Cost icon: 
+Cost icon: 20%
 
 Card size: 375 x 500 px
 
-Slash size:
+Slash size: 25%
 
 ## Background Colors
 
-Resource color: B
+Resource color: B32
 
-Wolf Color: R
+Special resource color: YR04
 
-VP color: E
+Wolf color: R46
 
-Appliance color: BV
+VP color: E35
+
+Appliance color: V04
 
