@@ -1,0 +1,34 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.Other-players-header {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: calc(10px + 2vmin);
+    color: black;
+    margin-bottom: 170px;
+}
+  
+.First-player-header {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: calc(10px + 2vmin);
+    color: black;
+    margin-right: 30px;
+}
+  
+.view-cards-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
