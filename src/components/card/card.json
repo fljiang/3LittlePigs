@@ -1,14 +1,6 @@
 {
     "cards": [
         {
-            "description": "Brick",
-            "cardType": "Resource",
-            "costType": {},
-            "rewardType": {"Brick": 1},
-            "phase": 1,
-            "img": "./../../img/brick.png"
-        },
-        {
             "description": "Stick",
             "cardType": "Resource",
             "costType": {},
@@ -25,12 +17,30 @@
             "img": "./../../img/stone.png"
         },
         {
-            "description": "Water",
+            "description": "Brick",
             "cardType": "Resource",
             "costType": {},
-            "rewardType": {"Water": 1},
+            "rewardType": {"Brick": 1},
             "phase": 1,
-            "img": "./../../img/water.png"
+            "img": "./../../img/brick.png"
+        },
+        {
+            "description": "Mud",
+            "cardType": "Resource",
+            "costType": {},
+            "rewardType": {"Mud": 1},
+            "phase": 1,
+            "img": "./../../img/mud.png"
+        },
+        {
+            "description": "Brick_Mud",
+            "cardType": "Resource_Slash",
+            "costType": {"Coin": 1},
+            "rewardType": {
+                "Brick": 1,
+                "Mud": 1
+            },
+            "phase": 1
         },
         {
             "description": "Stone_Stick",
@@ -44,35 +54,25 @@
             "img": "./../../img/stone_or_stick.png"
         },
         {
-            "description": "Brick_Water",
-            "cardType": "Resource_Slash",
-            "costType": {"Coin": 1},
-            "rewardType": {
-                "Brick": 1,
-                "Water": 1
-            },
+            "description": "Flower",
+            "cardType": "Resource_Special",
+            "costType": {},
+            "rewardType": {"Flower": 1},
             "phase": 1
         },
         {
-            "description": "Grass",
+            "description": "Water",
             "cardType": "Resource_Special",
             "costType": {},
-            "rewardType": {"Grass": 1},
-            "phase": 1
-        },
-        {
-            "description": "Mud",
-            "cardType": "Resource_Special",
-            "costType": {},
-            "rewardType": {"Mud": 1},
+            "rewardType": {"Water": 1},
             "phase": 1,
-            "img": "./../../img/mud.png"
+            "img": "./../../img/water.png"
         },
         {
-            "description": "Metal",
+            "description": "Apple",
             "cardType": "Resource_Special",
             "costType": {},
-            "rewardType": {"Metal": 1},
+            "rewardType": {"Apple": 1},
             "phase": 1
         },
         {   
@@ -97,10 +97,15 @@
             "phase": 1
         }, 
         {
-            "description": "Coin_5",
+            "description": "Trade_Right",
             "cardType": "Market",
             "costType": {},
-            "rewardType": {"Coin": 5},
+            "rewardType": {
+                "Brick": [-1, false, true], 
+                "Stick": [-1, false, true],
+                "Stone": [-1, false, true], 
+                "Mud": [-1, false, true]
+            },
             "phase": 1
         },
         {
@@ -111,19 +116,7 @@
                 "Brick": [-1, true, false], 
                 "Stick": [-1, true, false],
                 "Stone": [-1, true, false], 
-                "Water": [-1, true, false]
-            },
-            "phase": 1
-        },
-        {
-            "description": "Trade_Right",
-            "cardType": "Market",
-            "costType": {},
-            "rewardType": {
-                "Brick": [-1, false, true], 
-                "Stick": [-1, false, true],
-                "Stone": [-1, false, true], 
-                "Water": [-1, false, true]
+                "Mud": [-1, true, false]
             },
             "phase": 1
         },
@@ -132,9 +125,9 @@
             "cardType": "Market",
             "costType": {},
             "rewardType": {
-                "Grass": [-1, true, true], 
-                "Mud": [-1, true, true],
-                "Metal": [-1, true, true]
+                "Flower": [-1, true, true], 
+                "Water": [-1, true, true],
+                "Apple": [-1, true, true]
         },
             "phase": 1
         },
@@ -147,9 +140,9 @@
             "img": "./../../img/wolf_stick.png"
         },
         {
-            "description": "Wolf_Water",
+            "description": "Wolf_Mud",
             "cardType": "Wolf",
-            "costType": {"Water": 1},
+            "costType": {"Mud": 1},
             "rewardType": {"Wolf": 1},
             "phase": 1,
             "img": "TODO"
@@ -163,189 +156,204 @@
             "img": "./../../img/wolf_brick.png"
         },
         {
-            "description": "Glass_Grass",
+            "description": "Glass_Flower",
             "cardType": "Appliance",
-            "costType": {"Grass": 1},
+            "costType": {"Flower": 1},
             "rewardType": {"Glass": 1},
             "phase": 1,
             "img": "./../../img/glass.png"
         },
         {
-            "description": "Pot_Mud",
+            "description": "Pot_Water",
             "cardType": "Appliance",
-            "costType": {"Mud": 1},
+            "costType": {"Water": 1},
             "rewardType": {"Pot": 1},
             "phase": 1
         },
         {
-            "description": "Spoon_Metal",
+            "description": "Spoon_Apple",
             "cardType": "Appliance",
-            "costType": {"Metal": 1},
+            "costType": {"Apple": 1},
             "rewardType": {"Spoon": 1},
             "phase": 1
         },
         {
-            "description": "Brick_2",
-            "cardType": "Resource",
-            "costType": ["Coin", 1],
-            "rewardType": ["Brick", 2],
-            "phase": 2,
-            "img": "./../../img/brick_2.png"
-        },
-        {
             "description": "Stick_2",
             "cardType": "Resource",
-            "costType": ["Coin", 1],
-            "rewardType": ["Stick", 2],
+            "costType": {"Coin": 1},
+            "rewardType": {"Stick": 2},
             "phase": 2,
             "img": "./../../img/stick_2.png"
         },
         {
             "description": "Stone_2",
             "cardType": "Resource",
-            "costType": ["Coin", 1],
-            "rewardType": ["Stone", 2],
+            "costType": {"Coin": 1},
+            "rewardType": {"Stone": 2},
             "phase": 2,
             "img": "./../../img/stone_2.png"
         },
         {
-            "description": "Water_2",
+            "description": "Brick_2",
             "cardType": "Resource",
-            "costType": ["Coin", 1],
-            "rewardType": ["Water", 2],
+            "costType": {"Coin": 1},
+            "rewardType": {"Brick": 2},
+            "phase": 2,
+            "img": "./../../img/brick_2.png"
+        },
+        {
+            "description": "Mud_2",
+            "cardType": "Resource",
+            "costType": {"Coin": 1},
+            "rewardType": {"Mud": 2},
             "rewardNum": 1,
             "phase": 2
         },
         {
-            "description": "Mud",
+            "description": "Flower",
             "cardType": "Resource_Special",
-            "costType": "",
-            "rewardType": ["Mud", 1],
+            "costType": {},
+            "rewardType": {"Flower": 1},
             "phase": 2
         },
         {
-            "description": "Grass",
+            "description": "Water",
             "cardType": "Resource_Special",
-            "costType": "",
-            "rewardType": ["Grass", 1],
+            "costType": {},
+            "rewardType": {"Water": 1},
             "phase": 2
         },
         {
-            "description": "Metal",
+            "description": "Apple",
             "cardType": "Resource_Special",
-            "costType": ["Coin", 2],
-            "rewardType": ["Apple", 1],
+            "costType": {},
+            "rewardType": {"Apple": 1},
             "phase": 2
         },
         {
             "description": "Wolf_2_Stone",
             "cardType": "Wolf",
-            "costType": ["Stone", 3],
-            "rewardType": ["Wolf", 2],
+            "costType": {"Stone": 3},
+            "rewardType": {"Wolf": 2},
             "phase": 2
         },
         {
-            "description": "Wolf_2_Water_Brick_Stick",
+            "description": "Wolf_2_Mud_Brick_Stick",
             "cardType": "Wolf",
-            "costType": [
-                ["Water", 1],
-                ["Brick", 1],
-                ["Stick", 1]
-            ],
-            "rewardType": ["Wolf", 2],
+            "costType": {
+                "Mud": 1,
+                "Brick": 1,
+                "Stick": 1
+            },
+            "rewardType": {"Wolf": 2},
             "phase": 2
         },
         {
-            "description": "Wolf_2_Stick_Water",
+            "description": "Wolf_2_Stick_Mud",
             "cardType": "Wolf",
-            "costType": [["Stick", 2], ["Water", 1]],
-            "rewardType": ["Wolf", 2],
+            "costType": {
+                "Stick": 2,
+                "Mud": 1
+            },
+            "rewardType": {"Wolf": 2},
             "phase": 2
         },
         {
-            "description": "Pot_Brick_Metal",
+            "description": "Glass_Mud_Water",
             "cardType": "Appliance",
-            "costType": [["Brick", 2], ["Metal", 1]],
-            "rewardType": ["Pot", 1],
+            "costType": {
+                "Mud": 2,
+                "Water": 1
+            },
+            "rewardType": {"Glass": 1},
             "phase": 2
         },
         {
-            "description": "Glass_Water_Mud",
+            "description": "Spoon_Stone_Flower",
             "cardType": "Appliance",
-            "costType": [["Water", 2], ["Mud", 1]],
-            "rewardType": ["Glass", 1],
+            "costType": {
+                "Stone": 2, 
+                "Flower": 1
+            },
+            "rewardType": {"Spoon": 1},
             "phase": 2
         },
         {
-            "description": "Spoon_Stone_Grass",
+            "description": "Spoon_Stick_Apple",
             "cardType": "Appliance",
-            "costType": [["Stone", 2], ["Grass", 1]],
-            "rewardType": ["Spoon", 1],
+            "costType": {
+                "Stick": 1,
+                "Apple": 1
+            },
+            "rewardType": {"Spoon": 1},
             "phase": 2
         },
         {
-            "description": "Spoon_Stick_Metal",
-            "cardType": "Appliance",
-            "costType": [["Stick", 1], ["Metal", 1]],
-            "rewardType": ["Spoon", 1],
-            "phase": 2
-        },
-        {
-            "description": "Mud_Grass_Metal",
+            "description": "Water_Grass_Apple",
             "cardType": "Market",
-            "costType": ["Brick", 2],
-            "rewardType": [
-                ["Mud", 1], 
-                ["Grass", 1],
-                ["Metal", 1]
-            ],
+            "costType": {"Brick": 2},
+            "rewardType": {
+                "Water": 1, 
+                "Grass": 1,
+                "Apple": 1
+            },
             "phase": 1
         },
         {
-            "description": "Brick_Stone_Water_Stick",
+            "description": "Brick_Stone_Mud_Stick",
             "cardType": "Market",
-            "costType": ["Stick", 2],
-            "rewardType": [
-                ["Brick", 1], 
-                ["Stone", 1],
-                ["Water", 1], 
-                ["Stick", 1]
-            ],
+            "costType": {"Stick": 2},
+            "rewardType": {
+                "Brick": 1, 
+                "Stone": 1,
+                "Mud": 1, 
+                "Stick": 1
+            },
             "phase": 1
         },
         {
             "description": "Resource_Left_Right_Center",
             "cardType": "Market",
             "costType": "",
-            "rewardType": ["Coin", "Resource", true, true, true],
+            "rewardType": {"Coin": ["Resource", true, true, true]},
             "phase": 2
         },
         {
             "description": "VP_5",
             "cardType": "Victory",
-            "costType": "",
-            "rewardType": ["Victory", 5],
+            "costType": {"Stone": 3},
+            "rewardType": {"Victory": 5},
+            "phase": 2
+        },
+        {   
+            "description": "VP_3",
+            "cardType": "Victory",
+            "costType": {
+                "Stick": 1,
+                "Brick": 1,
+                "Water": 1
+            },
+            "rewardType": {"Victory": 3},
             "phase": 2
         },
         {
-            "description": "VP_4",
+            "description": "VP_4_ADDCOLOR",
             "cardType": "Victory",
-            "costType": "",
-            "rewardType": ["Victory", 4],
+            "costType": {
+                "Mud": 2,
+                "Stick": 1
+            },
+            "rewardType": {"Victory": 4},
             "phase": 2
         }, 
         {   
-            "description": "VP_3",
+            "description": "VP_4_ADDCOLOR",
             "cardType": "Victory",
-            "costType": ["Water", 1],
-            "rewardType": ["Victory", 3],
-            "phase": 2
-        },
-        {   
-            "description": "VP_3",
-            "cardType": "Victory",
-            "costType": ["Water", 1],
-            "rewardType": ["Victory", 3],
+            "costType": {
+                "Brick": 2,
+                "Flower": 1
+            },
+            "rewardType": {"Victory": 3},
             "phase": 2
         }
     ]
