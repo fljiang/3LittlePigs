@@ -1,9 +1,10 @@
+import React from 'react';
 import { CardMedia } from '@material-ui/core';
 
 import brick from './../../img/brick.png';
 import brick_2 from './../../img/brick_2.png';
 import stick from './../../img/stick.png';
-import stick_2 from './../../img/stick._2png';
+import stick_2 from './../../img/stick_2.png';
 import stone from './../../img/stone.png';
 import stone_2 from './../../img/stone_2.png';
 import water from './../../img/water.png' // needs 2
@@ -25,6 +26,8 @@ import glass from './../../img/glass.png';
 // spoon => scriptorium
 // pot => workshop
 
-const Card = ({ resource, stage }) => (
-    <CardMedia image="../../img/brick.png" width="30px" height="100px" />
+const Card = () => (
+    <img src={brick_2} width="110" height="190" />
 )
+
+export default Card;

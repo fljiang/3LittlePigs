@@ -12,7 +12,6 @@
     justify-content: flex-start;
     font-size: calc(10px + 2vmin);
     color: black;
-    margin-bottom: 170px;
 }
   
 .First-player-header {
@@ -25,10 +24,26 @@
     color: black;
     margin-right: 30px;
 }
+
+.cards-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
   
+.hide-cards-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .view-cards-button-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    margin-top: 205px;
 }

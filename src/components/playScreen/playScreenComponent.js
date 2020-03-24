@@ -8,7 +8,7 @@ import Card from '../card/cardComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { getCards } from '../../actions';
+import { getCards, hideCards } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-let PlayScreen = ({ getCards, cards }) => {
+let PlayScreen = ({ getCards, hideCards, cards }) => {
     const classes = useStyles();
 
     return (
@@ -29,16 +29,29 @@ let PlayScreen = ({ getCards, cards }) => {
                 <Stats numCoins={3} numBricks={0} numSticks={0} numStones={0} numMud={0} numWolves={0} />
             </header>
 
-            <div className="view-cards-button-wrapper">
-                <Fab 
-                    variant="extended" 
-                    color="primary"
-                    className={classes.fab}
-                    onClick={getCards}>
-                        View Cards
-                </Fab>
-                { cards ? <Card /> : null }
-            </div>
+            { cards ? 
+                <div>
+                    <div className="cards-wrapper"><Card /></div>
+                    <div className="hide-cards-button-wrapper">
+                        <Fab 
+                            variant="extended" 
+                            color="primary"
+                            className={classes.fab}
+                            onClick={hideCards}>
+                                Hide Cards
+                        </Fab>
+                    </div>
+                </div> :
+                <div className="view-cards-button-wrapper">
+                    <Fab 
+                        variant="extended" 
+                        color="primary"
+                        className={classes.fab}
+                        onClick={getCards}>
+                            View Cards
+                    </Fab>
+                </div>
+            }
 
             <header className="First-player-header">
                 <Board title={"Billy's House"} resource={"brick"} firstPlayer={true} />
@@ -49,7 +62,8 @@ let PlayScreen = ({ getCards, cards }) => {
 }
 
 const mapDispatchToProps = {
-    getCards: getCards
+    getCards: getCards,
+    hideCards: hideCards,
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
