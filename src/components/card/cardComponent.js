@@ -1,3 +1,5 @@
+import { CardMedia } from '@material-ui/core';
+
 import brick from './../../img/brick.png';
 import brick_2 from './../../img/brick_2.png';
 import stick from './../../img/stick.png';
@@ -23,3 +25,6 @@ import glass from './../../img/glass.png';
 // spoon => scriptorium
 // pot => workshop
 
+const Card = ({ resource, stage }) => (
+    <CardMedia image="../../img/brick.png" width="30px" height="100px" />
+)

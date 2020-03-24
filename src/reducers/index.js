@@ -4,9 +4,7 @@ const reducer = (
 ) => {
     switch (action.type) {
         case 'GET_CARDS':
-            return { ...state, loading: true };
-        case 'CARDS_RECEIVED':
-            return { ...state, cards: action.json[0], loading: false }
+            return { ...state, cards: true };
         default:
             return state;
     }

@@ -4,6 +4,7 @@ import Fab from '@material-ui/core/Fab';
 
 import Stats from '../stats/statsComponent.js';
 import Board from '../board/boardComponent.js';
+import Card from '../card/cardComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-let PlayScreen = ({ getCards }) => {
+let PlayScreen = ({ getCards, cards }) => {
     const classes = useStyles();
 
     return (
@@ -36,6 +37,7 @@ let PlayScreen = ({ getCards }) => {
                     onClick={getCards}>
                         View Cards
                 </Fab>
+                { cards ? <Card /> : null }
             </div>
 
             <header className="First-player-header">
@@ -51,5 +53,11 @@ const mapDispatchToProps = {
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
+
+const mapStateToProps = (state) => ({
+    cards: state.cards,
+})
+
+PlayScreen = connect(mapStateToProps, null)(PlayScreen);
 
 export default PlayScreen;
