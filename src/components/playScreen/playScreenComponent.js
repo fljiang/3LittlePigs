@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-let PlayScreen = ({ getCards, hideCards, cards }) => {
+let PlayScreen = ({ loading, getCards, hideCards, cards }) => {
     const classes = useStyles();
 
     return (
@@ -29,9 +29,17 @@ let PlayScreen = ({ getCards, hideCards, cards }) => {
                 <Stats numCoins={3} numBricks={0} numSticks={0} numStones={0} numMud={0} numWolves={0} />
             </header>
 
-            { cards ? 
+            { !loading && cards ? 
                 <div>
-                    <div className="cards-wrapper"><Card cardInfo={cards}/></div>
+                    <div className="cards-wrapper">
+                        <Card cardInfo={cards[0]}/>
+                        <Card cardInfo={cards[1]}/>
+                        <Card cardInfo={cards[2]}/>
+                        <Card cardInfo={cards[3]}/>
+                        <Card cardInfo={cards[4]}/>
+                        <Card cardInfo={cards[5]}/>
+                        <Card cardInfo={cards[6]}/>
+                    </div>
                     <div className="hide-cards-button-wrapper">
                         <Fab 
                             variant="extended" 
@@ -70,6 +78,7 @@ PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
 
 const mapStateToProps = (state) => ({
     cards: state.cards,
+    loading: state.loading,
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);

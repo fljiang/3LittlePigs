@@ -1,15 +1,21 @@
-import { put, takeLatest, call, all } from 'redux-saga/effects';
+import { put, takeLatest, all } from 'redux-saga/effects';
 
 import cards_phase1 from '../components/card/cards_phase1.json'
 
-function getRandomCards() {
-    let randomNum = Math.floor((Math.random() * 9));
-    return cards_phase1[randomNum];
-}
-
 function* fetchCards() {
-    const cards = yield call(getRandomCards);
-    yield put({ type: "CARDS_RECEIVED", json: cards });
+    let cards = [];
+    let cardsInventory = cards_phase1.map(element => element);
+    
+    for (let cardNum = 1; cardNum <= 7; cardNum++) {
+        let randomNum = Math.floor((Math.random() * (10 - cardNum)));
+        let randomCard = cardsInventory[randomNum];
+        cardsInventory.splice(randomNum, 1);
+        cards.push(randomCard);
+
+        if (cardNum == 7) {
+            yield put({ type: "CARDS_RECEIVED", json: cards });
+        }
+    }
 }
 
 function* cardsWatcher() {

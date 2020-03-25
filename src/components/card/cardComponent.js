@@ -32,7 +32,9 @@ import vp_2 from './../../img/cards/vp_2.png';
 const useStyles = makeStyles(theme => ({
     img: {
         width: "110px",
-        height: "190px"
+        height: "190px",
+        marginLeft: "5px",
+        marginRight: "5px"
     }
 }))
 
