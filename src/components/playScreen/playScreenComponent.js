@@ -31,7 +31,7 @@ let PlayScreen = ({ getCards, hideCards, cards }) => {
 
             { cards ? 
                 <div>
-                    <div className="cards-wrapper"><Card /></div>
+                    <div className="cards-wrapper"><Card cardInfo={cards}/></div>
                     <div className="hide-cards-button-wrapper">
                         <Fab 
                             variant="extended" 

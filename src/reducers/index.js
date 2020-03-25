@@ -3,10 +3,10 @@ const reducer = (
     action
 ) => {
     switch (action.type) {
-        case 'GET_CARDS':
-            return { ...state, cards: true };
         case 'HIDE_CARDS':
-            return { ...state, cards: false };
+            return { ...state, cards: null };
+        case 'CARDS_RECEIVED':
+            return { ...state, cards: action.json };
         default:
             return state;
     }

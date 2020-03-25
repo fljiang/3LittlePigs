@@ -1,17 +1,20 @@
 import React from 'react';
-import { CardMedia } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
 
-import brick from './../../img/brick.png';
-import brick_2 from './../../img/brick_2.png';
-import stick from './../../img/stick.png';
-import stick_2 from './../../img/stick_2.png';
-import stone from './../../img/stone.png';
-import stone_2 from './../../img/stone_2.png';
-import water from './../../img/water.png' // needs 2
-import stone_or_stick from './../../img/stone_or_stick.png';
-import mud from './../../img/mud.png';
-import wolf_brick from './../../img/wolf_brick.png'; // needs all 3
-import glass from './../../img/glass.png';
+import brick from './../../img/cards/brick.png';
+import brick_2 from './../../img/cards/brick_2.png';
+import stick from './../../img/cards/stick.png';
+import stick_2 from './../../img//cards/stick_2.png';
+import stone from './../../img/cards/stone.png';
+import stone_2 from './../../img/cards/stone_2.png';
+import water from './../../img/cards/water.png' // needs 2
+import stone_or_stick from './../../img/cards/stone_or_stick.png';
+import mud from './../../img/cards/mud.png';
+import wolf_brick from './../../img/cards/wolf_brick.png';
+import wolf_stick from './../../img/cards/wolf_stick.png';
+import wolf_stone from './../../img/cards/wolf_stone.png';
+import glass from './../../img/cards/glass.png';
+import vp_2 from './../../img/cards/vp_2.png';
 
 // brick => clay
 // stick => lumber
@@ -26,8 +29,35 @@ import glass from './../../img/glass.png';
 // spoon => scriptorium
 // pot => workshop
 
-const Card = () => (
-    <img src={brick_2} width="110" height="190" />
-)
+const useStyles = makeStyles(theme => ({
+    img: {
+        width: "110px",
+        height: "190px"
+    }
+}))
+
+const Card = ({ cardInfo }) => {
+    const classes = useStyles();
+
+    if (cardInfo.description == "Stick") {
+        return <img src={stick} className={classes.img} />
+    } else if (cardInfo.description == "Stone") {
+        return <img src={stone} className={classes.img} />
+    } else if (cardInfo.description == "Brick") {
+        return <img src={brick} className={classes.img} />
+    } else if (cardInfo.description == "Mud") {
+        return <img src={mud} className={classes.img} />
+    } else if (cardInfo.description == "Stone_Stick") {
+        return <img src={stone_or_stick} className={classes.img} />
+    } else if (cardInfo.description == "Water") {
+        return <img src={water} className={classes.img} />
+    } else if (cardInfo.description == "Wolf_Stick") {
+        return <img src={wolf_stick} className={classes.img} />
+    } else if (cardInfo.description == "Wolf_Brick") {
+        return <img src={wolf_brick} className={classes.img} />
+    } else {
+        return <img src={glass} className={classes.img} />
+    }
+}
 
 export default Card;
