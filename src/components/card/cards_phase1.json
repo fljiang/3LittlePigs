@@ -1,0 +1,68 @@
+[
+    {
+        "description": "Stick", 
+        "cardType": "Resource",
+        "costType": {},
+        "rewardType": {"Stick": 1},
+        "phase": 1
+    },
+    {
+        "description": "Stone",
+        "cardType": "Resource",
+        "costType": {},
+        "rewardType": {"Stone": 1},
+        "phase": 1
+    },
+    {
+        "description": "Brick",
+        "cardType": "Resource",
+        "costType": {},
+        "rewardType": {"Brick": 1},
+        "phase": 1
+    },
+    {
+        "description": "Mud",
+        "cardType": "Resource",
+        "costType": {},
+        "rewardType": {"Mud": 1},
+        "phase": 1
+    },
+    {
+        "description": "Stone_Stick",
+        "cardType": "Resource_Slash",
+        "costType": {"Coin": 1},
+        "rewardType": {
+            "Stone": 1,
+            "Stick": 1
+        },
+        "phase": 1
+    },
+    {
+        "description": "Water",
+        "cardType": "Resource_Special",
+        "costType": {},
+        "rewardType": {"Water": 1},
+        "phase": 1
+    },
+    {
+        "description": "Wolf_Stick",
+        "cardType": "Wolf",
+        "costType": {"Stick": 1},
+        "rewardType": {"Wolf": 1},
+        "phase": 1
+    },
+    {                  
+        "description": "Wolf_Brick",
+        "cardType": "Wolf",
+        "costType": {"Brick": 1},
+        "rewardType": {"Wolf": 1},
+        "phase": 1
+    },
+    {
+        "description": "Glass_Flower",
+        "cardType": "Appliance",
+        "costType": {"Flower": 1},
+        "rewardType": {"Glass": 1},
+        "phase": 1
+    }
+]
