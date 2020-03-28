@@ -45,7 +45,6 @@ let Card = ({
     isValidCardToBuyArray
  }) => {
     canBuyCard(cardInfo.cost, cardIndex);
-    console.log(isValidCardToBuyArray);
 
     const classes = useStyles();
     let cardImage;

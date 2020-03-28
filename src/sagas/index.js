@@ -1,6 +1,8 @@
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest, all, select } from 'redux-saga/effects';
 
 import cards_phase1 from '../components/card/cards_phase1.json'
+
+export const getStats = (state) => state.stats
 
 function* fetchCards() {
     let cards = [];
@@ -19,11 +21,18 @@ function* fetchCards() {
 }
 
 function* calculateIfValidCardToBuy(action) {
-    if (action.cost.length === 0) {
-        yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: true, cardIndex: action.cardIndex })
-    } else {
-        yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: false, cardIndex: action.cardIndex })
-    }
+    const stats = yield select(getStats); 
+    let calculatedIsValidCardToBuy = true;
+
+    action.cost.map(element =>
+        Object.keys(element).map(function(key, index) {
+            if (stats[key] < element[key]) {
+                calculatedIsValidCardToBuy = false;
+            }
+        })
+    );
+
+    yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: calculatedIsValidCardToBuy, cardIndex: action.cardIndex });
 }
 
 function* cardsWatcher() {
