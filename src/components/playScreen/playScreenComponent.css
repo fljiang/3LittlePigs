@@ -23,7 +23,7 @@
     font-size: calc(10px + 2vmin);
     color: black;
     margin-right: 30px;
-    margin-top: 15px;
+    margin-top: -10px;
 }
 
 .cards-wrapper {
@@ -38,6 +38,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 205px;
+    margin-bottom: 15px;
+    margin-top: 200px;
 }

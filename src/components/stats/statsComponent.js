@@ -149,17 +149,10 @@ const Stats = ({
             primary={<Typography className="Value">{numApples}</Typography>}
           />
         </ListItem>
-
         <ListItem style={{ margin: -5 }}>
-          <img src={glass} alt="" style={{ width: 25, height: 32.5, marginBottom: 5 }} />
-          <ListItemText 
-            disableTypography
-            primary={<Typography className="SubKey">Glasses</Typography>}
-          />
-          <ListItemText 
-            disableTypography
-            primary={<Typography className="Value">{numGlasses}</Typography>}
-          />
+          <ListItemText style={{ width: 25 }} />
+          <ListItemText primary={<Typography className="SubKey" />} />
+          <ListItemText primary={<Typography className="Value" />} />
         </ListItem>
       </ListItem>
 
@@ -171,7 +164,7 @@ const Stats = ({
       </ListItem>
       <ListItem style={{ height: 25, marginLeft: 0 }}>
         <ListItem style={{ marginTop: -20, marginBottom: -20, marginLeft: -15 }}>
-          <img src={pot} alt="" style={{ width: 25, height: 32.5 }} />
+          <img src={pot} alt="" style={{ width: 25, height: 32.5, marginBottom: 5 }} />
           <ListItemText 
             disableTypography
             primary={<Typography className="SubKey">Pot</Typography>}
@@ -192,6 +185,25 @@ const Stats = ({
             disableTypography
             primary={<Typography className="Value">{numSpoons}</Typography>}
           />
+        </ListItem>
+      </ListItem>
+
+      <ListItem style={{ height: 25, marginLeft: 0 }}>
+        <ListItem style={{ marginTop: -20, marginBottom: -15, marginLeft: -15 }}>
+          <img src={glass} alt="" style={{ width: 25, height: 32.5 }} />
+          <ListItemText 
+            disableTypography
+            primary={<Typography className="SubKey">Glasses</Typography>}
+          />
+          <ListItemText 
+            disableTypography
+            primary={<Typography className="Value">{numGlasses}</Typography>}
+          />
+        </ListItem>
+        <ListItem style={{ margin: -5 }}>
+          <ListItemText style={{ width: 25 }} />
+          <ListItemText primary={<Typography className="SubKey" />} />
+          <ListItemText primary={<Typography className="Value" />} />
         </ListItem>
       </ListItem>
 
