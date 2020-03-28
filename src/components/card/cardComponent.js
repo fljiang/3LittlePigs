@@ -4,14 +4,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import brick from './../../img/cards/brick.png';
 import stick from './../../img/cards/stick.png';
 import stone from './../../img/cards/stone.png';
-import water from './../../img/cards/water.png' // needs 2
+import water from './../../img/cards/water.png'
 import stone_or_stick from './../../img/cards/stone_or_stick.png';
 import mud from './../../img/cards/mud.png';
 import wolf_brick from './../../img/cards/wolf_brick.png';
 import wolf_stick from './../../img/cards/wolf_stick.png';
-import glass from './../../img/cards/glass.png';
 import apple from './../../img/cards/apple.png';
 import flower from './../../img/cards/flower.png';
+import glass_flower from './../../img/cards/glass_flower.png';
+import pot_water from './../../img/cards/pot_water.png';
+import spoon_apple from './../../img/cards/spoon_apple.png';
+import brick_or_mud from './../../img/cards/brick_or_mud.png';
 
 import { Tooltip } from '@material-ui/core';
 
@@ -65,27 +68,33 @@ let Card = ({
     let cardImage;
 
     if (cardInfo.description === "Stick") {
-        cardImage = <img src={stick} className={classes.img} alt="stick card" />
+        cardImage = <img src={stick} className={classes.img} alt="" />
     } else if (cardInfo.description === "Stone") {
-        cardImage = <img src={stone} className={classes.img} alt="stone card" />
+        cardImage = <img src={stone} className={classes.img} alt="" />
     } else if (cardInfo.description === "Brick") {
-        cardImage = <img src={brick} className={classes.img} alt="brick card" />
+        cardImage = <img src={brick} className={classes.img} alt="" />
     } else if (cardInfo.description === "Mud") {
-        cardImage = <img src={mud} className={classes.img} alt="mud card" />
+        cardImage = <img src={mud} className={classes.img} alt="" />
     } else if (cardInfo.description === "Stone_Stick") {
-        cardImage = <img src={stone_or_stick} className={classes.img} alt="coin for stone or stick card" />
+        cardImage = <img src={stone_or_stick} className={classes.img} alt="" />
     } else if (cardInfo.description === "Water") {
-        cardImage = <img src={water} className={classes.img} alt="water card" />
+        cardImage = <img src={water} className={classes.img} alt="" />
     } else if (cardInfo.description === "Wolf_Stick") {
-        cardImage = <img src={wolf_stick} className={classes.img} alt="stick for wolf card" />
+        cardImage = <img src={wolf_stick} className={classes.img} alt="" />
     } else if (cardInfo.description === "Wolf_Brick") {
-        cardImage = <img src={wolf_brick} className={classes.img} alt="brick for wolf card" />
-    } else if (cardInfo.description === "Glass") {
-        cardImage = <img src={glass} className={classes.img} alt="glass card" />
+        cardImage = <img src={wolf_brick} className={classes.img} alt="" />
     } else if (cardInfo.description === "Flower") {
-        cardImage = <img src={flower} className={classes.img} alt="flower card" />
-    } else {
-        cardImage = <img src={apple} className={classes.img} alt="apple card" />
+        cardImage = <img src={flower} className={classes.img} alt="" />
+    } else if (cardInfo.description === "Apple") {
+        cardImage = <img src={apple} className={classes.img} alt="" />
+    } else if (cardInfo.description === "Glass_Flower") {
+        cardImage = <img src={glass_flower} className={classes.img} alt="" />
+    } else if (cardInfo.description === "Pot_Water") {
+        cardImage = <img src={pot_water} className={classes.img} alt="" />
+    } else if (cardInfo.description === "Spoon_Apple") {
+        cardImage = <img src={spoon_apple} className={classes.img} alt="" />
+    } else if (cardInfo.description === "Brick_Mud") {
+        cardImage = <img src={brick_or_mud} className={classes.img} alt="" />
     }
 
     return (

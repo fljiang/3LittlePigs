@@ -18,6 +18,9 @@ const reducer = (
                     "Stick": 0,
                     "Mud": 0,
                     "Stone": 0,
+                    "Apple": 0,
+                    "Water": 0,
+                    "Flower": 0,
                     "Wolf": 0
                 }
             };
