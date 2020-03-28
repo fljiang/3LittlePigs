@@ -6,7 +6,7 @@
             "costType": {},
             "rewardType": {"Stick": 1},
             "phase": 1,
-            "img": "./../../img/stick.png"
+            "img": "./../../img/cards/stick.png"
         },
         {
             "description": "Stone",
@@ -14,7 +14,7 @@
             "costType": {},
             "rewardType": {"Stone": 1},
             "phase": 1,
-            "img": "./../../img/stone.png"
+            "img": "./../../img/cards/stone.png"
         },
         {
             "description": "Brick",
@@ -22,7 +22,7 @@
             "costType": {},
             "rewardType": {"Brick": 1},
             "phase": 1,
-            "img": "./../../img/brick.png"
+            "img": "./../../img/cards/brick.png"
         },
         {
             "description": "Mud",
@@ -30,7 +30,7 @@
             "costType": {},
             "rewardType": {"Mud": 1},
             "phase": 1,
-            "img": "./../../img/mud.png"
+            "img": "./../../img/cards/mud.png"
         },
         {
             "description": "Brick_Mud",
@@ -51,14 +51,15 @@
                 "Stick": 1
             },
             "phase": 1,
-            "img": "./../../img/stone_or_stick.png"
+            "img": "./../../img/cards/stone_or_stick.png"
         },
         {
             "description": "Flower",
             "cardType": "Resource_Special",
             "costType": {},
             "rewardType": {"Flower": 1},
-            "phase": 1
+            "phase": 1,
+            "img": "./../../img/cards/flower.png"
         },
         {
             "description": "Water",
@@ -66,14 +67,15 @@
             "costType": {},
             "rewardType": {"Water": 1},
             "phase": 1,
-            "img": "./../../img/water.png"
+            "img": "./../../img/cards/water.png"
         },
         {
             "description": "Apple",
             "cardType": "Resource_Special",
             "costType": {},
             "rewardType": {"Apple": 1},
-            "phase": 1
+            "phase": 1,
+            "img": "./../../img/cards/apple.png"
         },
         {   
             "description": "VP_3_Green",
@@ -137,7 +139,7 @@
             "costType": {"Stick": 1},
             "rewardType": {"Wolf": 1},
             "phase": 1,
-            "img": "./../../img/wolf_stick.png"
+            "img": "./../../img/cards/wolf_stick.png"
         },
         {
             "description": "Wolf_Mud",
@@ -153,15 +155,14 @@
             "costType": {"Brick": 1},
             "rewardType": {"Wolf": 1},
             "phase": 1,
-            "img": "./../../img/wolf_brick.png"
+            "img": "./../../img/cards/wolf_brick.png"
         },
         {
             "description": "Glass_Flower",
             "cardType": "Appliance",
             "costType": {"Flower": 1},
             "rewardType": {"Glass": 1},
-            "phase": 1,
-            "img": "./../../img/glass.png"
+            "phase": 1
         },
         {
             "description": "Pot_Water",
@@ -183,7 +184,7 @@
             "costType": {"Coin": 1},
             "rewardType": {"Stick": 2},
             "phase": 2,
-            "img": "./../../img/stick_2.png"
+            "img": "./../../img/cards/stick_2.png"
         },
         {
             "description": "Stone_2",
@@ -191,7 +192,7 @@
             "costType": {"Coin": 1},
             "rewardType": {"Stone": 2},
             "phase": 2,
-            "img": "./../../img/stone_2.png"
+            "img": "./../../img/cards/stone_2.png"
         },
         {
             "description": "Brick_2",
@@ -199,7 +200,7 @@
             "costType": {"Coin": 1},
             "rewardType": {"Brick": 2},
             "phase": 2,
-            "img": "./../../img/brick_2.png"
+            "img": "./../../img/cards/brick_2.png"
         },
         {
             "description": "Mud_2",
