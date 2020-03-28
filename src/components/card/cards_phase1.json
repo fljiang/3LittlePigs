@@ -3,36 +3,44 @@
         "description": "Stick", 
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {
-            "Stick": 1
-        },
+        "reward": [
+            {
+                "Stick": 1
+            }
+        ],
         "phase": 1
     },
     {
         "description": "Stone",
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {
-            "Stone": 1
-        },
+        "reward": [
+            {
+                "Stone": 1
+            }
+        ],
         "phase": 1
     },
     {
         "description": "Brick",
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {
-            "Brick": 1
-        },
+        "reward": [
+            {
+                "Brick": 1
+            }
+        ],
         "phase": 1
     },
     {
         "description": "Mud",
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {
-            "Mud": 1
-        },
+        "reward": [
+            {
+                "Mud": 1
+            }
+        ],
         "phase": 1
     },
     {
@@ -43,37 +51,64 @@
                 "Coin": 1
             }
         ],
-        "rewardType": {
-            "Stone": 1,
-            "Stick": 1
-        },
+        "reward": [
+            {
+                "Stone": 1
+            },
+            {
+                "Stick": 1
+            }
+        ],
         "phase": 1
+    },
+    {
+        "description": "Brick_Mud",
+        "cardType": "Resource_Slash",
+        "cost": [
+            {
+                "Coin": 1
+            }
+        ],
+        "reward": [
+            {
+                "Stone": 1
+            },
+            {
+                "Stick": 1
+            }
+        ]
     },
     {
         "description": "Flower",
         "cardType": "Resource_Special",
         "cost": [],
-        "rewardType": {
-            "Flower": 1
-        },
+        "reward": [
+            {
+                "Flower": 1
+            }
+        ],
         "phase": 1
     },
     {
         "description": "Water",
         "cardType": "Resource_Special",
         "cost": [],
-        "rewardType": {
-            "Water": 1
-        },
+        "reward": [
+            {
+                "Water": 1
+            }
+        ],
         "phase": 1
     },
     {
         "description": "Apple",
         "cardType": "Resource_Special",
         "cost": [],
-        "rewardType": {
-            "Apple": 1
-        },
+        "reward": [
+            {
+                "Apple": 1
+            }
+        ],
         "phase": 1
     },
     {
@@ -84,9 +119,11 @@
                 "Stick": 1
             }
         ],
-        "rewardType": {
-            "Wolf": 1
-        },
+        "reward": [
+            {
+                "Wolf": 1
+            }
+        ],
         "phase": 1
     },
     {                  
@@ -97,18 +134,56 @@
                 "Brick": 1
             }
         ],
-        "rewardType": {
-            "Wolf": 1
-        },
+        "reward": [
+            {
+                "Wolf": 1
+            }
+        ],
         "phase": 1
     },
     {
-        "description": "Glass",
+        "description": "Glass_Flower",
         "cardType": "Appliance",
-        "cost": [],
-        "rewardType": {
-            "Glass": 1
-        },
+        "cost": [
+            {
+                "Flower": 1
+            }
+        ],
+        "reward": [
+            {
+                "Glass": 1
+            }
+        ],
+        "phase": 1
+    },
+    {
+        "description": "Pot_Water",
+        "cardType": "Appliance",
+        "cost": [
+            {
+                "Water": 1
+            }
+        ],
+        "reward": [
+            {
+                "Pot": 1
+            }
+        ],
+        "phase": 1
+    },
+    {
+        "description": "Spoon_Apple",
+        "cardType": "Appliance",
+        "cost": [
+            {
+                "Apple": 1
+            }
+        ],
+        "reward": [
+            {
+                "Spoon": 1
+            }
+        ],
         "phase": 1
     }
 ]
