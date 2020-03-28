@@ -8,7 +8,7 @@ import Card from '../card/cardComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { getCards, hideCards } from '../../actions';
+import { getCards } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 let PlayScreen = ({ 
     loading, 
     getCards, 
-    hideCards, 
     cards 
 }) => {
     const classes = useStyles();
@@ -35,25 +34,14 @@ let PlayScreen = ({
             </header>
 
             { !loading && cards ? 
-                <div>
-                    <div className="cards-wrapper">
-                        <Card cardInfo={cards[0]} cardIndex={0} />
-                        <Card cardInfo={cards[1]} cardIndex={1} />
-                        <Card cardInfo={cards[2]} cardIndex={2} />
-                        <Card cardInfo={cards[3]} cardIndex={3} />
-                        <Card cardInfo={cards[4]} cardIndex={4} />
-                        <Card cardInfo={cards[5]} cardIndex={5} />
-                        <Card cardInfo={cards[6]} cardIndex={6} />
-                    </div>
-                    <div className="hide-cards-button-wrapper">
-                        <Fab 
-                            variant="extended" 
-                            color="primary"
-                            className={classes.fab}
-                            onClick={hideCards}>
-                                Hide Cards
-                        </Fab>
-                    </div>
+                <div className="cards-wrapper">
+                    <Card cardInfo={cards[0]} cardIndex={0} />
+                    <Card cardInfo={cards[1]} cardIndex={1} />
+                    <Card cardInfo={cards[2]} cardIndex={2} />
+                    <Card cardInfo={cards[3]} cardIndex={3} />
+                    <Card cardInfo={cards[4]} cardIndex={4} />
+                    <Card cardInfo={cards[5]} cardIndex={5} />
+                    <Card cardInfo={cards[6]} cardIndex={6} />
                 </div> :
                 <div className="view-cards-button-wrapper">
                     <Fab 
@@ -83,7 +71,6 @@ let PlayScreen = ({
 
 const mapDispatchToProps = {
     getCards: getCards,
-    hideCards: hideCards,
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);

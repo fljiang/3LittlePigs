@@ -35,6 +35,18 @@ const useStyles = makeStyles(theme => ({
         height: "190px",
         marginLeft: "5px",
         marginRight: "5px"
+    },
+    tooltipValid: {
+        maxWidth: "130px",
+        fontSize: "0.8em",
+        color: "black",
+        backgroundColor: "#3CB043"
+    },
+    tooltipInvalid: {
+        maxWidth: "130px",
+        fontSize: "0.8em",
+        color: "white",
+        backgroundColor: "#D0312D"
     }
 }))
 
@@ -74,6 +86,10 @@ let Card = ({
             isValidCardToBuyArray[cardIndex] ? 
             "Click card to purchase" : 
             "Do not have enough resources\nor coins to purchase card"
+        } classes={
+            isValidCardToBuyArray[cardIndex] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
         }>
             {cardImage}
         </Tooltip>

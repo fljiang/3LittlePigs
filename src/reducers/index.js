@@ -5,8 +5,6 @@ const reducer = (
     switch (action.type) {
         case 'GET_CARDS':
             return { ...state, loading: true };
-        case 'HIDE_CARDS':
-            return { ...state, cards: null };
         case 'CARDS_RECEIVED':
             const emptyArray = Array.apply(null, Array(7)).map(function () {});
             return { 
