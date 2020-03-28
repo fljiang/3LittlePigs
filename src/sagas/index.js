@@ -12,14 +12,23 @@ function* fetchCards() {
         cardsInventory.splice(randomNum, 1);
         cards.push(randomCard);
 
-        if (cardNum == 7) {
+        if (cardNum === 7) {
             yield put({ type: "CARDS_RECEIVED", json: cards });
         }
     }
 }
 
+function* calculateIfValidCardToBuy(action) {
+    if (action.cost.length === 0) {
+        yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: true, cardIndex: action.cardIndex })
+    } else {
+        yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: false, cardIndex: action.cardIndex })
+    }
+}
+
 function* cardsWatcher() {
     yield takeLatest('GET_CARDS', fetchCards);
+    yield takeLatest('CAN_BUY_CARD', calculateIfValidCardToBuy);
 }
 
 export default function* rootSaga() {
