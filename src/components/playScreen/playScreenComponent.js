@@ -27,10 +27,38 @@ let PlayScreen = ({
     return (
         <div className="App">
             <header className="Other-players-header">
-                <Stats numCoins={3} numBricks={0} numSticks={0} numStones={0} numMud={0} numWolves={0} />
+                <Stats 
+                    numCoins={3} 
+                    numBricks={0} 
+                    numSticks={0} 
+                    numStones={0} 
+                    numMud={0} 
+                    numWolves={0} 
+                    numPots={0} 
+                    numSpoons={0} 
+                    numVps={0}
+                    numApples={0}
+                    numWater={0}
+                    numGlasses={0}
+                    numFlowers={0}
+                />
                 <Board title={"Sarah's House"} resource={"stick"} firstPlayer={false} />
                 <Board title={"Joe's House"} resource={"mud"} firstPlayer={false} />
-                <Stats numCoins={3} numBricks={0} numSticks={0} numStones={0} numMud={0} numWolves={0} />
+                <Stats 
+                    numCoins={3} 
+                    numBricks={0} 
+                    numSticks={0} 
+                    numStones={0} 
+                    numMud={0} 
+                    numWolves={0} 
+                    numPots={0} 
+                    numSpoons={0} 
+                    numVps={0}
+                    numApples={0}
+                    numWater={0}
+                    numGlasses={0}
+                    numFlowers={0}
+                />
             </header>
 
             { !loading && cards ? 
@@ -63,6 +91,13 @@ let PlayScreen = ({
                     numStones={0} 
                     numMud={0} 
                     numWolves={0}
+                    numPots={0}
+                    numSpoons={0}
+                    numVps={0}
+                    numApples={0}
+                    numWater={0}
+                    numGlasses={0}
+                    numFlowers={0}
                 />
             </header>
         </div>

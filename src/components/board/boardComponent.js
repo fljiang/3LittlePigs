@@ -9,10 +9,17 @@ import vp_7 from './../../img/board/vp_7.png';
 import './boardComponent.css';
 
 const Board = ({ title, resource, firstPlayer }) => (
-  <Box border={1} width="60%" marginRight={firstPlayer ? "39px" : "0px"}>
+  <Box border={1} width="60%" 
+    marginRight={firstPlayer ? "39px" : "0px"}
+    marginLeft={firstPlayer ? "25px": "0px" }
+  >
     <List>
-      <ListItem>
-        <img src={resource === "brick" ? brick : (resource === "stick" ? stick : mud)} alt="" style={{ width: 100, height: 130 }} />
+      <ListItem style={{ marginTop: -15, marginBottom: -2 }}>
+        <img 
+          src={resource === "brick" ? brick : (resource === "stick" ? stick : mud)} 
+          alt="" 
+          style={{ width: 100, height: 130 }}
+        />
         <ListItemText 
           disableTypography
           primary={<Typography className="HouseName">{title}</Typography>}
