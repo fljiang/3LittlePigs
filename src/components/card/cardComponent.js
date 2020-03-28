@@ -2,19 +2,19 @@ import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 
 import brick from './../../img/cards/brick.png';
-import brick_2 from './../../img/cards/brick_2.png';
 import stick from './../../img/cards/stick.png';
-import stick_2 from './../../img//cards/stick_2.png';
 import stone from './../../img/cards/stone.png';
-import stone_2 from './../../img/cards/stone_2.png';
 import water from './../../img/cards/water.png' // needs 2
 import stone_or_stick from './../../img/cards/stone_or_stick.png';
 import mud from './../../img/cards/mud.png';
 import wolf_brick from './../../img/cards/wolf_brick.png';
 import wolf_stick from './../../img/cards/wolf_stick.png';
-import wolf_stone from './../../img/cards/wolf_stone.png';
 import glass from './../../img/cards/glass.png';
-import vp_2 from './../../img/cards/vp_2.png';
+import { Tooltip } from '@material-ui/core';
+
+import { connect } from 'react-redux';
+import { canBuyCard } from '../../actions';
+import { bindActionCreators } from '../../../../../Library/Caches/typescript/3.6/node_modules/redux';
 
 // brick => clay
 // stick => lumber
@@ -35,31 +35,76 @@ const useStyles = makeStyles(theme => ({
         height: "190px",
         marginLeft: "5px",
         marginRight: "5px"
+    },
+    tooltipValid: {
+        maxWidth: "130px",
+        fontSize: "0.8em",
+        color: "black",
+        backgroundColor: "#3CB043"
+    },
+    tooltipInvalid: {
+        maxWidth: "130px",
+        fontSize: "0.8em",
+        color: "white",
+        backgroundColor: "#D0312D"
     }
 }))
 
-const Card = ({ cardInfo }) => {
-    const classes = useStyles();
+let Card = ({ 
+    cardInfo,
+    cardIndex,
+    canBuyCard,
+    isValidCardToBuyArray
+ }) => {
+    canBuyCard(cardInfo.cost, cardIndex);
 
-    if (cardInfo.description == "Stick") {
-        return <img src={stick} className={classes.img} />
-    } else if (cardInfo.description == "Stone") {
-        return <img src={stone} className={classes.img} />
-    } else if (cardInfo.description == "Brick") {
-        return <img src={brick} className={classes.img} />
-    } else if (cardInfo.description == "Mud") {
-        return <img src={mud} className={classes.img} />
-    } else if (cardInfo.description == "Stone_Stick") {
-        return <img src={stone_or_stick} className={classes.img} />
-    } else if (cardInfo.description == "Water") {
-        return <img src={water} className={classes.img} />
-    } else if (cardInfo.description == "Wolf_Stick") {
-        return <img src={wolf_stick} className={classes.img} />
-    } else if (cardInfo.description == "Wolf_Brick") {
-        return <img src={wolf_brick} className={classes.img} />
+    const classes = useStyles();
+    let cardImage;
+
+    if (cardInfo.description === "Stick") {
+        cardImage = <img src={stick} className={classes.img} alt="stick card" />
+    } else if (cardInfo.description === "Stone") {
+        cardImage = <img src={stone} className={classes.img} alt="stone card" />
+    } else if (cardInfo.description === "Brick") {
+        cardImage = <img src={brick} className={classes.img} alt="brick card" />
+    } else if (cardInfo.description === "Mud") {
+        cardImage = <img src={mud} className={classes.img} alt="mud card" />
+    } else if (cardInfo.description === "Stone_Stick") {
+        cardImage = <img src={stone_or_stick} className={classes.img} alt="coin for stone or stick card" />
+    } else if (cardInfo.description === "Water") {
+        cardImage = <img src={water} className={classes.img} alt="water card" />
+    } else if (cardInfo.description === "Wolf_Stick") {
+        cardImage = <img src={wolf_stick} className={classes.img} alt="stick for wolf card" />
+    } else if (cardInfo.description === "Wolf_Brick") {
+        cardImage = <img src={wolf_brick} className={classes.img} alt="brick for wolf card" />
     } else {
-        return <img src={glass} className={classes.img} />
+        cardImage = <img src={glass} className={classes.img} alt="glass card" />
     }
+
+    return (
+        <Tooltip title={
+            isValidCardToBuyArray[cardIndex] ? 
+            "Click card to purchase" : 
+            "Do not have enough resources\nor coins to purchase card"
+        } classes={
+            isValidCardToBuyArray[cardIndex] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
+        }>
+            {cardImage}
+        </Tooltip>
+    )
 }
+
+const mapDispatchToProps = (dispatch) => 
+    bindActionCreators({ canBuyCard }, dispatch);
+
+Card = connect(null, mapDispatchToProps)(Card);
+
+const mapStateToProps = (state) => ({
+    isValidCardToBuyArray: state.isValidCardToBuyArray,
+})
+
+Card = connect(mapStateToProps, null)(Card);
 
 export default Card;
