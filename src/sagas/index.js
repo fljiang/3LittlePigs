@@ -9,7 +9,7 @@ function* fetchCards() {
     let cardsInventory = cards_phase1.map(element => element);
     
     for (let cardNum = 1; cardNum <= 7; cardNum++) {
-        let randomNum = Math.floor((Math.random() * (10 - cardNum)));
+        let randomNum = Math.floor((Math.random() * (12 - cardNum)));
         let randomCard = cardsInventory[randomNum];
         cardsInventory.splice(randomNum, 1);
         cards.push(randomCard);

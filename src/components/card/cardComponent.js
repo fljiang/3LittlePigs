@@ -10,6 +10,9 @@ import mud from './../../img/cards/mud.png';
 import wolf_brick from './../../img/cards/wolf_brick.png';
 import wolf_stick from './../../img/cards/wolf_stick.png';
 import glass from './../../img/cards/glass.png';
+import apple from './../../img/cards/apple.png';
+import flower from './../../img/cards/flower.png';
+
 import { Tooltip } from '@material-ui/core';
 
 import { connect } from 'react-redux';
@@ -77,8 +80,12 @@ let Card = ({
         cardImage = <img src={wolf_stick} className={classes.img} alt="stick for wolf card" />
     } else if (cardInfo.description === "Wolf_Brick") {
         cardImage = <img src={wolf_brick} className={classes.img} alt="brick for wolf card" />
-    } else {
+    } else if (cardInfo.description === "Glass") {
         cardImage = <img src={glass} className={classes.img} alt="glass card" />
+    } else if (cardInfo.description === "Flower") {
+        cardImage = <img src={flower} className={classes.img} alt="flower card" />
+    } else {
+        cardImage = <img src={apple} className={classes.img} alt="apple card" />
     }
 
     return (

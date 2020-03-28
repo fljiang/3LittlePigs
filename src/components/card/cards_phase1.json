@@ -3,28 +3,36 @@
         "description": "Stick", 
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {"Stick": 1},
+        "rewardType": {
+            "Stick": 1
+        },
         "phase": 1
     },
     {
         "description": "Stone",
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {"Stone": 1},
+        "rewardType": {
+            "Stone": 1
+        },
         "phase": 1
     },
     {
         "description": "Brick",
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {"Brick": 1},
+        "rewardType": {
+            "Brick": 1
+        },
         "phase": 1
     },
     {
         "description": "Mud",
         "cardType": "Resource",
         "cost": [],
-        "rewardType": {"Mud": 1},
+        "rewardType": {
+            "Mud": 1
+        },
         "phase": 1
     },
     {
@@ -42,10 +50,30 @@
         "phase": 1
     },
     {
+        "description": "Flower",
+        "cardType": "Resource_Special",
+        "cost": [],
+        "rewardType": {
+            "Flower": 1
+        },
+        "phase": 1
+    },
+    {
         "description": "Water",
         "cardType": "Resource_Special",
         "cost": [],
-        "rewardType": {"Water": 1},
+        "rewardType": {
+            "Water": 1
+        },
+        "phase": 1
+    },
+    {
+        "description": "Apple",
+        "cardType": "Resource_Special",
+        "cost": [],
+        "rewardType": {
+            "Apple": 1
+        },
         "phase": 1
     },
     {
@@ -56,7 +84,9 @@
                 "Stick": 1
             }
         ],
-        "rewardType": {"Wolf": 1},
+        "rewardType": {
+            "Wolf": 1
+        },
         "phase": 1
     },
     {                  
@@ -67,14 +97,18 @@
                 "Brick": 1
             }
         ],
-        "rewardType": {"Wolf": 1},
+        "rewardType": {
+            "Wolf": 1
+        },
         "phase": 1
     },
     {
         "description": "Glass",
         "cardType": "Appliance",
         "cost": [],
-        "rewardType": {"Glass": 1},
+        "rewardType": {
+            "Glass": 1
+        },
         "phase": 1
     }
 ]
