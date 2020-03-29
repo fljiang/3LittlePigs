@@ -4,7 +4,7 @@ import Fab from '@material-ui/core/Fab';
 
 import Stats from '../stats/statsComponent.js';
 import Board from '../board/boardComponent.js';
-import Card from '../card/cardComponent.js';
+import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
@@ -62,15 +62,7 @@ let PlayScreen = ({
             </header>
 
             { !loading && cards ? 
-                <div className="cards-wrapper">
-                    <Card cardInfo={cards[0]} cardIndex={0} />
-                    <Card cardInfo={cards[1]} cardIndex={1} />
-                    <Card cardInfo={cards[2]} cardIndex={2} />
-                    <Card cardInfo={cards[3]} cardIndex={3} />
-                    <Card cardInfo={cards[4]} cardIndex={4} />
-                    <Card cardInfo={cards[5]} cardIndex={5} />
-                    <Card cardInfo={cards[6]} cardIndex={6} />
-                </div> :
+                <Cards cards={cards} /> :
                 <div className="view-cards-button-wrapper">
                     <Fab 
                         variant="extended" 
