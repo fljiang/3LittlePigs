@@ -8,9 +8,7 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { getCards, setBoard, startGame } from '../../actions';
-
-import socket from './../../socket';
+import { getCards } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -20,32 +18,27 @@ const useStyles = makeStyles(theme => ({
 }))
 
 let PlayScreen = ({ 
+    state,
     loading, 
     getCards, 
-    cards,
-    setBoard,
-    board,
-    startGame,
-    client
+    cards
 }) => {
-    startGame(socket());
-    client.getRandomBoard((error, randomBoard) => {
-        if (error) return console.error(error);
-        setBoard(randomBoard);
-    });
+    const classes = useStyles();
 
     let primaryBoardTitle;
     let secondaryBoardTitle;
     let tertiaryBoardTitle;
     let secondaryBoardResource;
     let tertiaryBoardResource;
-    if (board === "stick") {
+
+    const primaryBoardResource = state.board;
+    if (state.board === "stick") {
         primaryBoardTitle = "Sarah's House";
         secondaryBoardTitle = "Joe's House";
         tertiaryBoardTitle = "Billy's House";
         secondaryBoardResource = "mud";
         tertiaryBoardResource = "brick";
-    } else if (board === "brick") {
+    } else if (state.board === "brick") {
         primaryBoardTitle = "Billy's House";
         secondaryBoardTitle = "Sarah's House";
         tertiaryBoardTitle = "Joe's House";
@@ -59,7 +52,6 @@ let PlayScreen = ({
         tertiaryBoardResource = "stick";
     }
 
-    const classes = useStyles();
     return (
         <div className="App">
             <header className="Other-players-header">
@@ -111,7 +103,7 @@ let PlayScreen = ({
             }
 
             <header className="First-player-header">
-                <Board title={primaryBoardTitle} resource={board} firstPlayer={true} />
+                <Board title={primaryBoardTitle} resource={primaryBoardResource} firstPlayer={true} />
                 <Stats 
                     numCoins={3} 
                     numBricks={0} 
@@ -134,8 +126,6 @@ let PlayScreen = ({
 
 const mapDispatchToProps = {
     getCards: getCards,
-    setBoard: setBoard,
-    startGame: startGame,
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
@@ -143,8 +133,6 @@ PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
 const mapStateToProps = (state) => ({
     cards: state.cards,
     loading: state.loading,
-    board: state.board,
-    client: state.client,
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);

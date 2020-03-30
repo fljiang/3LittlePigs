@@ -5,11 +5,11 @@ module.exports = function () {
     const remainingBoards = ["stick", "brick", "mud"]
 
     function isGameFull() {
-        return boards.size >= 3
+        return clientIdsToBoardsMap.size >= 3
     }
 
     function getRandomBoard(clientId) {
-        const numRemainingBoards = 3 - boards.size
+        const numRemainingBoards = 3 - clientIdsToBoardsMap.size
         const randomBoardIndex = Math.floor((Math.random() * numRemainingBoards))
         const randomBoard = remainingBoards[randomBoardIndex]
         
