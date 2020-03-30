@@ -7,6 +7,12 @@ export default function () {
         console.log('received socket error:')
         console.log(err)
     })
+
+    function getRandomBoard(callback) {
+        socket.emit('getRandomBoard', callback)
+    }
   
-    return {}
+    return {
+        getRandomBoard
+    }
 }

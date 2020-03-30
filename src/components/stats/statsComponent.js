@@ -167,7 +167,7 @@ const Stats = ({
           <img src={pot} alt="" style={{ width: 25, height: 32.5, marginBottom: 5 }} />
           <ListItemText 
             disableTypography
-            primary={<Typography className="SubKey">Pot</Typography>}
+            primary={<Typography className="SubKey">Pots</Typography>}
           />
           <ListItemText 
             disableTypography
@@ -179,7 +179,7 @@ const Stats = ({
           <img src={spoon} alt="" style={{ width: 25, height: 32.5 }} />
           <ListItemText 
             disableTypography
-            primary={<Typography className="SubKey">Spoon</Typography>}
+            primary={<Typography className="SubKey">Spoons</Typography>}
           />
           <ListItemText 
             disableTypography
