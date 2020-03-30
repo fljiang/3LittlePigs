@@ -7,3 +7,13 @@ export const canBuyCard = (cost, cardIndex) => ({
     cost,
     cardIndex
 });
+
+export const startGame = (socket) => ({
+    type: 'START_GAME',
+    socket
+});
+
+export const setBoard = (randomBoard) => ({
+    type: 'SET_BOARD',
+    randomBoard
+});

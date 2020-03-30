@@ -27,6 +27,10 @@ const reducer = (
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':
             state.isValidCardToBuyArray[action.cardIndex] = action.isValidCardToBuy;
             return { ...state };
+        case 'START_GAME':
+            return { ...state, client: action.socket };
+        case 'SET_BOARD':
+            return { ...state, board: action.randomBoard };
         default:
             return state;
     }
