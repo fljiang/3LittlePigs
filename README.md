@@ -1,3 +1,18 @@
+## Instructions for Running the Application Locally
+
+1. Open a terminal and navigate to the root of the application.
+
+2. `cd server`
+
+3. `npm run server`
+
+4. Open another terminal and navigate to the root of the application.
+
+5. `npm start`
+
+________________________________________________________________________________________________________________
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
