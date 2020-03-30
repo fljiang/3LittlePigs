@@ -8,7 +8,8 @@ const boardManager = BoardManager()
 
 io.on('connection', function (client) {
     const {
-        handleGetRandomBoard
+        handleGetRandomBoard,
+        handleDisconnect
     } = makeHandlers(client, boardManager)
 
     console.log('client connected...', client.id)
@@ -17,6 +18,7 @@ io.on('connection', function (client) {
 
     client.on('disconnect', function () {
         console.log('client disconnect...', client.id)
+        handleDisconnect()
     })
 
     client.on('error', function (err) {

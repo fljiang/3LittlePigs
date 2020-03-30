@@ -19,8 +19,14 @@ module.exports = function () {
         return randomBoard
     }
 
+    function removeClient(clientId) {
+        remainingBoards.push(clientIdsToBoardsMap.get(clientId))
+        clientIdsToBoardsMap.delete(clientId)
+    }
+
     return {
         isGameFull,
-        getRandomBoard
+        getRandomBoard,
+        removeClient
     }
 }

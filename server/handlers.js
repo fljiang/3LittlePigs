@@ -8,7 +8,12 @@ module.exports = function (client, boardManager) {
         return callback(null, board)
     }
 
+    function handleDisconnect() {
+        boardManager.removeClient(client.id)
+    }
+
     return {
-        handleGetRandomBoard
+        handleGetRandomBoard,
+        handleDisconnect
     }
 }
