@@ -4,7 +4,7 @@
 
 2. `cd server`
 
-3. `npm run server`
+3. `node server.js`
 
 4. Open another terminal and navigate to the root of the application.
 
