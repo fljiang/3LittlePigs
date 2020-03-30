@@ -18,11 +18,39 @@ const useStyles = makeStyles(theme => ({
 }))
 
 let PlayScreen = ({ 
+    state,
     loading, 
     getCards, 
-    cards 
+    cards
 }) => {
     const classes = useStyles();
+
+    let primaryBoardTitle;
+    let secondaryBoardTitle;
+    let tertiaryBoardTitle;
+    let secondaryBoardResource;
+    let tertiaryBoardResource;
+
+    const primaryBoardResource = state.board;
+    if (state.board === "stick") {
+        primaryBoardTitle = "Sarah's House";
+        secondaryBoardTitle = "Joe's House";
+        tertiaryBoardTitle = "Billy's House";
+        secondaryBoardResource = "mud";
+        tertiaryBoardResource = "brick";
+    } else if (state.board === "brick") {
+        primaryBoardTitle = "Billy's House";
+        secondaryBoardTitle = "Sarah's House";
+        tertiaryBoardTitle = "Joe's House";
+        secondaryBoardResource = "stick";
+        tertiaryBoardResource = "mud";
+    } else {
+        primaryBoardTitle = "Joe's House";
+        secondaryBoardTitle = "Billy's House";
+        tertiaryBoardTitle = "Sarah's House";
+        secondaryBoardResource = "brick";
+        tertiaryBoardResource = "stick";
+    }
 
     return (
         <div className="App">
@@ -42,8 +70,8 @@ let PlayScreen = ({
                     numGlasses={0}
                     numFlowers={0}
                 />
-                <Board title={"Sarah's House"} resource={"stick"} firstPlayer={false} />
-                <Board title={"Joe's House"} resource={"mud"} firstPlayer={false} />
+                <Board title={secondaryBoardTitle} resource={secondaryBoardResource} firstPlayer={false} />
+                <Board title={tertiaryBoardTitle} resource={tertiaryBoardResource} firstPlayer={false} />
                 <Stats 
                     numCoins={3} 
                     numBricks={0} 
@@ -75,7 +103,7 @@ let PlayScreen = ({
             }
 
             <header className="First-player-header">
-                <Board title={"Billy's House"} resource={"brick"} firstPlayer={true} />
+                <Board title={primaryBoardTitle} resource={primaryBoardResource} firstPlayer={true} />
                 <Stats 
                     numCoins={3} 
                     numBricks={0} 
