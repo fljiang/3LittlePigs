@@ -78,21 +78,21 @@
             "img": "./../../img/cards/apple.png"
         },
         {   
-            "description": "VP_3_Green",
+            "description": "VP_3_Yellow",
             "cardType": "Victory",
             "costType": {"Stone": 1},
             "rewardType": {"Victory": 3},
             "phase": 1
         },
         {
-            "description": "VP_2_Red",
+            "description": "VP_2_Pink",
             "cardType": "Victory",
             "costType": {},
             "rewardType": {"Victory": 2},
             "phase": 1
         },
         {
-            "description": "VP_2_Blue",
+            "description": "VP_2_Brown",
             "cardType": "Victory",
             "costType": {},
             "rewardType": {"Victory": 2},
