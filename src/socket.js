@@ -11,8 +11,13 @@ export default function () {
     function getRandomBoard(callback) {
         socket.emit('getRandomBoard', callback)
     }
+
+    function getRandomCards(callback) {
+        socket.emit('getRandomCards', callback)
+    }
   
     return {
-        getRandomBoard
+        getRandomBoard,
+        getRandomCards
     }
 }

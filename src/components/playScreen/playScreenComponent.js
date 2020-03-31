@@ -8,7 +8,7 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { getCards } from '../../actions';
+import { setCards } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 let PlayScreen = ({ 
     state,
     loading, 
-    getCards, 
+    setCards, 
     cards
 }) => {
     const classes = useStyles();
@@ -96,7 +96,7 @@ let PlayScreen = ({
                         variant="extended" 
                         color="primary"
                         className={classes.fab}
-                        onClick={getCards}>
+                        onClick={() => setCards(state.cards)}>
                             View Cards
                     </Fab>
                 </div>
@@ -125,7 +125,7 @@ let PlayScreen = ({
 }
 
 const mapDispatchToProps = {
-    getCards: getCards,
+    setCards: setCards,
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);

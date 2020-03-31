@@ -9,9 +9,9 @@ const Cards = ({cards}) => (
         <Card cardInfo={cards[1]} cardIndex={1} />
         <Card cardInfo={cards[2]} cardIndex={2} />
         <Card cardInfo={cards[3]} cardIndex={3} />
-        <Card cardInfo={cards[4]} cardIndex={4} />
+        {/* <Card cardInfo={cards[4]} cardIndex={4} />
         <Card cardInfo={cards[5]} cardIndex={5} />
-        <Card cardInfo={cards[6]} cardIndex={6} />
+        <Card cardInfo={cards[6]} cardIndex={6} /> */}
     </div>
 );
 

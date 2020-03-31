@@ -1,23 +1,9 @@
 import { put, takeLatest, all, select } from 'redux-saga/effects';
 
-import cards_phase1 from '../components/card/cards_phase1.json'
-
 export const getStats = (state) => state.stats
 
-function* fetchCards() {
-    let cards = [];
-    let cardsInventory = cards_phase1.map(element => element);
-    
-    for (let cardNum = 1; cardNum <= 7; cardNum++) {
-        let randomNum = Math.floor((Math.random() * (15 - cardNum)));
-        let randomCard = cardsInventory[randomNum];
-        cardsInventory.splice(randomNum, 1);
-        cards.push(randomCard);
-
-        if (cardNum === 7) {
-            yield put({ type: "CARDS_RECEIVED", json: cards });
-        }
-    }
+function* setFetchedCards(action) {
+    yield put({ type: "CARDS_SET", cards: action.cards });
 }
 
 function* calculateIfValidCardToBuy(action) {
@@ -36,7 +22,7 @@ function* calculateIfValidCardToBuy(action) {
 }
 
 function* cardsWatcher() {
-    yield takeLatest('GET_CARDS', fetchCards);
+    yield takeLatest('SET_CARDS', setFetchedCards);
     yield takeLatest('CAN_BUY_CARD', calculateIfValidCardToBuy);
 }
 
