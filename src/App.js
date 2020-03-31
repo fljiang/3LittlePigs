@@ -10,12 +10,15 @@ export default class App extends React.Component {
 
     this.state = {
       client: socket(),
-      board: null
+      board: null,
+      cards: null
     }
 
     this.getRandomBoard = this.getRandomBoard.bind(this)
+    this.getRandomCards = this.getRandomCards.bind(this)
 
     this.getRandomBoard()
+    this.getRandomCards()
   }
 
   getRandomBoard() {
@@ -25,8 +28,15 @@ export default class App extends React.Component {
     });
   }
 
+  getRandomCards() {
+    this.state.client.getRandomCards((error, cards) => {
+      if (error) return console.error(error);
+      this.setState({ cards })
+    })
+  }
+
   render() {
-    if (this.state.board != null) {
+    if (this.state.board != null && this.state.cards != null) {
       return <PlayScreen state={this.state} />
     } else {
       return null

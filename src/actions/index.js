@@ -1,5 +1,6 @@
-export const getCards = () => ({
-    type: 'GET_CARDS',
+export const setCards = (cards) => ({
+    type: 'SET_CARDS',
+    cards
 });
 
 export const canBuyCard = (cost, cardIndex) => ({

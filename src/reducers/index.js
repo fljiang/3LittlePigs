@@ -3,14 +3,14 @@ const reducer = (
     action
 ) => {
     switch (action.type) {
-        case 'GET_CARDS':
+        case 'SET_CARDS':
             return { ...state, loading: true };
-        case 'CARDS_RECEIVED':
+        case 'CARDS_SET':
             const emptyArray = Array.apply(null, Array(7)).map(function () {});
             return { 
                 ...state, 
                 loading: false, 
-                cards: action.json, 
+                cards: action.cards,
                 isValidCardToBuyArray: emptyArray,
                 stats: {
                     "Coin": 3,
@@ -27,10 +27,6 @@ const reducer = (
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':
             state.isValidCardToBuyArray[action.cardIndex] = action.isValidCardToBuy;
             return { ...state };
-        case 'START_GAME':
-            return { ...state, client: action.socket };
-        case 'SET_BOARD':
-            return { ...state, board: action.randomBoard };
         default:
             return state;
     }

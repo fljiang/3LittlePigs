@@ -1,4 +1,4 @@
-module.exports = function (client, boardManager) {
+module.exports = function (client, boardManager, cardManager) {
     function handleGetRandomBoard(callback) {
         if (boardManager.isGameFull()) {
             return callback('Selected game is full')
@@ -8,12 +8,19 @@ module.exports = function (client, boardManager) {
         return callback(null, board)
     }
 
+    function handleGetRandomCards(callback) {
+        const cards = cardManager.getRandomCards(client.id)
+        return callback(null, cards)
+    }
+
     function handleDisconnect() {
         boardManager.removeClient(client.id)
+        cardManager.removeClient(client.id)
     }
 
     return {
         handleGetRandomBoard,
+        handleGetRandomCards,
         handleDisconnect
     }
 }
