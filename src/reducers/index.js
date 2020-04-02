@@ -14,6 +14,7 @@ const reducer = (
                 isValidCardToBuyArray: emptyArray,
                 stats: {
                     "Coin": 3,
+                    "Victory": 0,
                     "Brick": 0,
                     "Stick": 0,
                     "Mud": 0,
@@ -21,7 +22,10 @@ const reducer = (
                     "Apple": 0,
                     "Water": 0,
                     "Flower": 0,
-                    "Wolf": 0
+                    "Wolf": 0,
+                    "Glass": 0,
+                    "Pot": 0,
+                    "Spoon": 0
                 }
             };
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':

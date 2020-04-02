@@ -185,5 +185,42 @@
             }
         ],
         "phase": 1
+    },
+    {   
+        "description": "VP_3_Yellow",
+        "cardType": "Victory",
+        "cost": [
+            {
+                "Stone": 1
+            }
+        ],
+        "reward": [
+            {
+                "Victory": 3
+            }
+        ],
+        "phase": 1
+    },
+    {
+        "description": "VP_2_Pink",
+        "cardType": "Victory",
+        "cost": [],
+        "reward": [
+            {
+                "Victory": 2
+            }
+        ],
+        "phase": 1
+    },
+    {
+        "description": "VP_2_Brown",
+        "cardType": "Victory",
+        "cost": [],
+        "reward": [
+            {
+                "Victory": 2
+            }
+        ],
+        "phase": 1
     }
 ]
