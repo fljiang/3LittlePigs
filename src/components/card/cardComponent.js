@@ -15,6 +15,9 @@ import glass_flower from './../../img/cards/glass_flower.png';
 import pot_water from './../../img/cards/pot_water.png';
 import spoon_apple from './../../img/cards/spoon_apple.png';
 import brick_or_mud from './../../img/cards/brick_or_mud.png';
+import vp_2_brown from './../../img/cards/vp_2_brown.png';
+import vp_2_pink from './../../img/cards/vp_2_pink.png';
+import vp_3_yellow from './../../img/cards/vp_3_yellow.png';
 
 import { Tooltip } from '@material-ui/core';
 
@@ -95,6 +98,12 @@ let Card = ({
         cardImage = <img src={spoon_apple} className={classes.img} alt="" />
     } else if (cardInfo.description === "Brick_Mud") {
         cardImage = <img src={brick_or_mud} className={classes.img} alt="" />
+    } else if (cardInfo.description === "VP_2_Brown") {
+        cardImage = <img src={vp_2_brown} className={classes.img} alt="" />
+    } else if (cardInfo.description === "VP_2_Pink") {
+        cardImage = <img src={vp_2_pink} className={classes.img} alt="" />
+    } else if (cardInfo.description === "VP_3_Yellow") {
+        cardImage = <img src={vp_3_yellow} className={classes.img} alt="" />
     }
 
     return (
