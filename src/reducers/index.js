@@ -30,7 +30,6 @@ const reducer = (
             };
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':
             state.isValidCardToBuyArray[action.cardIndex] = action.isValidCardToBuy;
-            console.log(state);
             return { ...state };
         default:
             return state;
