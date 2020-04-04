@@ -12,6 +12,14 @@ Card size: 375 x 500 px
 
 Slash size: 25%
 
+Market icons: 30%
+
+Market coin: 30%
+
+Market arrow (1): 30%
+
+Market arrow (2): 20%
+
 ## Background Colors
 
 Resource color: B32
