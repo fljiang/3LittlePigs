@@ -16,9 +16,7 @@ Market icons: 30%
 
 Market coin: 25%
 
-Market arrow (1): 30%
-
-Market arrow (2): 20%
+Market arrow: 25%
 
 ## Background Colors
 
