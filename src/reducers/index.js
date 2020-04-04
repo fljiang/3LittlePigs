@@ -35,9 +35,15 @@ const reducer = (
             return { ...state };
         case 'PASS':
             state.stats["Coin"] += 3;
-            return { ...state, cardChosen: true };
+            return { ...state, showCardToDiscardButton: true, cardChosen: false };
         case 'CARD_CHOSEN':
             return { ...state, cardChosen: true, stats: action.updatedStats };
+        case 'SHOW_CARDS_TO_DISCARD':
+            return { ...state, showCardToDiscardButton: false };
+        case 'DISCARD_CARD':
+            delete state.showCardToDiscardButton;
+            console.log(state);
+            return { ...state, cardChosen: true }
         case 'RE_RENDER_STATS':
             return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }
         default:

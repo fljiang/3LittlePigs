@@ -20,6 +20,14 @@ export const chooseCard = (cost, cardIndex) => ({
     cardIndex
 });
 
+export const showCardsToDiscard = () => ({
+    type: 'SHOW_CARDS_TO_DISCARD'
+})
+
+export const discardCard = () => ({
+    type: 'DISCARD_CARD'
+})
+
 export const reRenderStats = () => ({
     type: 'RE_RENDER_STATS'
 })

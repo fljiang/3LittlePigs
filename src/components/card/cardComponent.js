@@ -64,7 +64,8 @@ let Card = ({
     cardIndex,
     canBuyCard,
     isValidCardToBuyArray,
-    cardClick
+    cardClick,
+    hideTooltip
  }) => {
     canBuyCard(cardInfo.cost, cardIndex);
 
@@ -107,19 +108,23 @@ let Card = ({
         cardImage = <img src={vp_3_yellow} className={classes.img} alt="" onClick={() => cardClick()} />
     }
 
-    return (
-        <Tooltip title={
-            isValidCardToBuyArray[cardIndex] ? 
-            "Click card to purchase" : 
-            "Do not have enough resources\nor coins to purchase card"
-        } classes={
-            isValidCardToBuyArray[cardIndex] ?
-            { tooltip: classes.tooltipValid } :
-            { tooltip: classes.tooltipInvalid }
-        }>
-            {cardImage}
-        </Tooltip>
-    )
+    if (hideTooltip) {
+        return cardImage
+    } else {
+        return (
+            <Tooltip title={
+                isValidCardToBuyArray[cardIndex] ? 
+                "Click card to purchase" : 
+                "Do not have enough resources\nor coins to purchase card"
+            } classes={
+                isValidCardToBuyArray[cardIndex] ?
+                { tooltip: classes.tooltipValid } :
+                { tooltip: classes.tooltipInvalid }
+            }>
+                {cardImage}
+            </Tooltip>
+        )
+    }
 }
 
 const mapDispatchToProps = (dispatch) => 
