@@ -8,7 +8,7 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { setCards } from '../../actions';
+import { setCards, reRenderStats } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -21,7 +21,9 @@ let PlayScreen = ({
     state,
     loading, 
     setCards, 
-    cards
+    cards,
+    reRenderStats,
+    stats
 }) => {
     const classes = useStyles();
 
@@ -90,7 +92,10 @@ let PlayScreen = ({
             </header>
 
             { !loading && cards ? 
-                <Cards cards={cards} /> :
+                <Cards 
+                    cards={cards} 
+                    updateStats={() => reRenderStats()} /> 
+                :
                 <div className="view-cards-button-wrapper">
                     <Fab 
                         variant="extended" 
@@ -105,19 +110,19 @@ let PlayScreen = ({
             <header className="First-player-header">
                 <Board title={primaryBoardTitle} resource={primaryBoardResource} firstPlayer={true} />
                 <Stats 
-                    numCoins={3} 
-                    numBricks={0} 
-                    numSticks={0} 
-                    numStones={0} 
-                    numMud={0} 
-                    numWolves={0}
-                    numPots={0}
-                    numSpoons={0}
-                    numVps={0}
-                    numApples={0}
-                    numWater={0}
-                    numGlasses={0}
-                    numFlowers={0}
+                    numCoins={stats ? stats["Coin"] : 3} 
+                    numBricks={stats ? stats["Brick"] : 0} 
+                    numSticks={stats ? stats["Stick"] : 0} 
+                    numStones={stats ? stats["Stone"] : 0} 
+                    numMud={stats ? stats["Mud"] : 0} 
+                    numWolves={stats ? stats["Wolf"] : 0}
+                    numPots={stats ? stats["Pot"] : 0}
+                    numSpoons={stats ? stats["Spoon"] : 0}
+                    numVps={stats ? stats["Victory"] : 0}
+                    numApples={stats ? stats["Apple"] : 0}
+                    numWater={stats ? stats["Water"] : 0}
+                    numGlasses={stats ? stats["Glass"] : 0}
+                    numFlowers={stats ? stats["Flower"] : 0}
                 />
             </header>
         </div>
@@ -126,6 +131,7 @@ let PlayScreen = ({
 
 const mapDispatchToProps = {
     setCards: setCards,
+    reRenderStats: reRenderStats,
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
@@ -133,6 +139,8 @@ PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
 const mapStateToProps = (state) => ({
     cards: state.cards,
     loading: state.loading,
+    stats: state.stats,
+    statsReRendered: state.statsReRendered,
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);
