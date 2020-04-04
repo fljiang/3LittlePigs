@@ -11,6 +11,7 @@ const reducer = (
                 ...state, 
                 loading: false, 
                 board: action.board,
+                selectedCards: [],
                 cards: action.cards,
                 isValidCardToBuyArray: emptyArray,
                 cardChosen: false,
@@ -37,12 +38,16 @@ const reducer = (
             state.stats["Coin"] += 3;
             return { ...state, showCardToDiscardButton: true, cardChosen: false };
         case 'CARD_CHOSEN':
+            state.selectedCards.push(action.selectedCard);
+            state.cards.splice(action.selectedCardIndex, 1);
+            delete state.isValidCardToBuyArray;
             return { ...state, cardChosen: true, stats: action.updatedStats };
         case 'SHOW_CARDS_TO_DISCARD':
             return { ...state, showCardToDiscardButton: false };
         case 'DISCARD_CARD':
             delete state.showCardToDiscardButton;
-            console.log(state);
+            delete state.isValidCardToBuyArray;
+            state.cards.splice(action.cardIndex, 1);
             return { ...state, cardChosen: true }
         case 'RE_RENDER_STATS':
             return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }

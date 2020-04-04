@@ -40,27 +40,27 @@ let Cards = ({
                 <div className="cards-wrapper">
                     <Card cardInfo={cards[0]} cardIndex={0} 
                         cardClick={() => {
-                            chooseCard(cards[0].cost, 0)
+                            chooseCard(cards[0], 0)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[1]} cardIndex={1} 
                         cardClick={() => {
-                            chooseCard(cards[1].cost, 1)
+                            chooseCard(cards[1], 1)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[2]} cardIndex={2} 
                         cardClick={() => {
-                            chooseCard(cards[2].cost, 2)
+                            chooseCard(cards[2], 2)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[3]} cardIndex={3} 
                         cardClick={() => {
-                            chooseCard(cards[3].cost, 3)
+                            chooseCard(cards[3], 3)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[4]} cardIndex={4} 
                         cardClick={() => {
-                            chooseCard(cards[4].cost, 4)
+                            chooseCard(cards[4], 4)
                             updateStats()
                         }} />
                     {/* <Card cardInfo={cards[5]} cardIndex={5} />
@@ -106,15 +106,15 @@ let Cards = ({
             return (
                 <div className="cards-wrapper">
                     <Card cardInfo={cards[0]} cardIndex={0} hideTooltip={true}
-                        cardClick={() => discardCard()} />
+                        cardClick={() => discardCard(0)} />
                     <Card cardInfo={cards[1]} cardIndex={1} hideTooltip={true}
-                        cardClick={() => discardCard()} />
+                        cardClick={() => discardCard(1)} />
                     <Card cardInfo={cards[2]} cardIndex={2} hideTooltip={true}
-                        cardClick={() => discardCard()} />
+                        cardClick={() => discardCard(2)} />
                     <Card cardInfo={cards[3]} cardIndex={3} hideTooltip={true}
-                        cardClick={() => discardCard()} />
+                        cardClick={() => discardCard(3)} />
                     <Card cardInfo={cards[4]} cardIndex={4} hideTooltip={true}
-                        cardClick={() => discardCard()} />
+                        cardClick={() => discardCard(4)} />
                     {/* <Card cardInfo={cards[5]} cardIndex={5} />
                     <Card cardInfo={cards[6]} cardIndex={6} /> */}
                 </div>
