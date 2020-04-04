@@ -16,7 +16,7 @@ const Board = ({ title, resource, firstPlayer }) => (
     <List>
       <ListItem style={{ marginTop: 8 }}>
         <img 
-          src={resource === "brick" ? brick : (resource === "stick" ? stick : mud)} 
+          src={resource === "Brick" ? brick : (resource === "Stick" ? stick : mud)} 
           alt="" 
           style={{ width: 100, height: 130 }}
         />

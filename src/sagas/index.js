@@ -1,9 +1,11 @@
 import { put, takeLatest, all, select } from 'redux-saga/effects';
 
 export const getStats = (state) => state.stats
+export const getBoard = (state) => state.board
+export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray
 
 function* setFetchedCards(action) {
-    yield put({ type: "CARDS_SET", cards: action.cards });
+    yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
 }
 
 function* calculateIfValidCardToBuy(action) {
@@ -21,9 +23,27 @@ function* calculateIfValidCardToBuy(action) {
     yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: calculatedIsValidCardToBuy, cardIndex: action.cardIndex });
 }
 
+function* setChosenCardIfValid(action) {
+    const isValidCardToBuyArray = yield select(getIsValidCardToBuyArray);
+    if (isValidCardToBuyArray[action.cardIndex]) {
+        let stats = yield select(getStats);
+        const board = yield select(getBoard);
+
+        action.cost.map(element =>
+            Object.keys(element).map(function(key, index) {
+                stats[key] -= element[key];
+            })
+        );
+        stats[board] += 1;
+
+        yield put({ type: 'CARD_CHOSEN', updatedStats: stats })
+    }
+}
+
 function* cardsWatcher() {
     yield takeLatest('SET_CARDS', setFetchedCards);
     yield takeLatest('CAN_BUY_CARD', calculateIfValidCardToBuy);
+    yield takeLatest('CHOOSE_CARD', setChosenCardIfValid);
 }
 
 export default function* rootSaga() {

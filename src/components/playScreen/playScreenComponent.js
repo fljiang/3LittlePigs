@@ -32,13 +32,13 @@ let PlayScreen = ({
     let tertiaryBoardResource;
 
     const primaryBoardResource = state.board;
-    if (state.board === "stick") {
+    if (state.board === "Stick") {
         primaryBoardTitle = "Sarah's House";
         secondaryBoardTitle = "Joe's House";
         tertiaryBoardTitle = "Billy's House";
         secondaryBoardResource = "mud";
         tertiaryBoardResource = "brick";
-    } else if (state.board === "brick") {
+    } else if (state.board === "Brick") {
         primaryBoardTitle = "Billy's House";
         secondaryBoardTitle = "Sarah's House";
         tertiaryBoardTitle = "Joe's House";
@@ -96,7 +96,7 @@ let PlayScreen = ({
                         variant="extended" 
                         color="primary"
                         className={classes.fab}
-                        onClick={() => setCards(state.cards)}>
+                        onClick={() => setCards(state.board, state.cards)}>
                             View Cards
                     </Fab>
                 </div>

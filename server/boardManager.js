@@ -2,7 +2,7 @@ module.exports = function () {
     // Mapping of players to their boards (boards defined by their primary resources)
     let clientIdsToBoardsMap = new Map()
 
-    let remainingBoards = ["stick", "brick", "mud"]
+    let remainingBoards = ["Stick", "Brick", "Mud"]
 
     function isGameFull() {
         return clientIdsToBoardsMap.size >= 3
