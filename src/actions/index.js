@@ -14,9 +14,9 @@ export const pass = () => ({
     type: 'PASS'
 });
 
-export const chooseCard = (cost, cardIndex) => ({
+export const chooseCard = (card, cardIndex) => ({
     type: 'CHOOSE_CARD',
-    cost,
+    card,
     cardIndex
 });
 
@@ -24,8 +24,9 @@ export const showCardsToDiscard = () => ({
     type: 'SHOW_CARDS_TO_DISCARD'
 })
 
-export const discardCard = () => ({
-    type: 'DISCARD_CARD'
+export const discardCard = (cardIndex) => ({
+    type: 'DISCARD_CARD',
+    cardIndex
 })
 
 export const reRenderStats = () => ({

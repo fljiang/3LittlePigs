@@ -29,14 +29,14 @@ function* setChosenCardIfValid(action) {
         let stats = yield select(getStats);
         const board = yield select(getBoard);
 
-        action.cost.map(element =>
+        action.card.cost.map(element =>
             Object.keys(element).map(function(key, index) {
                 stats[key] -= element[key];
             })
         );
         stats[board] += 1;
 
-        yield put({ type: 'CARD_CHOSEN', updatedStats: stats })
+        yield put({ type: 'CARD_CHOSEN', updatedStats: stats, selectedCard: action.card, selectedCardIndex: action.cardIndex })
     }
 }
 
