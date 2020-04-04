@@ -36,20 +36,20 @@ let PlayScreen = ({
         primaryBoardTitle = "Sarah's House";
         secondaryBoardTitle = "Joe's House";
         tertiaryBoardTitle = "Billy's House";
-        secondaryBoardResource = "mud";
-        tertiaryBoardResource = "brick";
+        secondaryBoardResource = "Mud";
+        tertiaryBoardResource = "Brick";
     } else if (state.board === "Brick") {
         primaryBoardTitle = "Billy's House";
         secondaryBoardTitle = "Sarah's House";
         tertiaryBoardTitle = "Joe's House";
-        secondaryBoardResource = "stick";
-        tertiaryBoardResource = "mud";
+        secondaryBoardResource = "Stick";
+        tertiaryBoardResource = "Mud";
     } else {
         primaryBoardTitle = "Joe's House";
         secondaryBoardTitle = "Billy's House";
         tertiaryBoardTitle = "Sarah's House";
-        secondaryBoardResource = "brick";
-        tertiaryBoardResource = "stick";
+        secondaryBoardResource = "Brick";
+        tertiaryBoardResource = "Stick";
     }
 
     return (
