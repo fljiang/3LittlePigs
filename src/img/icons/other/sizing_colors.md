@@ -14,7 +14,7 @@ Slash size: 25%
 
 Market icons: 30%
 
-Market coin: 30%
+Market coin: 25%
 
 Market arrow (1): 30%
 
