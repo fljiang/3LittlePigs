@@ -13,6 +13,11 @@ module.exports = function (client, boardManager, cardManager) {
         return callback(null, cards)
     }
 
+    function handleSetSelectedCard({ selectedCard, selectedCardIndex }, callback) {
+        const allCardsSetOrNot = cardManager.setSelectedCard(client.id, selectedCard, selectedCardIndex)
+        return callback(null, allCardsSetOrNot)
+    }
+
     function handleDisconnect() {
         boardManager.removeClient(client.id)
         cardManager.removeClient(client.id)
@@ -21,6 +26,7 @@ module.exports = function (client, boardManager, cardManager) {
     return {
         handleGetRandomBoard,
         handleGetRandomCards,
+        handleSetSelectedCard,
         handleDisconnect
     }
 }
