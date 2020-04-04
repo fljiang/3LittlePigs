@@ -9,12 +9,6 @@ export const canBuyCard = (cost, cardIndex) => ({
     cardIndex
 });
 
-export const startGame = (socket) => ({
-    type: 'START_GAME',
-    socket
-});
-
-export const setBoard = (randomBoard) => ({
-    type: 'SET_BOARD',
-    randomBoard
-});
+export const pass = () => ({
+    type: 'PASS'
+})
