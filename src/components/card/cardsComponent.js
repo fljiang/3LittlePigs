@@ -51,7 +51,7 @@ let Cards = ({
         );
     } else {
         return (
-            <div className="view-cards-button-wrapper">
+            <div className="reveal-cards-button-wrapper">
                 <Fab 
                     variant="extended" 
                     color="primary"
