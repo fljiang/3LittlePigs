@@ -5,3 +5,11 @@
     margin-bottom: 55px;
     margin-top: 10px;
 }
+
+.reveal-cards-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    margin-top: 200px;
+}
