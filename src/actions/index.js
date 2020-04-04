@@ -19,3 +19,7 @@ export const chooseCard = (cost, cardIndex) => ({
     cost,
     cardIndex
 });
+
+export const reRenderStats = () => ({
+    type: 'RE_RENDER_STATS'
+})

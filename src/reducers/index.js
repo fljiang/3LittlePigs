@@ -38,6 +38,8 @@ const reducer = (
             return { ...state, cardChosen: true };
         case 'CARD_CHOSEN':
             return { ...state, cardChosen: true, stats: action.updatedStats };
+        case 'RE_RENDER_STATS':
+            return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }
         default:
             return state;
     }
