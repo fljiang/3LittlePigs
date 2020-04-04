@@ -10,6 +10,7 @@ const reducer = (
             return { 
                 ...state, 
                 loading: false, 
+                board: action.board,
                 cards: action.cards,
                 isValidCardToBuyArray: emptyArray,
                 cardChosen: false,
@@ -35,6 +36,8 @@ const reducer = (
         case 'PASS':
             state.stats["Coin"] += 3;
             return { ...state, cardChosen: true };
+        case 'CARD_CHOSEN':
+            return { ...state, cardChosen: true, stats: action.updatedStats };
         default:
             return state;
     }

@@ -63,7 +63,8 @@ let Card = ({
     cardInfo,
     cardIndex,
     canBuyCard,
-    isValidCardToBuyArray
+    isValidCardToBuyArray,
+    cardClick
  }) => {
     canBuyCard(cardInfo.cost, cardIndex);
 
@@ -71,39 +72,39 @@ let Card = ({
     let cardImage;
 
     if (cardInfo.description === "Stick") {
-        cardImage = <img src={stick} className={classes.img} alt="" />
+        cardImage = <img src={stick} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Stone") {
-        cardImage = <img src={stone} className={classes.img} alt="" />
+        cardImage = <img src={stone} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Brick") {
-        cardImage = <img src={brick} className={classes.img} alt="" />
+        cardImage = <img src={brick} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Mud") {
-        cardImage = <img src={mud} className={classes.img} alt="" />
+        cardImage = <img src={mud} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Stone_Stick") {
-        cardImage = <img src={stone_or_stick} className={classes.img} alt="" />
+        cardImage = <img src={stone_or_stick} className={classes.img} alt=""onClick={() => cardClick()}  />
     } else if (cardInfo.description === "Water") {
-        cardImage = <img src={water} className={classes.img} alt="" />
+        cardImage = <img src={water} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Wolf_Stick") {
-        cardImage = <img src={wolf_stick} className={classes.img} alt="" />
+        cardImage = <img src={wolf_stick} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Wolf_Brick") {
-        cardImage = <img src={wolf_brick} className={classes.img} alt="" />
+        cardImage = <img src={wolf_brick} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Flower") {
-        cardImage = <img src={flower} className={classes.img} alt="" />
+        cardImage = <img src={flower} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Apple") {
-        cardImage = <img src={apple} className={classes.img} alt="" />
+        cardImage = <img src={apple} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Glass_Flower") {
-        cardImage = <img src={glass_flower} className={classes.img} alt="" />
+        cardImage = <img src={glass_flower} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Pot_Water") {
-        cardImage = <img src={pot_water} className={classes.img} alt="" />
+        cardImage = <img src={pot_water} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Spoon_Apple") {
-        cardImage = <img src={spoon_apple} className={classes.img} alt="" />
+        cardImage = <img src={spoon_apple} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Brick_Mud") {
-        cardImage = <img src={brick_or_mud} className={classes.img} alt="" />
+        cardImage = <img src={brick_or_mud} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "VP_2_Brown") {
-        cardImage = <img src={vp_2_brown} className={classes.img} alt="" />
+        cardImage = <img src={vp_2_brown} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "VP_2_Pink") {
-        cardImage = <img src={vp_2_pink} className={classes.img} alt="" />
+        cardImage = <img src={vp_2_pink} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "VP_3_Yellow") {
-        cardImage = <img src={vp_3_yellow} className={classes.img} alt="" />
+        cardImage = <img src={vp_3_yellow} className={classes.img} alt="" onClick={() => cardClick()} />
     }
 
     return (
