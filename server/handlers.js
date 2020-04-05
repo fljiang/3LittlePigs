@@ -13,9 +13,8 @@ module.exports = function (client, boardManager, cardManager) {
         return callback(null, cards)
     }
 
-    function handleSetSelectedCard({ selectedCard, selectOrDiscard }, callback) {
-        const allCardsSetOrNot = cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard)
-        return callback(null, allCardsSetOrNot)
+    function handleSetSelectedCard({ selectedCard, selectOrDiscard }) {
+        cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard)
     }
 
     function handleDisconnect() {

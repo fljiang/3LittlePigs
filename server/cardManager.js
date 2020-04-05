@@ -54,17 +54,23 @@ module.exports = function () {
         clientIdsToCardsMap.set(clientId, currentCards)
 
         // Determine whether or not all players have selected/discarded cards
+        let allCardsSetOrNot = true
         if (clientIdsToCardsMap.size < 3) {
-            return false
+            allCardsSetOrNot = false
         }
         clientIdsToCardsMap.forEach(function (value, key) {
-            // clientIdsToClientObjectsMap.get(key).emit('setSelectedCard', )
             if (value.length != cardsLengthToProceed) {
-                return false
+                allCardsSetOrNot = false
             }
         })
-        cardsLengthToProceed -= 1
-        return true
+
+        // Broadcast to all players that all players have selected/discarded cards
+        if (allCardsSetOrNot) {
+            cardsLengthToProceed -= 1
+            clientIdsToClientObjectsMap.forEach(function (value, key) {
+                clientIdsToClientObjectsMap.get(key).emit('enableRevealCardsButton')
+            })
+        }
     }
 
     function removeClient(clientId) {

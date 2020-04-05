@@ -9,7 +9,7 @@ export default class App extends React.Component {
     super(props, context)
 
     this.state = {
-      client: socket(),
+      client: socket(() => this.setEnableRevealCardsButton()),
       board: null,
       cards: null,
       enableRevealCardsButton: false
@@ -38,17 +38,14 @@ export default class App extends React.Component {
   }
 
   setSelectedCard(selectedCard, selectOrDiscard) {
-    this.state.client.setSelectedCard((error, allCardsSetOrNot) => {
-      if (error) return console.error(error);
+    this.state.client.setSelectedCard(selectedCard, selectOrDiscard)
+  }
 
-      console.log(allCardsSetOrNot);
-      this.setState({ enableRevealCardsButton: allCardsSetOrNot })
-    }, selectedCard, selectOrDiscard)
+  setEnableRevealCardsButton() {
+    this.setState({ enableRevealCardsButton: true })
   }
 
   render() {
-    console.log(this.enableRevealCardsButton);
-
     if (this.state.board != null && this.state.cards != null) {
       return <PlayScreen 
         state={this.state} 
