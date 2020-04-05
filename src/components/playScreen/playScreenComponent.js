@@ -23,7 +23,8 @@ let PlayScreen = ({
     setCards, 
     cards,
     reRenderStats,
-    stats
+    stats,
+    setSelectedCardOnBackend
 }) => {
     const classes = useStyles();
 
@@ -94,7 +95,9 @@ let PlayScreen = ({
             { !loading && cards ? 
                 <Cards 
                     cards={cards} 
-                    updateStats={() => reRenderStats()} /> 
+                    updateStats={() => reRenderStats()} 
+                    setSelectedCardOnBackend={setSelectedCardOnBackend} 
+                    enableRevealCardsButton={state.enableRevealCardsButton} /> 
                 :
                 <div className="view-cards-button-wrapper">
                     <Fab 

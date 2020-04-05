@@ -15,9 +15,14 @@ export default function () {
     function getRandomCards(callback) {
         socket.emit('getRandomCards', callback)
     }
+
+    function setSelectedCard(callback, selectedCard, selectOrDiscard) {
+        socket.emit('setSelectedCard', { selectedCard, selectOrDiscard }, callback)
+    }
   
     return {
         getRandomBoard,
-        getRandomCards
+        getRandomCards,
+        setSelectedCard
     }
 }

@@ -13,8 +13,8 @@ module.exports = function (client, boardManager, cardManager) {
         return callback(null, cards)
     }
 
-    function handleSetSelectedCard({ selectedCard, selectedCardIndex }, callback) {
-        const allCardsSetOrNot = cardManager.setSelectedCard(client.id, selectedCard, selectedCardIndex)
+    function handleSetSelectedCard({ selectedCard, selectOrDiscard }, callback) {
+        const allCardsSetOrNot = cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard)
         return callback(null, allCardsSetOrNot)
     }
 

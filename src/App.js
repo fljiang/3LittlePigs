@@ -11,11 +11,13 @@ export default class App extends React.Component {
     this.state = {
       client: socket(),
       board: null,
-      cards: null
+      cards: null,
+      enableRevealCardsButton: false
     }
 
     this.getRandomBoard = this.getRandomBoard.bind(this)
     this.getRandomCards = this.getRandomCards.bind(this)
+    this.setSelectedCard = this.setSelectedCard.bind(this)
 
     this.getRandomBoard()
     this.getRandomCards()
@@ -35,9 +37,22 @@ export default class App extends React.Component {
     })
   }
 
+  setSelectedCard(selectedCard, selectOrDiscard) {
+    this.state.client.setSelectedCard((error, allCardsSetOrNot) => {
+      if (error) return console.error(error);
+
+      console.log(allCardsSetOrNot);
+      this.setState({ enableRevealCardsButton: allCardsSetOrNot })
+    }, selectedCard, selectOrDiscard)
+  }
+
   render() {
+    console.log(this.enableRevealCardsButton);
+
     if (this.state.board != null && this.state.cards != null) {
-      return <PlayScreen state={this.state} />
+      return <PlayScreen 
+        state={this.state} 
+        setSelectedCardOnBackend={this.setSelectedCard} />
     } else {
       return null
     }

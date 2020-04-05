@@ -28,8 +28,9 @@ module.exports = function () {
         }
     }
 
-    function setSelectedCard(clientId, selectedCard, selectedCardIndex) {
-        if (selectedCard != null) {
+    function setSelectedCard(clientId, selectedCard, selectOrDiscard) {
+        // Add selected card to clientIdsToSelectedCardsMap (if player didn't choose "Pass")
+        if (selectOrDiscard === "select") {
             let selectedCards = [];
             if (clientIdsToSelectedCardsMap.clientId != null) {
                 selectedCards = clientIdsToSelectedCardsMap.get(clientId)
@@ -37,23 +38,35 @@ module.exports = function () {
             selectedCards.push(selectedCard)
             clientIdsToSelectedCardsMap.set(clientId, selectedCards)
         }
-        let currentCards = clientIdsToCardsMap.get(clientId)
-        currentCards.splice(selectedCardIndex, 1)
-        clientIdsToCardsMap.set(currentCards)
 
-        clientIdsToCardsMap.map(element =>
-            Object.keys(element).map(function(key, index) {
-                if (element[key].length != cardsLengthToProceed) {
-                    return false
-                }
-            })   
-        )
+        // Remove selected card from clientIdsToCardsMap
+        let currentCards = clientIdsToCardsMap.get(clientId)
+        let cardToRemoveIndex = 0
+        currentCards.forEach(function (item, index) {
+            if (item.description === selectedCard.description) {
+                cardToRemoveIndex = index
+            }
+        })
+        currentCards.splice(cardToRemoveIndex, 1)
+        clientIdsToCardsMap.set(clientId, currentCards)
+
+        // Determine whether or not all players have selected/discarded cards
+        if (clientIdsToCardsMap.size < 3) {
+            return false
+        }
+        clientIdsToCardsMap.forEach(function (value, key) {
+            if (value.length != cardsLengthToProceed) {
+                return false
+            }
+        })
+        cardsLengthToProceed -= 1
         return true
     }
 
     function removeClient(clientId) {
         remainingCards = remainingCards.concat(clientIdsToCardsMap.get(clientId))
         clientIdsToCardsMap.delete(clientId)
+        clientIdsToSelectedCardsMap.delete(clientId)
     }
 
     return {

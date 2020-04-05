@@ -30,7 +30,9 @@ let Cards = ({
     showCardToDiscardButton,
     showCardsToDiscard,
     discardCard,
-    updateStats
+    updateStats,
+    setSelectedCardOnBackend,
+    enableRevealCardsButton
 }) => {
     const classes = useStyles();
 
@@ -40,27 +42,37 @@ let Cards = ({
                 <div className="cards-wrapper">
                     <Card cardInfo={cards[0]} cardIndex={0} 
                         cardClick={() => {
-                            chooseCard(cards[0], 0)
+                            const card = cards[0]
+                            chooseCard(card, 0)
+                            setSelectedCardOnBackend(card, "select")
                             updateStats()
                         }} />
                     <Card cardInfo={cards[1]} cardIndex={1} 
                         cardClick={() => {
-                            chooseCard(cards[1], 1)
+                            const card = cards[1];
+                            chooseCard(card, 1)
+                            setSelectedCardOnBackend(card, "select")
                             updateStats()
                         }} />
                     <Card cardInfo={cards[2]} cardIndex={2} 
                         cardClick={() => {
-                            chooseCard(cards[2], 2)
+                            const card = cards[2]
+                            chooseCard(card, 2)
+                            setSelectedCardOnBackend(card, "select")
                             updateStats()
                         }} />
                     <Card cardInfo={cards[3]} cardIndex={3} 
                         cardClick={() => {
-                            chooseCard(cards[3], 3)
+                            const card = cards[3]
+                            chooseCard(card, 3)
+                            setSelectedCardOnBackend(card, "select")
                             updateStats()
                         }} />
                     <Card cardInfo={cards[4]} cardIndex={4} 
                         cardClick={() => {
-                            chooseCard(cards[4], 4)
+                            const card = cards[4]
+                            chooseCard(card, 4)
+                            setSelectedCardOnBackend(card, "select")
                             updateStats()
                         }} />
                     {/* <Card cardInfo={cards[5]} cardIndex={5} />
@@ -83,6 +95,7 @@ let Cards = ({
                     <Fab 
                         variant="extended" 
                         color="primary"
+                        disabled={ enableRevealCardsButton ? false : true }
                         className={classes.longFab}>
                             Reveal Opponents' Cards
                     </Fab>
@@ -106,15 +119,35 @@ let Cards = ({
             return (
                 <div className="cards-wrapper">
                     <Card cardInfo={cards[0]} cardIndex={0} hideTooltip={true}
-                        cardClick={() => discardCard(0)} />
+                        cardClick={() => {
+                            const card = cards[0];
+                            discardCard(0)
+                            setSelectedCardOnBackend(card, "pass")
+                        }} />
                     <Card cardInfo={cards[1]} cardIndex={1} hideTooltip={true}
-                        cardClick={() => discardCard(1)} />
+                        cardClick={() => {
+                            const card = cards[1];
+                            discardCard(1)
+                            setSelectedCardOnBackend(card, "pass")
+                        }} />
                     <Card cardInfo={cards[2]} cardIndex={2} hideTooltip={true}
-                        cardClick={() => discardCard(2)} />
+                        cardClick={() => {
+                            const card = cards[2];
+                            discardCard(2)
+                            setSelectedCardOnBackend(card, "pass")
+                        }} />
                     <Card cardInfo={cards[3]} cardIndex={3} hideTooltip={true}
-                        cardClick={() => discardCard(3)} />
+                        cardClick={() => {
+                            const card = cards[3];
+                            discardCard(3)
+                            setSelectedCardOnBackend(card, "pass")
+                        }} />
                     <Card cardInfo={cards[4]} cardIndex={4} hideTooltip={true}
-                        cardClick={() => discardCard(4)} />
+                        cardClick={() => {
+                            const card = cards[4];
+                            discardCard(4)
+                            setSelectedCardOnBackend(card, "pass")
+                        }} />
                     {/* <Card cardInfo={cards[5]} cardIndex={5} />
                     <Card cardInfo={cards[6]} cardIndex={6} /> */}
                 </div>
