@@ -9,8 +9,12 @@ module.exports = function (client, boardManager, cardManager) {
     }
 
     function handleGetRandomCards(callback) {
-        const cards = cardManager.getRandomCards(client.id)
+        const cards = cardManager.getRandomCards(client)
         return callback(null, cards)
+    }
+
+    function handleSetSelectedCard({ selectedCard, selectOrDiscard }) {
+        cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard)
     }
 
     function handleDisconnect() {
@@ -21,6 +25,7 @@ module.exports = function (client, boardManager, cardManager) {
     return {
         handleGetRandomBoard,
         handleGetRandomCards,
+        handleSetSelectedCard,
         handleDisconnect
     }
 }

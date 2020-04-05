@@ -12,6 +12,7 @@ io.on('connection', function (client) {
     const {
         handleGetRandomBoard,
         handleGetRandomCards,
+        handleSetSelectedCard,
         handleDisconnect
     } = makeHandlers(client, boardManager, cardManager)
 
@@ -20,6 +21,8 @@ io.on('connection', function (client) {
     client.on('getRandomBoard', handleGetRandomBoard)
 
     client.on('getRandomCards', handleGetRandomCards)
+
+    client.on('setSelectedCard', handleSetSelectedCard)
 
     client.on('disconnect', function () {
         console.log('client disconnect...', client.id)
