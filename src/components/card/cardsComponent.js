@@ -36,6 +36,8 @@ let Cards = ({
 }) => {
     const classes = useStyles();
 
+    console.log(cards);
+
     if (showCardToDiscardButton == null) {
         if (!cardChosen) {
             return (

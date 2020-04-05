@@ -9,7 +9,7 @@ module.exports = function (client, boardManager, cardManager) {
     }
 
     function handleGetRandomCards(callback) {
-        const cards = cardManager.getRandomCards(client.id)
+        const cards = cardManager.getRandomCards(client)
         return callback(null, cards)
     }
 

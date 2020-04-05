@@ -1,6 +1,8 @@
 const cards_phase1 = require('./cards_phase1.json')
 
 module.exports = function () {
+    // Mapping of client IDs to client Objects
+    let clientIdsToClientObjectsMap = new Map()
     // Mapping of players to an array of their cards from which to choose
     let clientIdsToCardsMap = new Map()
     // Mapping of players to an array of their selected cards
@@ -12,7 +14,7 @@ module.exports = function () {
     // that all players have selected/discarded their cards
     let cardsLengthToProceed = 4;
     
-    function getRandomCards(clientId) {
+    function getRandomCards(client) {
         let cards = []
 
         for (let cardNum = 1; cardNum <= 5; cardNum++) {
@@ -22,7 +24,8 @@ module.exports = function () {
             cards.push(randomCard)
     
             if (cardNum === 5) {
-                clientIdsToCardsMap.set(clientId, cards)
+                clientIdsToClientObjectsMap.set(client.id, client)
+                clientIdsToCardsMap.set(client.id, cards)
                 return cards
             }
         }
@@ -55,6 +58,7 @@ module.exports = function () {
             return false
         }
         clientIdsToCardsMap.forEach(function (value, key) {
+            // clientIdsToClientObjectsMap.get(key).emit('setSelectedCard', )
             if (value.length != cardsLengthToProceed) {
                 return false
             }
@@ -67,6 +71,7 @@ module.exports = function () {
         remainingCards = remainingCards.concat(clientIdsToCardsMap.get(clientId))
         clientIdsToCardsMap.delete(clientId)
         clientIdsToSelectedCardsMap.delete(clientId)
+        clientIdsToClientObjectsMap.delete(clientId)
     }
 
     return {

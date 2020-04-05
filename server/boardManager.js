@@ -5,7 +5,7 @@ module.exports = function () {
     let remainingBoards = ["Stick", "Brick", "Mud"]
 
     function isGameFull() {
-        return clientIdsToBoardsMap.size >= 3
+        return remainingBoards.length == 0
     }
 
     function getRandomBoard(clientId) {
@@ -20,7 +20,6 @@ module.exports = function () {
     }
 
     function removeClient(clientId) {
-        remainingBoards.push(clientIdsToBoardsMap.get(clientId))
         clientIdsToBoardsMap.delete(clientId)
     }
 
