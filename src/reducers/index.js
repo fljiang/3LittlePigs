@@ -48,7 +48,7 @@ const reducer = (
             delete state.showCardToDiscardButton;
             delete state.isValidCardToBuyArray;
             state.cards.splice(action.cardIndex, 1);
-            return { ...state, cardChosen: true }
+            return { ...state, cardChosen: true };
         case 'RE_RENDER_STATS':
             return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }
         default:

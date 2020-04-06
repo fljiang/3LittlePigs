@@ -9,6 +9,7 @@ import stone_or_stick from './../../img/cards/stone_or_stick.png';
 import mud from './../../img/cards/mud.png';
 import wolf_brick from './../../img/cards/wolf_brick.png';
 import wolf_stick from './../../img/cards/wolf_stick.png';
+import wolf_stone from './../../img/cards/wolf_stone.png';
 import apple from './../../img/cards/apple.png';
 import flower from './../../img/cards/flower.png';
 import glass_flower from './../../img/cards/glass_flower.png';
@@ -18,25 +19,15 @@ import brick_or_mud from './../../img/cards/brick_or_mud.png';
 import vp_2_brown from './../../img/cards/vp_2_brown.png';
 import vp_2_pink from './../../img/cards/vp_2_pink.png';
 import vp_3_yellow from './../../img/cards/vp_3_yellow.png';
+import market_both from './../../img/cards/market_both.png';
+import market_left from './../../img/cards/market_left.png';
+import market_right from './../../img/cards/market_right.png';
 
 import { Tooltip } from '@material-ui/core';
 
 import { connect } from 'react-redux';
 import { canBuyCard } from '../../actions';
 import { bindActionCreators } from '../../../../../Library/Caches/typescript/3.6/node_modules/redux';
-
-// brick => clay
-// stick => lumber
-// stone => stone
-// water => ore
-
-// metal => press
-// grass => loom
-// mud => glass
-
-// glass => apothecary
-// spoon => scriptorium
-// pot => workshop
 
 const useStyles = makeStyles(theme => ({
     img: {
@@ -88,6 +79,8 @@ let Card = ({
         cardImage = <img src={wolf_stick} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Wolf_Brick") {
         cardImage = <img src={wolf_brick} className={classes.img} alt="" onClick={() => cardClick()} />
+    } else if (cardInfo.description === "Wolf_Stone") {
+        cardImage = <img src={wolf_stone} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Flower") {
         cardImage = <img src={flower} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Apple") {
@@ -106,6 +99,12 @@ let Card = ({
         cardImage = <img src={vp_2_pink} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "VP_3_Yellow") {
         cardImage = <img src={vp_3_yellow} className={classes.img} alt="" onClick={() => cardClick()} />
+    } else if (cardInfo.description === "Trade_Both") {
+        cardImage = <img src={market_both} className={classes.img} alt="" onClick={() => cardClick()} />
+    } else if (cardInfo.description === "Trade_Left") {
+        cardImage = <img src={market_left} className={classes.img} alt="" onClick={() => cardClick()} />
+    } else if (cardInfo.description === "Trade_Right") {
+        cardImage = <img src={market_right} className={classes.img} alt="" onClick={() => cardClick()} />
     }
 
     if (hideTooltip) {

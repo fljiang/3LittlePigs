@@ -77,8 +77,20 @@ let Cards = ({
                             setSelectedCardOnBackend(card, "select")
                             updateStats()
                         }} />
-                    {/* <Card cardInfo={cards[5]} cardIndex={5} />
-                    <Card cardInfo={cards[6]} cardIndex={6} /> */}
+                    <Card cardInfo={cards[5]} cardIndex={5}
+                        cardClick={() => {
+                            const card = cards[5]
+                            chooseCard(card, 5)
+                            setSelectedCardOnBackend(card, "select")
+                            updateStats()
+                        }} />
+                    <Card cardInfo={cards[6]} cardIndex={6} 
+                        cardClick={() => {
+                            const card = cards[6]
+                            chooseCard(card, 6)
+                            setSelectedCardOnBackend(card, "select")
+                            updateStats()
+                        }} />
                     <Fab 
                         variant="extended" 
                         color="primary"
@@ -150,8 +162,18 @@ let Cards = ({
                             discardCard(4)
                             setSelectedCardOnBackend(card, "pass")
                         }} />
-                    {/* <Card cardInfo={cards[5]} cardIndex={5} />
-                    <Card cardInfo={cards[6]} cardIndex={6} /> */}
+                    <Card cardInfo={cards[5]} cardIndex={5} hideTooltip={true}
+                        cardClick={() => {
+                            const card = cards[5];
+                            discardCard(4)
+                            setSelectedCardOnBackend(card, "pass")
+                        }} />
+                    <Card cardInfo={cards[6]} cardIndex={6} hideTooltip={true}
+                        cardClick={() => {
+                            const card = cards[6];
+                            discardCard(4)
+                            setSelectedCardOnBackend(card, "pass")
+                        }} />
                 </div>
             )
         }

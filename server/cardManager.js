@@ -12,18 +12,18 @@ module.exports = function () {
 
     // Length each array in clientIdsToCardsMap must be to indicate 
     // that all players have selected/discarded their cards
-    let cardsLengthToProceed = 4;
+    let cardsLengthToProceed = 6;
     
     function getRandomCards(client) {
         let cards = []
 
-        for (let cardNum = 1; cardNum <= 5; cardNum++) {
-            const randomNum = Math.floor((Math.random() * (18 - cardNum - (5 * clientIdsToCardsMap.size))))
+        for (let cardNum = 1; cardNum <= 7; cardNum++) {
+            const randomNum = Math.floor((Math.random() * (22 - cardNum - (7 * clientIdsToCardsMap.size))))
             const randomCard = remainingCards[randomNum]
             remainingCards.splice(randomNum, 1)
             cards.push(randomCard)
     
-            if (cardNum === 5) {
+            if (cardNum === 7) {
                 clientIdsToClientObjectsMap.set(client.id, client)
                 clientIdsToCardsMap.set(client.id, cards)
                 return cards

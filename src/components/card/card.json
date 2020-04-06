@@ -142,9 +142,9 @@
             "img": "./../../img/cards/wolf_stick.png"
         },
         {
-            "description": "Wolf_Mud",
+            "description": "Wolf_Stone",
             "cardType": "Wolf",
-            "costType": {"Mud": 1},
+            "costType": {"Stone": 1},
             "rewardType": {"Wolf": 1},
             "phase": 1,
             "img": "TODO"
