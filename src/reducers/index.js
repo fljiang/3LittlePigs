@@ -36,6 +36,7 @@ const reducer = (
             return { ...state };
         case 'PASS':
             state.stats["Coin"] += 3;
+            state.stats[state.board] += 1;
             return { ...state, showCardToDiscardButton: true, cardChosen: false };
         case 'CARD_CHOSEN':
             state.selectedCards.push(action.selectedCard);
@@ -48,6 +49,7 @@ const reducer = (
             delete state.showCardToDiscardButton;
             delete state.isValidCardToBuyArray;
             state.cards.splice(action.cardIndex, 1);
+            state.stats[state.board] += 1;
             return { ...state, cardChosen: true };
         case 'RE_RENDER_STATS':
             return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }
