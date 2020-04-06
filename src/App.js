@@ -38,11 +38,13 @@ export default class App extends React.Component {
   }
 
   setSelectedCard(selectedCard, selectOrDiscard) {
+    this.state.client.registerEnableRevealCardsButtonHandler()
     this.state.client.setSelectedCard(selectedCard, selectOrDiscard)
   }
 
   setEnableRevealCardsButton() {
     this.setState({ enableRevealCardsButton: true })
+    this.state.client.unregisterEnableRevealCardsButtonHandler()
   }
 
   render() {

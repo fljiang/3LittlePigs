@@ -8,9 +8,15 @@ export default function (setEnableRevealCardsButton) {
         console.log(err)
     })
 
-    socket.on('enableRevealCardsButton', function () {
-        setEnableRevealCardsButton()
-    })
+    function registerEnableRevealCardsButtonHandler() {
+        socket.on('enableRevealCardsButton', function () {
+            setEnableRevealCardsButton()
+        })
+    }
+
+    function unregisterEnableRevealCardsButtonHandler() {
+        socket.off('enableRevealCardsButton')
+    }
 
     function getRandomBoard(callback) {
         socket.emit('getRandomBoard', callback)
@@ -27,6 +33,8 @@ export default function (setEnableRevealCardsButton) {
     return {
         getRandomBoard,
         getRandomCards,
-        setSelectedCard
+        setSelectedCard,
+        registerEnableRevealCardsButtonHandler,
+        unregisterEnableRevealCardsButtonHandler
     }
 }
