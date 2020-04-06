@@ -142,6 +142,17 @@
         "phase": 1
     },
     {
+        "description": "Wolf_Stone",
+        "cardType": "Wolf",
+        "cost": [
+            {"Stone": 1}
+        ],
+        "reward": [
+            {"Wolf": 1}
+        ],
+        "phase": 1
+    },
+    {
         "description": "Glass_Flower",
         "cardType": "Appliance",
         "cost": [
@@ -219,6 +230,63 @@
         "reward": [
             {
                 "Victory": 2
+            }
+        ],
+        "phase": 1
+    },
+    {
+        "description": "Trade_Right",
+        "cardType": "Market",
+        "cost": [],
+        "reward": [
+            {
+                "Brick": [-1, false, true]
+            },
+            {
+                "Stick": [-1, false, true]
+            },
+            {
+                "Stone": [-1, false, true]
+            },
+            {
+                "Mud": [-1, false, true]
+            }
+        ],
+        "phase": 1
+    },
+    {
+        "description": "Trade_Left",
+        "cardType": "Market",
+        "cost": [],
+        "reward": [
+            {
+                "Brick": [-1, true, false]
+            },
+            {
+                "Stick": [-1, true, false]
+            },
+            {
+                "Stone": [-1, true, false]
+            },
+            {
+                "Mud": [-1, true, false]
+            }
+        ],
+        "phase": 1
+    },
+    {
+        "description": "Trade_Both",
+        "cardType": "Market",
+        "cost": [],
+        "reward": [
+            {
+                "Flower": [-1, true, true]
+            },
+            {
+                "Water": [-1, true, true]
+            },
+            {
+                "Apple": [-1, true, true]
             }
         ],
         "phase": 1
