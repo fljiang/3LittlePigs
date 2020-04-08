@@ -14,10 +14,11 @@ export const pass = () => ({
     type: 'PASS'
 });
 
-export const chooseCard = (card, cardIndex) => ({
+export const chooseCard = (card, cardIndex, setSelectedCardOnBackend) => ({
     type: 'CHOOSE_CARD',
     card,
-    cardIndex
+    cardIndex,
+    setSelectedCardOnBackend
 });
 
 export const showCardsToDiscard = () => ({

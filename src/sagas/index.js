@@ -35,6 +35,7 @@ function* setChosenCardIfValid(action) {
             })
         );
         stats[board] += 1;
+        action.setSelectedCardOnBackend(action.card, "select");
 
         yield put({ type: 'CARD_CHOSEN', updatedStats: stats, selectedCard: action.card, selectedCardIndex: action.cardIndex })
     }

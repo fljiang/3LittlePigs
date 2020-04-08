@@ -26,6 +26,7 @@ module.exports = function () {
             if (cardNum === 7) {
                 clientIdsToClientObjectsMap.set(client.id, client)
                 clientIdsToCardsMap.set(client.id, cards)
+                enableViewCardsButtonOrNot()
                 return cards
             }
         }
@@ -78,6 +79,14 @@ module.exports = function () {
         clientIdsToCardsMap.delete(clientId)
         clientIdsToSelectedCardsMap.delete(clientId)
         clientIdsToClientObjectsMap.delete(clientId)
+    }
+
+    function enableViewCardsButtonOrNot() {
+        if (clientIdsToCardsMap.size == 3) {
+            clientIdsToClientObjectsMap.forEach(function (value, key) {
+                clientIdsToClientObjectsMap.get(key).emit('enableViewCardsButton')
+            })
+        }
     }
 
     return {
