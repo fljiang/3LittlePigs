@@ -104,6 +104,7 @@ let PlayScreen = ({
                         variant="extended" 
                         color="primary"
                         className={classes.fab}
+                        disabled={ state.enableViewCardsButton ? false : true }
                         onClick={() => setCards(state.board, state.cards)}>
                             View Cards
                     </Fab>

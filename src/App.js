@@ -9,9 +9,13 @@ export default class App extends React.Component {
     super(props, context)
 
     this.state = {
-      client: socket(() => this.setEnableRevealCardsButton()),
+      client: socket(
+        () => this.setEnableViewCardsButton(),
+        () => this.setEnableRevealCardsButton()
+      ),
       board: null,
       cards: null,
+      enableViewCardsButton: false,
       enableRevealCardsButton: false
     }
 
@@ -27,6 +31,7 @@ export default class App extends React.Component {
     this.state.client.getRandomBoard((error, board) => {
       if (error) return console.error(error);
       this.setState({ board })
+      this.state.client.registerEnableViewCardsButtonHandler()
     });
   }
 
@@ -45,6 +50,11 @@ export default class App extends React.Component {
   setEnableRevealCardsButton() {
     this.setState({ enableRevealCardsButton: true })
     this.state.client.unregisterEnableRevealCardsButtonHandler()
+  }
+
+  setEnableViewCardsButton() {
+    this.setState({ enableViewCardsButton: true })
+    this.state.client.unregisterEnableViewCardsButtonHandler()
   }
 
   render() {
