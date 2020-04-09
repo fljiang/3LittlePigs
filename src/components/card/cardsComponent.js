@@ -6,7 +6,7 @@ import Card from './cardComponent.js';
 import './cardComponent.css';
 
 import { connect } from 'react-redux';
-import { pass, chooseCard, showCardsToDiscard, discardCard } from '../../actions';
+import { pass, chooseCard, showCardsToDiscard, discardCard, setUpdatedCards } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 let Cards = ({
+    state,
     cards,
     pass,
     chooseCard,
@@ -33,7 +34,8 @@ let Cards = ({
     updateStats,
     setSelectedCardOnBackend,
     enableRevealCardsButton,
-    updateOpponentsStatsOnBackend
+    updateOpponentsStatsOnBackend,
+    setUpdatedCards
 }) => {
     const classes = useStyles();
 
@@ -77,12 +79,14 @@ let Cards = ({
                             chooseCard(card, 5, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
-                    <Card cardInfo={cards[6]} cardIndex={6} 
-                        cardClick={() => {
-                            const card = cards[6]
-                            chooseCard(card, 6, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
+                    { cards.length >= 7 ? 
+                        <Card cardInfo={cards[6]} cardIndex={6} 
+                            cardClick={() => {
+                                const card = cards[6]
+                                chooseCard(card, 6, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
                     <Fab 
                         variant="extended" 
                         color="primary"
@@ -102,6 +106,7 @@ let Cards = ({
                         variant="extended" 
                         color="primary"
                         disabled={ enableRevealCardsButton ? false : true }
+                        onClick={() => setUpdatedCards(state.cards)}
                         className={classes.longFab}>
                             Reveal Cards
                     </Fab>
@@ -160,12 +165,14 @@ let Cards = ({
                             discardCard(4)
                             setSelectedCardOnBackend(card, "pass")
                         }} />
-                    <Card cardInfo={cards[6]} cardIndex={6} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[6];
-                            discardCard(4)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
+                    { cards.length >= 7 ? 
+                        <Card cardInfo={cards[6]} cardIndex={6} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[6];
+                                discardCard(4)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
                 </div>
             )
         }
@@ -173,10 +180,11 @@ let Cards = ({
 }
 
 const mapDispatchToProps = {
-    pass: pass,
-    chooseCard: chooseCard,
+    pass,
+    chooseCard,
     showCardsToDiscard,
     discardCard,
+    setUpdatedCards
 };
 
 Cards = connect(null, mapDispatchToProps)(Cards);

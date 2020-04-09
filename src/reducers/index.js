@@ -2,11 +2,11 @@ const reducer = (
     state = {},
     action
 ) => {
+    let emptyArray = Array.apply(null, Array(7)).map(function () {});
     switch (action.type) {
         case 'SET_CARDS':
             return { ...state, loading: true };
         case 'CARDS_SET':
-            const emptyArray = Array.apply(null, Array(7)).map(function () {});
             return { 
                 ...state, 
                 loading: false, 
@@ -40,20 +40,25 @@ const reducer = (
             action.updateOpponentsStatsOnBackend(state.stats);
             return { ...state, showCardToDiscardButton: true, cardChosen: false };
         case 'CARD_CHOSEN':
+            emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
+
             state.selectedCards.push(action.selectedCard);
             state.cards.splice(action.selectedCardIndex, 1);
-            delete state.isValidCardToBuyArray;
             action.updateOpponentsStatsOnBackend(action.updatedStats);
-            return { ...state, cardChosen: true, stats: action.updatedStats };
+            return { ...state, cardChosen: true, stats: action.updatedStats, isValidCardToBuyArray: emptyArray };
         case 'SHOW_CARDS_TO_DISCARD':
             return { ...state, showCardToDiscardButton: false };
         case 'DISCARD_CARD':
+            emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
+
             delete state.showCardToDiscardButton;
-            delete state.isValidCardToBuyArray;
             state.cards.splice(action.cardIndex, 1);
-            return { ...state, cardChosen: true };
+            return { ...state, cardChosen: true, isValidCardToBuyArray: emptyArray };
         case 'RE_RENDER_STATS':
             return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }
+        case `SET_UPDATED_CARDS`:
+            console.log(state);
+            return { ...state, cards: action.updatedCards, cardChosen: false  }
         default:
             return state;
     }

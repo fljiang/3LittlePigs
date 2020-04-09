@@ -94,6 +94,13 @@ module.exports = function () {
             clientIdsToCardsMap.set(item, lastCards)
             lastCards = tempLastCards
         })
+
+        clientIdsToClientObjectsMap.forEach(function (value, key) {
+            clientIdsToClientObjectsMap.get(key).emit(
+                'rotateCards', 
+                clientIdsToCardsMap.get(key)
+            )
+        })
     }
 
     function removeClient(clientId) {

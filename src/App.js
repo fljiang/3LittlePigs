@@ -12,7 +12,8 @@ export default class App extends React.Component {
       client: socket(
         (board, updatedStats) => this.updateOpponentsStatsUI(board, updatedStats),
         () => this.setEnableViewCardsButton(),
-        () => this.setEnableRevealCardsButton()
+        () => this.setEnableRevealCardsButton(),
+        (updatedCards) => this.updateCards(updatedCards)
       ),
       board: null,
       cards: null,
@@ -74,6 +75,10 @@ export default class App extends React.Component {
   setEnableViewCardsButton() {
     this.setState({ enableViewCardsButton: true })
     this.state.client.unregisterEnableViewCardsButtonHandler()
+  }
+
+  updateCards(updatedCards) {
+    this.setState({ cards: updatedCards })
   }
 
   render() {

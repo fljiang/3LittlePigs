@@ -121,6 +121,7 @@ let PlayScreen = ({
 
             { !loading && cards ? 
                 <Cards 
+                    state={state}
                     cards={cards} 
                     updateStats={() => reRenderStats()} 
                     updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
