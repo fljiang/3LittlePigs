@@ -87,7 +87,6 @@ module.exports = function () {
     }
 
     function rotateCards() {
-        console.log(clientIdsToCardsMap)
         const lastClientId = clientIds[2]
         let lastCards = clientIdsToCardsMap.get(lastClientId)
         clientIds.forEach(function (item, index) {
@@ -95,7 +94,6 @@ module.exports = function () {
             clientIdsToCardsMap.set(item, lastCards)
             lastCards = tempLastCards
         })
-        console.log(clientIdsToCardsMap)
     }
 
     function removeClient(clientId) {
@@ -103,6 +101,14 @@ module.exports = function () {
         clientIdsToCardsMap.delete(clientId)
         clientIdsToSelectedCardsMap.delete(clientId)
         clientIdsToClientObjectsMap.delete(clientId)
+
+        let clientIdIndex = 0
+        clientIds.forEach(function (item, index) {
+            if (item === clientId) {
+                clientIdIndex = index
+            }
+        })
+        clientIds.splice(clientIdIndex, 1)
     }
 
     return {
