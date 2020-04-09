@@ -10,15 +10,17 @@ export const canBuyCard = (cost, cardIndex) => ({
     cardIndex
 });
 
-export const pass = () => ({
-    type: 'PASS'
+export const pass = (updateOpponentsStatsOnBackend) => ({
+    type: 'PASS',
+    updateOpponentsStatsOnBackend
 });
 
-export const chooseCard = (card, cardIndex, setSelectedCardOnBackend) => ({
+export const chooseCard = (card, cardIndex, setSelectedCardOnBackend, updateOpponentsStatsOnBackend) => ({
     type: 'CHOOSE_CARD',
     card,
     cardIndex,
-    setSelectedCardOnBackend
+    setSelectedCardOnBackend,
+    updateOpponentsStatsOnBackend
 });
 
 export const showCardsToDiscard = () => ({

@@ -24,7 +24,8 @@ let PlayScreen = ({
     cards,
     reRenderStats,
     stats,
-    setSelectedCardOnBackend
+    setSelectedCardOnBackend,
+    updateOpponentsStatsOnBackend
 }) => {
     const classes = useStyles();
 
@@ -59,36 +60,62 @@ let PlayScreen = ({
         <div className="App">
             <header className="Other-players-header">
                 <Stats 
-                    numCoins={3} 
-                    numBricks={0} 
-                    numSticks={0} 
-                    numStones={0} 
-                    numMud={0} 
-                    numWolves={0} 
-                    numPots={0} 
-                    numSpoons={0} 
-                    numVps={0}
-                    numApples={0}
-                    numWater={0}
-                    numGlasses={0}
-                    numFlowers={0}
+                    numCoins={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Coin"] : 3} 
+                    numBricks={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Brick"] : 0} 
+                    numSticks={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Stick"] : 0} 
+                    numStones={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Stone"] : 0} 
+                    numMud={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Mud"] : 0} 
+                    numWolves={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Wolf"] : 0} 
+                    numPots={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Pot"] : 0} 
+                    numSpoons={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Spoon"] : 0} 
+                    numVps={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Victory"] : 0}
+                    numApples={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Apple"] : 0}
+                    numWater={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Water"] : 0}
+                    numGlasses={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Glass"] : 0}
+                    numFlowers={state.opponentsStats.get(secondaryBoardResource) ?
+                        state.opponentsStats.get(secondaryBoardResource)["Flower"] : 0}
                 />
                 <Board title={secondaryBoardTitle} resource={secondaryBoardResource} firstPlayer={false} />
                 <Board title={tertiaryBoardTitle} resource={tertiaryBoardResource} firstPlayer={false} />
                 <Stats 
-                    numCoins={3} 
-                    numBricks={0} 
-                    numSticks={0} 
-                    numStones={0} 
-                    numMud={0} 
-                    numWolves={0} 
-                    numPots={0} 
-                    numSpoons={0} 
-                    numVps={0}
-                    numApples={0}
-                    numWater={0}
-                    numGlasses={0}
-                    numFlowers={0}
+                    numCoins={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Coin"] : 3} 
+                    numBricks={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Brick"] : 0} 
+                    numSticks={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Stick"] : 0} 
+                    numStones={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Stone"] : 0} 
+                    numMud={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Mud"] : 0} 
+                    numWolves={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Wolf"] : 0} 
+                    numPots={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Pot"] : 0} 
+                    numSpoons={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Spoon"] : 0} 
+                    numVps={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Victory"] : 0}
+                    numApples={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Apple"] : 0}
+                    numWater={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Water"] : 0}
+                    numGlasses={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Glass"] : 0}
+                    numFlowers={state.opponentsStats.get(tertiaryBoardResource) ?
+                        state.opponentsStats.get(tertiaryBoardResource)["Flower"] : 0}
                 />
             </header>
 
@@ -96,6 +123,7 @@ let PlayScreen = ({
                 <Cards 
                     cards={cards} 
                     updateStats={() => reRenderStats()} 
+                    updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
                     setSelectedCardOnBackend={setSelectedCardOnBackend} 
                     enableRevealCardsButton={state.enableRevealCardsButton} /> 
                 :

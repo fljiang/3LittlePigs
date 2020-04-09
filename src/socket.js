@@ -1,11 +1,20 @@
 const io = require('socket.io-client')
 
-export default function (setEnableViewCardsButton, setEnableRevealCardsButton) {
+export default function (
+    updateOpponentsStatsUI,
+    setEnableViewCardsButton, 
+    setEnableRevealCardsButton
+) {
     const socket = io.connect('http://localhost:3000')
   
     socket.on('error', function (err) {
         console.log('received socket error:')
         console.log(err)
+    })
+
+    socket.on('updateOpponentsStatsUI', function (data) {
+        console.log(data)
+        updateOpponentsStatsUI(data.board, data.updatedStats)
     })
 
     function registerEnableViewCardsButtonHandler() {
@@ -36,14 +45,24 @@ export default function (setEnableViewCardsButton, setEnableRevealCardsButton) {
         socket.emit('getRandomCards', callback)
     }
 
+    function initializeStats() {
+        socket.emit('initializeStats')
+    }
+
     function setSelectedCard(selectedCard, selectOrDiscard) {
         socket.emit('setSelectedCard', { selectedCard, selectOrDiscard })
+    }
+
+    function updateOpponentsStats(board, updatedStats) {
+        socket.emit('updateOpponentsStats', { board, updatedStats })
     }
   
     return {
         getRandomBoard,
         getRandomCards,
+        initializeStats,
         setSelectedCard,
+        updateOpponentsStats,
         registerEnableViewCardsButtonHandler,
         unregisterEnableViewCardsButtonHandler,
         registerEnableRevealCardsButtonHandler,

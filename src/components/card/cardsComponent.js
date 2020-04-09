@@ -32,7 +32,8 @@ let Cards = ({
     discardCard,
     updateStats,
     setSelectedCardOnBackend,
-    enableRevealCardsButton
+    enableRevealCardsButton,
+    updateOpponentsStatsOnBackend
 }) => {
     const classes = useStyles();
 
@@ -43,50 +44,50 @@ let Cards = ({
                     <Card cardInfo={cards[0]} cardIndex={0} 
                         cardClick={() => {
                             const card = cards[0]
-                            chooseCard(card, 0, setSelectedCardOnBackend)
+                            chooseCard(card, 0, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[1]} cardIndex={1} 
                         cardClick={() => {
                             const card = cards[1];
-                            chooseCard(card, 1, setSelectedCardOnBackend)
+                            chooseCard(card, 1, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[2]} cardIndex={2} 
                         cardClick={() => {
                             const card = cards[2]
-                            chooseCard(card, 2, setSelectedCardOnBackend)
+                            chooseCard(card, 2, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[3]} cardIndex={3} 
                         cardClick={() => {
                             const card = cards[3]
-                            chooseCard(card, 3, setSelectedCardOnBackend)
+                            chooseCard(card, 3, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[4]} cardIndex={4} 
                         cardClick={() => {
                             const card = cards[4]
-                            chooseCard(card, 4, setSelectedCardOnBackend)
+                            chooseCard(card, 4, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[5]} cardIndex={5}
                         cardClick={() => {
                             const card = cards[5]
-                            chooseCard(card, 5, setSelectedCardOnBackend)
+                            chooseCard(card, 5, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
                     <Card cardInfo={cards[6]} cardIndex={6} 
                         cardClick={() => {
                             const card = cards[6]
-                            chooseCard(card, 6, setSelectedCardOnBackend)
+                            chooseCard(card, 6, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
                             updateStats()
                         }} />
                     <Fab 
                         variant="extended" 
                         color="primary"
                         onClick={() => {
-                            pass()
+                            pass(updateOpponentsStatsOnBackend)
                             updateStats()
                         }}
                         className={classes.fab}>
