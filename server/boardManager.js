@@ -20,7 +20,9 @@ module.exports = function () {
     }
 
     function removeClient(clientId) {
+        const board = clientIdsToBoardsMap.get(clientId)
         clientIdsToBoardsMap.delete(clientId)
+        return board
     }
 
     return {

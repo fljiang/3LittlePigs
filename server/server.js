@@ -3,18 +3,22 @@ const io = require('socket.io')(server)
 
 const BoardManager = require('./boardManager')
 const CardManager = require('./cardManager')
+const StatsManager = require('./statsManager')
 const makeHandlers = require('./handlers')
 
 const boardManager = BoardManager()
 const cardManager = CardManager()
+const statsManager = StatsManager()
 
 io.on('connection', function (client) {
     const {
         handleGetRandomBoard,
         handleGetRandomCards,
+        handleInitializeStats,
         handleSetSelectedCard,
+        handleUpdateOpponentsStats,
         handleDisconnect
-    } = makeHandlers(client, boardManager, cardManager)
+    } = makeHandlers(client, boardManager, cardManager, statsManager)
 
     console.log('client connected...', client.id)
 
@@ -22,7 +26,11 @@ io.on('connection', function (client) {
 
     client.on('getRandomCards', handleGetRandomCards)
 
+    client.on('initializeStats', handleInitializeStats)
+
     client.on('setSelectedCard', handleSetSelectedCard)
+
+    client.on('updateOpponentsStats', handleUpdateOpponentsStats)
 
     client.on('disconnect', function () {
         console.log('client disconnect...', client.id)

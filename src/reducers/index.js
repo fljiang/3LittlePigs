@@ -37,11 +37,13 @@ const reducer = (
         case 'PASS':
             state.stats["Coin"] += 3;
             state.stats[state.board] += 1;
+            action.updateOpponentsStatsOnBackend(state.stats);
             return { ...state, showCardToDiscardButton: true, cardChosen: false };
         case 'CARD_CHOSEN':
             state.selectedCards.push(action.selectedCard);
             state.cards.splice(action.selectedCardIndex, 1);
             delete state.isValidCardToBuyArray;
+            action.updateOpponentsStatsOnBackend(action.updatedStats);
             return { ...state, cardChosen: true, stats: action.updatedStats };
         case 'SHOW_CARDS_TO_DISCARD':
             return { ...state, showCardToDiscardButton: false };
@@ -49,7 +51,6 @@ const reducer = (
             delete state.showCardToDiscardButton;
             delete state.isValidCardToBuyArray;
             state.cards.splice(action.cardIndex, 1);
-            state.stats[state.board] += 1;
             return { ...state, cardChosen: true };
         case 'RE_RENDER_STATS':
             return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }

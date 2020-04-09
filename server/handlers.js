@@ -1,4 +1,4 @@
-module.exports = function (client, boardManager, cardManager) {
+module.exports = function (client, boardManager, cardManager, statsManager) {
     function handleGetRandomBoard(callback) {
         if (boardManager.isGameFull()) {
             return callback('Selected game is full')
@@ -13,19 +13,30 @@ module.exports = function (client, boardManager, cardManager) {
         return callback(null, cards)
     }
 
+    function handleInitializeStats() {
+        statsManager.initializeStats(client)
+    }
+
     function handleSetSelectedCard({ selectedCard, selectOrDiscard }) {
         cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard)
     }
 
+    function handleUpdateOpponentsStats({ board, updatedStats }) {
+        statsManager.updateOpponentsStats(client, board, updatedStats)
+    }
+
     function handleDisconnect() {
-        boardManager.removeClient(client.id)
+        const board = boardManager.removeClient(client.id)
         cardManager.removeClient(client.id)
+        statsManager.removeClient(client.id, board)
     }
 
     return {
         handleGetRandomBoard,
         handleGetRandomCards,
+        handleInitializeStats,
         handleSetSelectedCard,
+        handleUpdateOpponentsStats,
         handleDisconnect
     }
 }
