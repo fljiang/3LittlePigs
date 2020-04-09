@@ -103,7 +103,7 @@ let Cards = ({
                         color="primary"
                         disabled={ enableRevealCardsButton ? false : true }
                         className={classes.longFab}>
-                            Reveal Opponents' Cards
+                            Reveal Cards
                     </Fab>
                 </div>
             )
