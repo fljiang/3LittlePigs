@@ -3,7 +3,8 @@ const io = require('socket.io-client')
 export default function (
     updateOpponentsStatsUI,
     setEnableViewCardsButton, 
-    setEnableRevealCardsButton
+    setEnableRevealCardsButton,
+    updateCardsAfterRotation
 ) {
     const socket = io.connect('http://localhost:3000')
   
@@ -13,8 +14,11 @@ export default function (
     })
 
     socket.on('updateOpponentsStatsUI', function (data) {
-        console.log(data)
         updateOpponentsStatsUI(data.board, data.updatedStats)
+    })
+
+    socket.on('rotateCards', function (updatedCards) {
+        updateCardsAfterRotation(updatedCards)
     })
 
     function registerEnableViewCardsButtonHandler() {

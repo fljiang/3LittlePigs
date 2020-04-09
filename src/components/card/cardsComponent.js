@@ -6,7 +6,7 @@ import Card from './cardComponent.js';
 import './cardComponent.css';
 
 import { connect } from 'react-redux';
-import { pass, chooseCard, showCardsToDiscard, discardCard } from '../../actions';
+import { pass, chooseCard, showCardsToDiscard, discardCard, setUpdatedCards } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 let Cards = ({
+    state,
     cards,
     pass,
     chooseCard,
@@ -33,7 +34,8 @@ let Cards = ({
     updateStats,
     setSelectedCardOnBackend,
     enableRevealCardsButton,
-    updateOpponentsStatsOnBackend
+    updateOpponentsStatsOnBackend,
+    setUpdatedCards
 }) => {
     const classes = useStyles();
 
@@ -41,48 +43,62 @@ let Cards = ({
         if (!cardChosen) {
             return (
                 <div className="cards-wrapper">
-                    <Card cardInfo={cards[0]} cardIndex={0} 
-                        cardClick={() => {
-                            const card = cards[0]
-                            chooseCard(card, 0, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
-                    <Card cardInfo={cards[1]} cardIndex={1} 
-                        cardClick={() => {
-                            const card = cards[1];
-                            chooseCard(card, 1, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
-                    <Card cardInfo={cards[2]} cardIndex={2} 
-                        cardClick={() => {
-                            const card = cards[2]
-                            chooseCard(card, 2, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
-                    <Card cardInfo={cards[3]} cardIndex={3} 
-                        cardClick={() => {
-                            const card = cards[3]
-                            chooseCard(card, 3, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
-                    <Card cardInfo={cards[4]} cardIndex={4} 
-                        cardClick={() => {
-                            const card = cards[4]
-                            chooseCard(card, 4, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
-                    <Card cardInfo={cards[5]} cardIndex={5}
-                        cardClick={() => {
-                            const card = cards[5]
-                            chooseCard(card, 5, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
-                    <Card cardInfo={cards[6]} cardIndex={6} 
-                        cardClick={() => {
-                            const card = cards[6]
-                            chooseCard(card, 6, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
-                            updateStats()
-                        }} />
+                    { cards.length >= 1 ? 
+                        <Card cardInfo={cards[0]} cardIndex={0} 
+                            cardClick={() => {
+                                const card = cards[0]
+                                chooseCard(card, 0, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
+                    { cards.length >= 2 ? 
+                        <Card cardInfo={cards[1]} cardIndex={1} 
+                            cardClick={() => {
+                                const card = cards[1];
+                                chooseCard(card, 1, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
+                    { cards.length >= 3 ? 
+                        <Card cardInfo={cards[2]} cardIndex={2} 
+                            cardClick={() => {
+                                const card = cards[2]
+                                chooseCard(card, 2, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
+                    { cards.length >= 4 ? 
+                        <Card cardInfo={cards[3]} cardIndex={3} 
+                            cardClick={() => {
+                                const card = cards[3]
+                                chooseCard(card, 3, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
+                    { cards.length >= 5 ? 
+                        <Card cardInfo={cards[4]} cardIndex={4} 
+                            cardClick={() => {
+                                const card = cards[4]
+                                chooseCard(card, 4, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
+                    { cards.length >= 6 ? 
+                        <Card cardInfo={cards[5]} cardIndex={5}
+                            cardClick={() => {
+                                const card = cards[5]
+                                chooseCard(card, 5, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
+                    { cards.length >= 7 ? 
+                        <Card cardInfo={cards[6]} cardIndex={6} 
+                            cardClick={() => {
+                                const card = cards[6]
+                                chooseCard(card, 6, setSelectedCardOnBackend, updateOpponentsStatsOnBackend)
+                                updateStats()
+                            }} />
+                        : null }
                     <Fab 
                         variant="extended" 
                         color="primary"
@@ -102,6 +118,7 @@ let Cards = ({
                         variant="extended" 
                         color="primary"
                         disabled={ enableRevealCardsButton ? false : true }
+                        onClick={() => setUpdatedCards(state.cards)}
                         className={classes.longFab}>
                             Reveal Cards
                     </Fab>
@@ -124,48 +141,62 @@ let Cards = ({
         } else {
             return (
                 <div className="cards-wrapper">
-                    <Card cardInfo={cards[0]} cardIndex={0} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[0];
-                            discardCard(0)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
-                    <Card cardInfo={cards[1]} cardIndex={1} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[1];
-                            discardCard(1)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
-                    <Card cardInfo={cards[2]} cardIndex={2} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[2];
-                            discardCard(2)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
-                    <Card cardInfo={cards[3]} cardIndex={3} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[3];
-                            discardCard(3)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
-                    <Card cardInfo={cards[4]} cardIndex={4} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[4];
-                            discardCard(4)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
-                    <Card cardInfo={cards[5]} cardIndex={5} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[5];
-                            discardCard(4)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
-                    <Card cardInfo={cards[6]} cardIndex={6} hideTooltip={true}
-                        cardClick={() => {
-                            const card = cards[6];
-                            discardCard(4)
-                            setSelectedCardOnBackend(card, "pass")
-                        }} />
+                    { cards.length >= 1 ? 
+                        <Card cardInfo={cards[0]} cardIndex={0} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[0];
+                                discardCard(0)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
+                    { cards.length >= 2 ? 
+                        <Card cardInfo={cards[1]} cardIndex={1} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[1];
+                                discardCard(1)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
+                    { cards.length >= 3 ? 
+                        <Card cardInfo={cards[2]} cardIndex={2} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[2];
+                                discardCard(2)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
+                    { cards.length >= 4 ? 
+                        <Card cardInfo={cards[3]} cardIndex={3} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[3];
+                                discardCard(3)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
+                    { cards.length >= 5 ? 
+                        <Card cardInfo={cards[4]} cardIndex={4} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[4];
+                                discardCard(4)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
+                    { cards.length >= 6 ? 
+                        <Card cardInfo={cards[5]} cardIndex={5} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[5];
+                                discardCard(4)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
+                    { cards.length >= 7 ? 
+                        <Card cardInfo={cards[6]} cardIndex={6} hideTooltip={true}
+                            cardClick={() => {
+                                const card = cards[6];
+                                discardCard(4)
+                                setSelectedCardOnBackend(card, "pass")
+                            }} />
+                        : null }
                 </div>
             )
         }
@@ -173,10 +204,11 @@ let Cards = ({
 }
 
 const mapDispatchToProps = {
-    pass: pass,
-    chooseCard: chooseCard,
+    pass,
+    chooseCard,
     showCardsToDiscard,
     discardCard,
+    setUpdatedCards
 };
 
 Cards = connect(null, mapDispatchToProps)(Cards);

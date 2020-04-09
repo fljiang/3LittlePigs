@@ -35,3 +35,8 @@ export const discardCard = (cardIndex) => ({
 export const reRenderStats = () => ({
     type: 'RE_RENDER_STATS'
 })
+
+export const setUpdatedCards = (updatedCards) => ({
+    type: 'SET_UPDATED_CARDS',
+    updatedCards
+})
