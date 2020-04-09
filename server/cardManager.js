@@ -1,6 +1,8 @@
 const cards_phase1 = require('./cards_phase1.json')
 
 module.exports = function () {
+    // List of client IDs
+    let clientIds = []
     // Mapping of client IDs to client Objects
     let clientIdsToClientObjectsMap = new Map()
     // Mapping of players to an array of their cards from which to choose
@@ -24,6 +26,7 @@ module.exports = function () {
             cards.push(randomCard)
     
             if (cardNum === 7) {
+                clientIds.push(client.id)
                 clientIdsToClientObjectsMap.set(client.id, client)
                 clientIdsToCardsMap.set(client.id, cards)
                 enableViewCardsButtonOrNot()
@@ -68,17 +71,11 @@ module.exports = function () {
         // Broadcast to all players that all players have selected/discarded cards
         if (allCardsSetOrNot) {
             cardsLengthToProceed -= 1
+            rotateCards()
             clientIdsToClientObjectsMap.forEach(function (value, key) {
                 clientIdsToClientObjectsMap.get(key).emit('enableRevealCardsButton')
             })
         }
-    }
-
-    function removeClient(clientId) {
-        remainingCards = remainingCards.concat(clientIdsToCardsMap.get(clientId))
-        clientIdsToCardsMap.delete(clientId)
-        clientIdsToSelectedCardsMap.delete(clientId)
-        clientIdsToClientObjectsMap.delete(clientId)
     }
 
     function enableViewCardsButtonOrNot() {
@@ -87,6 +84,25 @@ module.exports = function () {
                 clientIdsToClientObjectsMap.get(key).emit('enableViewCardsButton')
             })
         }
+    }
+
+    function rotateCards() {
+        console.log(clientIdsToCardsMap)
+        const lastClientId = clientIds[2]
+        let lastCards = clientIdsToCardsMap.get(lastClientId)
+        clientIds.forEach(function (item, index) {
+            tempLastCards = clientIdsToCardsMap.get(item)
+            clientIdsToCardsMap.set(item, lastCards)
+            lastCards = tempLastCards
+        })
+        console.log(clientIdsToCardsMap)
+    }
+
+    function removeClient(clientId) {
+        remainingCards = remainingCards.concat(clientIdsToCardsMap.get(clientId))
+        clientIdsToCardsMap.delete(clientId)
+        clientIdsToSelectedCardsMap.delete(clientId)
+        clientIdsToClientObjectsMap.delete(clientId)
     }
 
     return {
