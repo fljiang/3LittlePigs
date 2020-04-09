@@ -53,6 +53,7 @@ export default class App extends React.Component {
   }
 
   setSelectedCard(selectedCard, selectOrDiscard) {
+    this.setState({ enableRevealCardsButton: false })
     this.state.client.registerEnableRevealCardsButtonHandler()
     this.state.client.setSelectedCard(selectedCard, selectOrDiscard)
   }

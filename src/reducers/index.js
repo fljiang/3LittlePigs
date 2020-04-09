@@ -57,7 +57,6 @@ const reducer = (
         case 'RE_RENDER_STATS':
             return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }
         case `SET_UPDATED_CARDS`:
-            console.log(state);
             return { ...state, cards: action.updatedCards, cardChosen: false  }
         default:
             return state;
