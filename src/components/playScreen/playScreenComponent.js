@@ -63,13 +63,19 @@ let PlayScreen = ({
                     numCoins={state.opponentsStats.get(secondaryBoardResource) ?
                         state.opponentsStats.get(secondaryBoardResource)["Coin"] : 3} 
                     numBricks={state.opponentsStats.get(secondaryBoardResource) ?
-                        state.opponentsStats.get(secondaryBoardResource)["Brick"] : 0} 
+                        state.opponentsStats.get(secondaryBoardResource)["Brick"] : 
+                            secondaryBoardResource === "Brick" ? 1 : 0
+                        }
                     numSticks={state.opponentsStats.get(secondaryBoardResource) ?
-                        state.opponentsStats.get(secondaryBoardResource)["Stick"] : 0} 
+                        state.opponentsStats.get(secondaryBoardResource)["Stick"] : 
+                            secondaryBoardResource === "Stick" ? 1 : 0
+                        } 
                     numStones={state.opponentsStats.get(secondaryBoardResource) ?
                         state.opponentsStats.get(secondaryBoardResource)["Stone"] : 0} 
                     numMud={state.opponentsStats.get(secondaryBoardResource) ?
-                        state.opponentsStats.get(secondaryBoardResource)["Mud"] : 0} 
+                        state.opponentsStats.get(secondaryBoardResource)["Mud"] : 
+                            secondaryBoardResource === "Mud" ? 1 : 0
+                        } 
                     numWolves={state.opponentsStats.get(secondaryBoardResource) ?
                         state.opponentsStats.get(secondaryBoardResource)["Wolf"] : 0} 
                     numPots={state.opponentsStats.get(secondaryBoardResource) ?
@@ -93,13 +99,19 @@ let PlayScreen = ({
                     numCoins={state.opponentsStats.get(tertiaryBoardResource) ?
                         state.opponentsStats.get(tertiaryBoardResource)["Coin"] : 3} 
                     numBricks={state.opponentsStats.get(tertiaryBoardResource) ?
-                        state.opponentsStats.get(tertiaryBoardResource)["Brick"] : 0} 
+                        state.opponentsStats.get(tertiaryBoardResource)["Brick"] : 
+                            tertiaryBoardResource === "Brick" ? 1 : 0
+                        } 
                     numSticks={state.opponentsStats.get(tertiaryBoardResource) ?
-                        state.opponentsStats.get(tertiaryBoardResource)["Stick"] : 0} 
+                        state.opponentsStats.get(tertiaryBoardResource)["Stick"] : 
+                            tertiaryBoardResource === "Stick" ? 1 : 0
+                        } 
                     numStones={state.opponentsStats.get(tertiaryBoardResource) ?
                         state.opponentsStats.get(tertiaryBoardResource)["Stone"] : 0} 
                     numMud={state.opponentsStats.get(tertiaryBoardResource) ?
-                        state.opponentsStats.get(tertiaryBoardResource)["Mud"] : 0} 
+                        state.opponentsStats.get(tertiaryBoardResource)["Mud"] : 
+                            tertiaryBoardResource === "Mud" ? 1 : 0
+                        } 
                     numWolves={state.opponentsStats.get(tertiaryBoardResource) ?
                         state.opponentsStats.get(tertiaryBoardResource)["Wolf"] : 0} 
                     numPots={state.opponentsStats.get(tertiaryBoardResource) ?
@@ -144,10 +156,16 @@ let PlayScreen = ({
                 <Board title={primaryBoardTitle} resource={primaryBoardResource} firstPlayer={true} />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 
-                    numBricks={stats ? stats["Brick"] : 0} 
-                    numSticks={stats ? stats["Stick"] : 0} 
+                    numBricks={stats ? stats["Brick"] : 
+                        primaryBoardResource === "Brick" ? 1 : 0
+                    } 
+                    numSticks={stats ? stats["Stick"] : 
+                        primaryBoardResource === "Stick" ? 1 : 0
+                    } 
                     numStones={stats ? stats["Stone"] : 0} 
-                    numMud={stats ? stats["Mud"] : 0} 
+                    numMud={stats ? stats["Mud"] : 
+                        primaryBoardResource === "Mud" ? 1 : 0
+                    } 
                     numWolves={stats ? stats["Wolf"] : 0}
                     numPots={stats ? stats["Pot"] : 0}
                     numSpoons={stats ? stats["Spoon"] : 0}
