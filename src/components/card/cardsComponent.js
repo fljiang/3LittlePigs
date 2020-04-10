@@ -112,18 +112,32 @@ let Cards = ({
                 </div>
             );
         } else {
-            return (
-                <div className="reveal-cards-button-wrapper">
-                    <Fab 
-                        variant="extended" 
-                        color="primary"
-                        disabled={ enableRevealCardsButton ? false : true }
-                        onClick={() => setUpdatedCards(state.cards)}
-                        className={classes.longFab}>
-                            Reveal Cards
-                    </Fab>
-                </div>
-            )
+            if (cards.length === 1) {
+                return (
+                    <div className="reveal-cards-button-wrapper">
+                        <Fab 
+                            variant="extended" 
+                            color="primary"
+                            disabled={ enableRevealCardsButton ? false : true }
+                            className={classes.longFab}>
+                                Start Round 2
+                        </Fab>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="reveal-cards-button-wrapper">
+                        <Fab 
+                            variant="extended" 
+                            color="primary"
+                            disabled={ enableRevealCardsButton ? false : true }
+                            onClick={() => setUpdatedCards(state.cards)}
+                            className={classes.longFab}>
+                                Reveal Cards
+                        </Fab>
+                    </div>
+                )
+            }
         }
     } else {
         if (showCardToDiscardButton) {
