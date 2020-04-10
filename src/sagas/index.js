@@ -36,13 +36,12 @@ function* setChosenCardIfValid(action) {
         );
 
         stats[board] += 1;
-        action.card.reward.map(element =>
-            Object.keys(element).map(function(key, index) {
-                if (key === "Victory") {
-                    stats[key] += element[key];
-                }
-            })
-        );
+        if (action.card.cardType != "Market" && action.card.cardType != "Resource_Slash") {
+            action.card.reward.map(element => {
+                const key = Object.keys(element)[0]
+                stats[key] += element[key];
+            });
+        }
 
         action.setSelectedCardOnBackend(action.card, "select");
 
