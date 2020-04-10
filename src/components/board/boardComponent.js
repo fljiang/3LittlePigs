@@ -1,4 +1,7 @@
 import React from 'react';
+import { makeStyles } from "@material-ui/core/styles";
+import Fab from '@material-ui/core/Fab';
+
 import { Box, List, ListItem, ListItemText, Typography } from '@material-ui/core';
 import brick from './../../img/icons/brick_icon.png';
 import stick from './../../img/icons/stick_icon.png';
@@ -8,23 +11,43 @@ import vp_5 from './../../img/board/vp_5.png';
 import vp_7 from './../../img/board/vp_7.png';
 import './boardComponent.css';
 
-const Board = ({ title, resource, firstPlayer }) => (
-  <Box border={1} width="60%" 
-    marginRight={firstPlayer ? "39px" : "0px"}
-    marginLeft={firstPlayer ? "25px": "0px" }
-  >
-    <List>
-      <ListItem style={{ marginTop: 8 }}>
-        <img 
-          src={resource === "Brick" ? brick : (resource === "Stick" ? stick : mud)} 
-          alt="" 
-          style={{ width: 100, height: 130 }}
-        />
-        <ListItemText 
-          disableTypography
-          primary={<Typography className="HouseName">{title}</Typography>}
-        />
-      </ListItem>
+const useStyles = makeStyles(theme => ({
+  fab: {
+      width: "250px",
+      height: "40px",
+      marginLeft: "40px"
+  }
+}))
+
+const Board = ({ title, resource, firstPlayer }) => {
+  const classes = useStyles();
+
+  return (
+    <Box border={1} width="60%" 
+      marginRight={firstPlayer ? "39px" : "0px"}
+      marginLeft={firstPlayer ? "25px": "0px" }
+    >
+      <List>
+        <ListItem style={{ marginTop: 8 }}>
+          <img 
+            src={resource === "Brick" ? brick : (resource === "Stick" ? stick : mud)} 
+            alt="" 
+            style={{ width: 100, height: 130 }}
+          />
+          { firstPlayer ?
+            <Fab
+              variant="extended" 
+              color="primary"
+              className={classes.fab}
+            >
+              Choose Resources
+            </Fab> : null
+          }
+          <ListItemText 
+            disableTypography
+            primary={<Typography className="HouseName">{title}</Typography>}
+          />
+        </ListItem>
 
       <ListItem style={{ display: 'flex', justifyContent: 'space-around' }}>
         <img src={vp_3} alt="" style={{ width: 130, height: 100 }} />
@@ -33,6 +56,7 @@ const Board = ({ title, resource, firstPlayer }) => (
       </ListItem>
     </List>
   </Box>
-);
+  );
+}
 
 export default Board;

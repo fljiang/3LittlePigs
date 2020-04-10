@@ -27,7 +27,6 @@ import { Tooltip } from '@material-ui/core';
 
 import { connect } from 'react-redux';
 import { canBuyCard } from '../../actions';
-import { bindActionCreators } from '../../../../../Library/Caches/typescript/3.6/node_modules/redux';
 
 const useStyles = makeStyles(theme => ({
     img: {
@@ -126,8 +125,9 @@ let Card = ({
     }
 }
 
-const mapDispatchToProps = (dispatch) => 
-    bindActionCreators({ canBuyCard }, dispatch);
+const mapDispatchToProps = {
+    canBuyCard: canBuyCard
+};
 
 Card = connect(null, mapDispatchToProps)(Card);
 
