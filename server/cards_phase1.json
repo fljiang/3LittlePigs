@@ -145,10 +145,14 @@
         "description": "Wolf_Stone",
         "cardType": "Wolf",
         "cost": [
-            {"Stone": 1}
+            {
+                "Stone": 1
+            }
         ],
         "reward": [
-            {"Wolf": 1}
+            {
+                "Wolf": 1
+            }
         ],
         "phase": 1
     },
