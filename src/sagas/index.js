@@ -34,7 +34,16 @@ function* setChosenCardIfValid(action) {
                 stats[key] -= element[key];
             })
         );
+
         stats[board] += 1;
+        action.card.reward.map(element =>
+            Object.keys(element).map(function(key, index) {
+                if (key === "Victory") {
+                    stats[key] += element[key];
+                }
+            })
+        );
+
         action.setSelectedCardOnBackend(action.card, "select");
 
         yield put({ 
