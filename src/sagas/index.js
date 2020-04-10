@@ -1,7 +1,6 @@
 import { put, takeLatest, all, select } from 'redux-saga/effects';
 
 export const getStats = (state) => state.stats
-export const getBoard = (state) => state.board
 export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray
 
 function* setFetchedCards(action) {
@@ -27,15 +26,15 @@ function* setChosenCardIfValid(action) {
     const isValidCardToBuyArray = yield select(getIsValidCardToBuyArray);
     if (isValidCardToBuyArray[action.cardIndex]) {
         let stats = yield select(getStats);
-        const board = yield select(getBoard);
 
         action.card.cost.map(element =>
             Object.keys(element).map(function(key, index) {
-                stats[key] -= element[key];
+                if (key === "Coin") {
+                    stats[key] -= element[key];
+                }
             })
         );
 
-        stats[board] += 1;
         if (action.card.cardType != "Market" && action.card.cardType != "Resource_Slash") {
             action.card.reward.map(element => {
                 const key = Object.keys(element)[0]

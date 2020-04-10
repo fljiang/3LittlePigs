@@ -18,9 +18,9 @@ const reducer = (
                 stats: {
                     "Coin": 3,
                     "Victory": 0,
-                    "Brick": 0,
-                    "Stick": 0,
-                    "Mud": 0,
+                    "Brick": action.board === "Brick" ? 1 : 0,
+                    "Stick": action.board === "Stick" ? 1 : 0,
+                    "Mud": action.board === "Mud" ? 1 : 0,
                     "Stone": 0,
                     "Apple": 0,
                     "Water": 0,
