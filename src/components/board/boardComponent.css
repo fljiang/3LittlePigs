@@ -1,3 +1,9 @@
 .HouseName {
     text-align: right;
 }
+
+.choose-resources-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

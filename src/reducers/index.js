@@ -12,6 +12,7 @@ const reducer = (
                 loading: false, 
                 board: action.board,
                 selectedCards: [],
+                resourceSlashCards: [],
                 cards: action.cards,
                 isValidCardToBuyArray: emptyArray,
                 cardChosen: false,
@@ -41,6 +42,11 @@ const reducer = (
             return { ...state, showCardToDiscardButton: true, cardChosen: false };
         case 'CARD_CHOSEN':
             emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
+
+            if (action.selectedCard.cardType === "Resource_Slash") {
+                state.resourceSlashCards.push(action.selectedCard);
+            }
+            console.log(state);
 
             state.selectedCards.push(action.selectedCard);
             state.cards.splice(action.selectedCardIndex, 1);
