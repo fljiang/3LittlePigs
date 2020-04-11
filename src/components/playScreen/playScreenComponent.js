@@ -25,7 +25,8 @@ let PlayScreen = ({
     reRenderStats,
     stats,
     setSelectedCardOnBackend,
-    updateOpponentsStatsOnBackend
+    updateOpponentsStatsOnBackend,
+    resourceSlashCards
 }) => {
     const classes = useStyles();
 
@@ -153,7 +154,14 @@ let PlayScreen = ({
             }
 
             <header className="First-player-header">
-                <Board title={primaryBoardTitle} resource={primaryBoardResource} firstPlayer={true} />
+                <Board 
+                    title={primaryBoardTitle} 
+                    resource={primaryBoardResource} 
+                    firstPlayer={true} 
+                    height={state.height}
+                    width={state.width}
+                    resourceSlashCards={resourceSlashCards}
+                />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 
                     numBricks={stats ? stats["Brick"] : 
@@ -192,6 +200,7 @@ const mapStateToProps = (state) => ({
     loading: state.loading,
     stats: state.stats,
     statsReRendered: state.statsReRendered,
+    resourceSlashCards: state.resourceSlashCards
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);

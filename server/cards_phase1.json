@@ -71,10 +71,10 @@
         ],
         "reward": [
             {
-                "Stone": 1
+                "Brick": 1
             },
             {
-                "Stick": 1
+                "Mud": 1
             }
         ]
     },

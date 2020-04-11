@@ -40,3 +40,7 @@ export const setUpdatedCards = (updatedCards) => ({
     type: 'SET_UPDATED_CARDS',
     updatedCards
 })
+
+export const toggleShowSlashCardResources = () => ({
+    type: 'TOGGLE_SHOW_SLASH_CARD_RESOURCES'
+})
