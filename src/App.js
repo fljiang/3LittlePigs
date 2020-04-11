@@ -19,9 +19,12 @@ export default class App extends React.Component {
       cards: null,
       opponentsStats: new Map(),
       enableViewCardsButton: false,
-      enableRevealCardsButton: false
+      enableRevealCardsButton: false,
+      width: 0,
+      height: 0
     }
 
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.getRandomBoard = this.getRandomBoard.bind(this)
     this.getRandomCards = this.getRandomCards.bind(this)
     this.initializeStats = this.initializeStats.bind(this)
@@ -31,6 +34,19 @@ export default class App extends React.Component {
     this.getRandomBoard()
     this.getRandomCards()
     this.initializeStats()
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+  
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   getRandomBoard() {

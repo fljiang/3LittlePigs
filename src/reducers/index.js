@@ -30,7 +30,8 @@ const reducer = (
                     "Glass": 0,
                     "Pot": 0,
                     "Spoon": 0
-                }
+                },
+                showSlashCardResources: false
             };
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':
             state.isValidCardToBuyArray[action.cardIndex] = action.isValidCardToBuy;
@@ -46,7 +47,6 @@ const reducer = (
             if (action.selectedCard.cardType === "Resource_Slash") {
                 state.resourceSlashCards.push(action.selectedCard);
             }
-            console.log(state);
 
             state.selectedCards.push(action.selectedCard);
             state.cards.splice(action.selectedCardIndex, 1);
@@ -61,9 +61,16 @@ const reducer = (
             state.cards.splice(action.cardIndex, 1);
             return { ...state, cardChosen: true, isValidCardToBuyArray: emptyArray };
         case 'RE_RENDER_STATS':
-            return { ...state, statsReRendered: !state.statsReRendered, stats: state.stats }
-        case `SET_UPDATED_CARDS`:
-            return { ...state, cards: action.updatedCards, cardChosen: false  }
+            return { 
+                ...state,
+                statsReRendered: !state.statsReRendered, 
+                stats: state.stats,  
+                resourceSlashCards: state.resourceSlashCards
+            };
+        case 'SET_UPDATED_CARDS':
+            return { ...state, cards: action.updatedCards, cardChosen: false  };
+        case 'TOGGLE_SHOW_SLASH_CARD_RESOURCES':
+            return { ...state, showSlashCardResources: !state.showSlashCardResources };
         default:
             return state;
     }
