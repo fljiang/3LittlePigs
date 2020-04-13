@@ -67,14 +67,7 @@ let ChooseResources = ({
                 )
             }
 
-            if (rewardIndex === 0) {
-                resourceSlashImages.push(
-                    <img
-                        src={slash}
-                        alt=""
-                        style={{ width: 50, height: 65 }}
-                    />
-                )
+            if (rewardItem["selected"] === true) {
                 resourceSlashImages.push(
                     <Check 
                         style={{ 
@@ -84,6 +77,16 @@ let ChooseResources = ({
                             fontSize: 50, 
                             color: green[500] 
                         }}
+                    />
+                )
+            }
+
+            if (rewardIndex === 0) {
+                resourceSlashImages.push(
+                    <img
+                        src={slash}
+                        alt=""
+                        style={{ width: 50, height: 65 }}
                     />
                 )
             }
