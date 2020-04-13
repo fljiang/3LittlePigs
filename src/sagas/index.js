@@ -41,9 +41,12 @@ function* setChosenCardIfValid(action) {
                 stats[key] += element[key];
             });
         } else if (action.card.cardType === "Resource_Slash") {
-            const rewardElement = action.card.reward[0]
-            Object.keys(rewardElement).map(function(key, index) {
-                stats[key] += rewardElement[key];
+            action.card.reward.map(rewardElement => {
+                if (rewardElement["selected"] === true) {
+                    Object.keys(rewardElement).map(function(key, index) {
+                        stats[key] += rewardElement[key];
+                    })
+                }
             })
         }
 
