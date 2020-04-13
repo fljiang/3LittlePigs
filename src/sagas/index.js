@@ -40,6 +40,11 @@ function* setChosenCardIfValid(action) {
                 const key = Object.keys(element)[0]
                 stats[key] += element[key];
             });
+        } else if (action.card.cardType === "Resource_Slash") {
+            const rewardElement = action.card.reward[0]
+            Object.keys(rewardElement).map(function(key, index) {
+                stats[key] += rewardElement[key];
+            })
         }
 
         action.setSelectedCardOnBackend(action.card, "select");
