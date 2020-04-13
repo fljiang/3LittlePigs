@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import { Fab, Box, Popover } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
+import { Check } from '@material-ui/icons';
 
 import stone from './../../img/icons/stone_icon.png'
 import stick from './../../img/icons/stick_icon.png'
@@ -30,9 +32,7 @@ let ChooseResources = ({
 
     let resourceSlashImages = [];
     resourceSlashCards.forEach(function (item, index) {
-        console.log(item)
         item.reward.forEach(function (rewardItem, rewardIndex) {
-            console.log(rewardItem)
             if (rewardItem["Stone"] != null) {
                 resourceSlashImages.push(
                     <img
@@ -75,12 +75,21 @@ let ChooseResources = ({
                         style={{ width: 50, height: 65 }}
                     />
                 )
+                resourceSlashImages.push(
+                    <Check 
+                        style={{ 
+                            position: 'absolute', 
+                            top: 13 + (index * 65), 
+                            left: 5, 
+                            fontSize: 50, 
+                            color: green[500] 
+                        }}
+                    />
+                )
             }
         })
         resourceSlashImages.push(<br />)
     })
-
-    console.log(resourceSlashImages);
 
     return (
         <div>
@@ -102,7 +111,9 @@ let ChooseResources = ({
                 anchorReference="anchorPosition"
             >
                 <Box border={2}>
-                    <div> { resourceSlashImages } </div>
+                    <div> 
+                        { resourceSlashImages } 
+                    </div>
                 </Box>
             </Popover>
         </div>
