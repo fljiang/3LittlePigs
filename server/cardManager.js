@@ -1,4 +1,4 @@
-const cards_phase1 = require('./cards_phase1.json')
+const cardsPhase1 = require('./cardsPhase1.json')
 
 module.exports = function () {
     // List of client IDs
@@ -10,7 +10,7 @@ module.exports = function () {
     // Mapping of players to an array of their selected cards
     let clientIdsToSelectedCardsMap = new Map()
 
-    let remainingCards = cards_phase1.map(element => element)
+    let remainingCards = cardsPhase1.map(element => element)
 
     // Length each array in clientIdsToCardsMap must be to indicate 
     // that all players have selected/discarded their cards
