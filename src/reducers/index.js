@@ -71,6 +71,9 @@ const reducer = (
             return { ...state, cards: action.updatedCards, cardChosen: false  };
         case 'TOGGLE_SHOW_SLASH_CARD_RESOURCES':
             return { ...state, showSlashCardResources: !state.showSlashCardResources };
+        case 'RESOURCE_SWITCHED':
+            action.updateOpponentsStatsOnBackend(action.updatedStats);
+            return { ...state, stats: action.updatedStats, resourceSlashCards: action.resourceSlashCards };
         default:
             return state;
     }
