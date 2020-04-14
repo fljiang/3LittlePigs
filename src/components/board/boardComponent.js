@@ -10,7 +10,16 @@ import vp_7 from './../../img/board/vp_7.png';
 import './boardComponent.css';
 import ChooseResources from './chooseResourcesComponent';
 
-const Board = ({ title, resource, firstPlayer, resourceSlashCards, height, width }) => {
+const Board = ({ 
+  title, 
+  resource, 
+  firstPlayer, 
+  resourceSlashCards, 
+  height, 
+  width,
+  updateStats,
+  updateOpponentsStatsOnBackend
+}) => {
 
   return (
     <Box border={1} width="60%" 
@@ -25,8 +34,13 @@ const Board = ({ title, resource, firstPlayer, resourceSlashCards, height, width
             style={{ width: 100, height: 130 }}
           />
           { firstPlayer ? 
-            <ChooseResources height={height} width={width} resourceSlashCards={resourceSlashCards} /> 
-            : null 
+            <ChooseResources 
+              height={height} 
+              width={width} 
+              resourceSlashCards={resourceSlashCards} 
+              updateStats={updateStats}
+              updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
+            /> : null 
           }
           <ListItemText 
             disableTypography

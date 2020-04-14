@@ -44,3 +44,10 @@ export const setUpdatedCards = (updatedCards) => ({
 export const toggleShowSlashCardResources = () => ({
     type: 'TOGGLE_SHOW_SLASH_CARD_RESOURCES'
 })
+
+export const switchResources = (cardDescription, newResource, updateOpponentsStatsOnBackend) => ({
+    type: 'SWITCH_RESOURCES',
+    cardDescription,
+    newResource,
+    updateOpponentsStatsOnBackend
+})

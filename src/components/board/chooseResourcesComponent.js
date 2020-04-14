@@ -11,7 +11,7 @@ import mud from './../../img/icons/mud_icon.png'
 import slash from './../../img/icons/other/slash.png'
 
 import { connect } from 'react-redux';
-import { toggleShowSlashCardResources } from '../../actions';
+import { toggleShowSlashCardResources, switchResources } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -26,6 +26,10 @@ let ChooseResources = ({
     width,
     toggleShowSlashCardResources,
     showSlashCardResources,
+    switchResources,
+    updateStats,
+    updateOpponentsStatsOnBackend,
+    updatedResourceSlashCards = [],
     resourceSlashCards = []
 }) => {
     const classes = useStyles();
@@ -38,6 +42,10 @@ let ChooseResources = ({
                     <img
                         src={stone}
                         alt=""
+                        onClick={() => {
+                            switchResources(item.description, "Stone", updateOpponentsStatsOnBackend)
+                            updateStats()
+                        }}
                         style={{ width: 50, height: 65 }}
                     />
                 )
@@ -46,6 +54,10 @@ let ChooseResources = ({
                     <img
                         src={stick}
                         alt=""
+                        onClick={() => {
+                            switchResources(item.description, "Stick", updateOpponentsStatsOnBackend)
+                            updateStats()
+                        }}
                         style={{ width: 50, height: 65 }}
                     />
                 )
@@ -54,6 +66,10 @@ let ChooseResources = ({
                     <img
                         src={brick}
                         alt=""
+                        onClick={() => {
+                            switchResources(item.description, "Brick", updateOpponentsStatsOnBackend)
+                            updateStats()
+                        }}
                         style={{ width: 50, height: 65 }}
                     />
                 )
@@ -62,9 +78,33 @@ let ChooseResources = ({
                     <img
                         src={mud}
                         alt=""
+                        onClick={() => {
+                            switchResources(item.description, "Mud", updateOpponentsStatsOnBackend)
+                            updateStats()
+                        }}
                         style={{ width: 50, height: 65 }}
                     />
                 )
+            }
+
+            let left = 5;
+            if (updatedResourceSlashCards.length > 0 &&
+                updatedResourceSlashCards[index].reward[rewardIndex].selected === true) {
+                    left = rewardIndex === 0 ? 5 : 95;
+            }
+            if (rewardItem.selected === true || 
+                updatedResourceSlashCards[index].reward[rewardIndex].selected === true) {
+                    resourceSlashImages.push(
+                        <Check 
+                            style={{ 
+                                position: 'absolute', 
+                                top: 13 + (index * 65), 
+                                left: left, 
+                                fontSize: 50, 
+                                color: green[500] 
+                            }}
+                        />
+                    )
             }
 
             if (rewardIndex === 0) {
@@ -73,17 +113,6 @@ let ChooseResources = ({
                         src={slash}
                         alt=""
                         style={{ width: 50, height: 65 }}
-                    />
-                )
-                resourceSlashImages.push(
-                    <Check 
-                        style={{ 
-                            position: 'absolute', 
-                            top: 13 + (index * 65), 
-                            left: 5, 
-                            fontSize: 50, 
-                            color: green[500] 
-                        }}
                     />
                 )
             }
@@ -121,13 +150,15 @@ let ChooseResources = ({
 }
 
 const mapDispatchToProps = {
-    toggleShowSlashCardResources: toggleShowSlashCardResources
+    toggleShowSlashCardResources: toggleShowSlashCardResources,
+    switchResources: switchResources
 };
 
 ChooseResources = connect(null, mapDispatchToProps)(ChooseResources);
 
 const mapStateToProps = (state) => ({
-    showSlashCardResources: state.showSlashCardResources
+    showSlashCardResources: state.showSlashCardResources,
+    updatedResourceSlashCards: state.resourceSlashCards
 })
 
 ChooseResources = connect(mapStateToProps, null)(ChooseResources);

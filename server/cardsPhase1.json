@@ -53,10 +53,12 @@
         ],
         "reward": [
             {
-                "Stone": 1
+                "Stone": 1,
+                "selected": true
             },
             {
-                "Stick": 1
+                "Stick": 1,
+                "selected": false
             }
         ],
         "phase": 1
@@ -71,10 +73,12 @@
         ],
         "reward": [
             {
-                "Brick": 1
+                "Brick": 1,
+                "selected": true
             },
             {
-                "Mud": 1
+                "Mud": 1,
+                "selected": false
             }
         ]
     },
