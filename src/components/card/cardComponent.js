@@ -71,7 +71,7 @@ let Card = ({
     } else if (cardInfo.description === "Mud") {
         cardImage = <img src={mud} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Stone_Stick") {
-        cardImage = <img src={stone_or_stick} className={classes.img} alt=""onClick={() => cardClick()}  />
+        cardImage = <img src={stone_or_stick} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Water") {
         cardImage = <img src={water} className={classes.img} alt="" onClick={() => cardClick()} />
     } else if (cardInfo.description === "Wolf_Stick") {
