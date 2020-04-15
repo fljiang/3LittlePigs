@@ -76,14 +76,14 @@ const Stats = ({
         </ListItem>
 
         <ListItem style={{ margin: -5 }}>
-          <img src={mud} alt="" style={{ width: 25, height: 32.5 }} />
+          <img src={water} alt="" style={{ width: 25, height: 32.5 }} />
           <ListItemText 
             disableTypography
-            primary={<Typography className="SubKey">Mud</Typography>}
+            primary={<Typography className="SubKey">Water</Typography>}
           />
           <ListItemText 
             disableTypography
-            primary={<Typography className="Value">{numMud}</Typography>}
+            primary={<Typography className="Value">{numWater}</Typography>}
           />
         </ListItem>
       </ListItem>
@@ -101,31 +101,6 @@ const Stats = ({
         </ListItem>
 
         <ListItem style={{ margin: -5 }}>
-          <img src={stone} alt="" style={{ width: 25, height: 32.5 }} />
-          <ListItemText 
-            disableTypography
-            primary={<Typography className="SubKey">Stones</Typography>}
-          />
-          <ListItemText 
-            disableTypography
-            primary={<Typography className="Value">{numStones}</Typography>}
-          />
-        </ListItem>
-      </ListItem>
-      <ListItem style={{ height: 25, marginLeft: 0 }}>
-        <ListItem style={{ marginTop: -20, marginBottom: -20, marginLeft: -15 }}>
-          <img src={water} alt="" style={{ width: 25, height: 32.5 }} />
-          <ListItemText 
-            disableTypography
-            primary={<Typography className="SubKey">Water</Typography>}
-          />
-          <ListItemText 
-            disableTypography
-            primary={<Typography className="Value">{numWater}</Typography>}
-          />
-        </ListItem>
-
-        <ListItem style={{ margin: -5 }}>
           <img src={flower} alt="" style={{ width: 25, height: 32.5 }} />
           <ListItemText 
             disableTypography
@@ -139,6 +114,18 @@ const Stats = ({
       </ListItem>
       <ListItem style={{ height: 25, marginLeft: 0 }}>
         <ListItem style={{ marginTop: -20, marginBottom: -20, marginLeft: -15 }}>
+          <img src={mud} alt="" style={{ width: 25, height: 32.5 }} />
+          <ListItemText 
+            disableTypography
+            primary={<Typography className="SubKey">Mud</Typography>}
+          />
+          <ListItemText 
+            disableTypography
+            primary={<Typography className="Value">{numMud}</Typography>}
+          />
+        </ListItem>
+
+        <ListItem style={{ margin: -5 }}>
           <img src={apple} alt="" style={{ width: 25, height: 32.5 }} />
           <ListItemText 
             disableTypography
@@ -147,6 +134,19 @@ const Stats = ({
           <ListItemText 
             disableTypography
             primary={<Typography className="Value">{numApples}</Typography>}
+          />
+        </ListItem>
+      </ListItem>
+      <ListItem style={{ height: 25, marginLeft: 0 }}>
+        <ListItem style={{ marginTop: -20, marginBottom: -20, marginLeft: -15 }}>
+          <img src={stone} alt="" style={{ width: 25, height: 32.5 }} />
+          <ListItemText 
+            disableTypography
+            primary={<Typography className="SubKey">Stones</Typography>}
+          />
+          <ListItemText 
+            disableTypography
+            primary={<Typography className="Value">{numStones}</Typography>}
           />
         </ListItem>
         <ListItem style={{ margin: -5 }}>

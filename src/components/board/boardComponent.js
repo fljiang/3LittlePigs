@@ -48,13 +48,13 @@ const Board = ({
           />
         </ListItem>
 
-      <ListItem style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <img src={vp_3} alt="" style={{ width: 130, height: 100 }} />
-        <img src={vp_5} alt="" style={{ width: 130, height: 100 }} />
-        <img src={vp_7} alt="" style={{ width: 130, height: 100 }} />
-      </ListItem>
-    </List>
-  </Box>
+        <ListItem style={{ display: 'flex', justifyContent: 'space-around' }}>
+          <img src={vp_3} alt="" style={{ width: 130, height: 100 }} />
+          <img src={vp_5} alt="" style={{ width: 130, height: 100 }} />
+          <img src={vp_7} alt="" style={{ width: 130, height: 100 }} />
+        </ListItem>
+      </List>
+    </Box>
   );
 }
 
