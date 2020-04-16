@@ -8,6 +8,8 @@ import vp_3 from './../../img/board/vp_3.png';
 import vp_5 from './../../img/board/vp_5.png';
 import vp_7 from './../../img/board/vp_7.png';
 import './boardComponent.css';
+
+import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
 
 const Board = ({ title, resource, firstPlayer, resourceSlashCards, height, width }) => {
@@ -26,6 +28,10 @@ const Board = ({ title, resource, firstPlayer, resourceSlashCards, height, width
           />
           { firstPlayer ? 
             <ChooseResources height={height} width={width} resourceSlashCards={resourceSlashCards} /> 
+            : null 
+          }
+          { firstPlayer ? 
+            <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]}/> 
             : null 
           }
           <ListItemText 
