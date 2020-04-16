@@ -3,6 +3,7 @@ import React from 'react';
 import PlayScreen from './components/playScreen/playScreenComponent.js';
 
 import socket from './socket.js';
+import CreateOrJoinGame from './components/createOrJoinGame/createOrJoinGameComponent.js';
 
 export default class App extends React.Component {
   constructor(props, context) {
@@ -99,6 +100,8 @@ export default class App extends React.Component {
   }
 
   render() {
+    // return <CreateOrJoinGame width={this.state.width} height={this.state.height} />
+
     if (this.state.board != null && this.state.cards != null) {
       return <PlayScreen 
         state={this.state} 
