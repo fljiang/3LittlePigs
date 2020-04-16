@@ -27,6 +27,8 @@ const useStyles = makeStyles(theme => ({
 const Market = ({
   isValidResourceToBuyArray
 }) => {
+  img_width = (window.innerWidth * 0.35) / 7;
+  img_height = img_width * 1.3;
   const classes = useStyles();
   return (
     <Box border={1} width="35%" marginLeft={5} marginTop={-2}>
@@ -47,14 +49,14 @@ const Market = ({
             { tooltip: classes.tooltipValid } :
             { tooltip: classes.tooltipInvalid }
           }>
-            { <img src={ brick } alt="" style={{ width: 50, height: 65 }} /> }
+            { <img src={ brick } alt="" style={{ width: img_width, height: img_height }} /> }
           </Tooltip>
-          <img src={ stick } alt="" style={{ width: 50, height: 65 }} />
-          <img src={ mud } alt="" style={{ width: 50, height: 65 }} />
-          <img src={ stone } alt="" style={{ width: 50, height: 65 }} />
-          <img src={ water } alt="" style={{ width: 50, height: 65 }} />
-          <img src={ apple } alt="" style={{ width: 50, height: 65 }} />
-          <img src={ flower } alt="" style={{ width: 50, height: 65 }} />
+          <img src={ stick } alt="" style={{ width: img_width, height: img_height }} />
+          <img src={ mud } alt="" style={{ width: img_width, height: img_height }} />
+          <img src={ stone } alt="" style={{ width: img_width, height: img_height }} />
+          <img src={ water } alt="" style={{ width: img_width, height: img_height }} />
+          <img src={ apple } alt="" style={{ width: img_width, height: img_height }} />
+          <img src={ flower } alt="" style={{ width: img_width, height: img_height }} />
         </ListItem>
       </List>
     </Box>
