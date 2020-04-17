@@ -13,55 +13,55 @@ import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
 
 const Board = ({ 
-  title, 
-  resource, 
-  firstPlayer, 
-  resourceSlashCards, 
-  height, 
-  width,
-  updateStats,
-  updateOpponentsStatsOnBackend
+    title, 
+    resource, 
+    firstPlayer, 
+    resourceSlashCards, 
+    height, 
+    width,
+    updateStats,
+    updateOpponentsStatsOnBackend
 }) => {
 
-  return (
-    <Box border={1} width="60%" 
-      marginRight={firstPlayer ? "39px" : "0px"}
-      marginLeft={firstPlayer ? "25px": "0px" }
-    >
-      <List>
-        <ListItem style={{ marginTop: 8 }}>
-          <img 
-            src={resource === "Brick" ? brick : (resource === "Stick" ? stick : mud)} 
-            alt="" 
-            style={{ width: 100, height: 130 }}
-          />
-          { firstPlayer ? 
-            <ChooseResources 
-              height={height} 
-              width={width} 
-              resourceSlashCards={resourceSlashCards} 
-              updateStats={updateStats}
-              updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
-            /> : null 
-          }
-          { firstPlayer ? 
-            <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]}/> 
-            : null 
-          }
-          <ListItemText 
-            disableTypography
-            primary={<Typography className="HouseName">{title}</Typography>}
-          />
-        </ListItem>
+    return (
+        <Box border={1} width="60%" 
+            marginRight={firstPlayer ? "39px" : "0px"}
+            marginLeft={firstPlayer ? "25px": "0px" }
+        >
+            <List>
+                <ListItem style={{ marginTop: 8 }}>
+                    <img 
+                        src={resource === "Brick" ? brick : (resource === "Stick" ? stick : mud)} 
+                        alt="" 
+                        style={{ width: 100, height: 130 }}
+                    />
+                    { firstPlayer ? 
+                        <ChooseResources 
+                            height={height} 
+                            width={width} 
+                            resourceSlashCards={resourceSlashCards} 
+                            updateStats={updateStats}
+                            updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
+                        /> : null 
+                    }
+                    { firstPlayer ? 
+                        <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]}/> 
+                        : null 
+                    }
+                    <ListItemText 
+                        disableTypography
+                        primary={<Typography className="HouseName">{title}</Typography>}
+                    />
+                </ListItem>
 
-        <ListItem style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <img src={vp_3} alt="" style={{ width: 130, height: 100 }} />
-          <img src={vp_5} alt="" style={{ width: 130, height: 100 }} />
-          <img src={vp_7} alt="" style={{ width: 130, height: 100 }} />
-        </ListItem>
-      </List>
-    </Box>
-  );
+                <ListItem style={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <img src={vp_3} alt="" style={{ width: 130, height: 100 }} />
+                    <img src={vp_5} alt="" style={{ width: 130, height: 100 }} />
+                    <img src={vp_7} alt="" style={{ width: 130, height: 100 }} />
+                </ListItem>
+            </List>
+        </Box>
+    );
 }
 
 export default Board;

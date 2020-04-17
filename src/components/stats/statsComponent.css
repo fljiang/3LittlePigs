@@ -1,12 +1,12 @@
 .Key {
-  text-align: left;
+    text-align: left;
 }
 
 .Value {
-  text-align: right;
+    text-align: right;
 }
 
 .SubKey {
-  text-align: left;
-  padding-left: 10pt;
+    text-align: left;
+    padding-left: 10pt;
 }
