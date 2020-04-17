@@ -11,16 +11,16 @@ import flower from './../../img/icons/flower_icon.png';
 
 const useStyles = makeStyles(theme => ({
     tooltipValid: {
-            maxWidth: "130px",
-            fontSize: "0.8em",
-            color: "black",
-            backgroundColor: "#3CB043"
+        maxWidth: "130px",
+        fontSize: "0.8em",
+        color: "black",
+        backgroundColor: "#3CB043"
     },
     tooltipInvalid: {
-            maxWidth: "130px",
-            fontSize: "0.8em",
-            color: "white",
-            backgroundColor: "#D0312D"
+        maxWidth: "130px",
+        fontSize: "0.8em",
+        color: "white",
+        backgroundColor: "#D0312D"
     }
 }))
 
