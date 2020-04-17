@@ -31,7 +31,7 @@ const Board = ({ title, resource, firstPlayer, resourceSlashCards, height, width
                         : null 
                     }
                     { firstPlayer ? 
-                        <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]} width={width} /> 
+                        <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]} /> 
                         : null 
                     }
                     <ListItemText 
