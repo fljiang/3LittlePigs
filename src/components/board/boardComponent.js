@@ -12,7 +12,16 @@ import './boardComponent.css';
 import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
 
-const Board = ({ title, resource, firstPlayer, resourceSlashCards, height, width }) => {
+const Board = ({ 
+    title, 
+    resource, 
+    firstPlayer, 
+    resourceSlashCards, 
+    height, 
+    width,
+    updateStats,
+    updateOpponentsStatsOnBackend
+}) => {
 
     return (
         <Box border={1} width="60%" 
@@ -27,11 +36,24 @@ const Board = ({ title, resource, firstPlayer, resourceSlashCards, height, width
                         style={{ width: 100, height: 130 }}
                     />
                     { firstPlayer ? 
+<<<<<<< HEAD
                         <ChooseResources height={height} width={width} resourceSlashCards={resourceSlashCards} /> 
                         : null 
                     }
                     { firstPlayer ? 
                         <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]} /> 
+=======
+                        <ChooseResources 
+                            height={height} 
+                            width={width} 
+                            resourceSlashCards={resourceSlashCards} 
+                            updateStats={updateStats}
+                            updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
+                        /> : null 
+                    }
+                    { firstPlayer ? 
+                        <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]}/> 
+>>>>>>> e38f405740b81b8a2a71e59141ab5037ac3f5527
                         : null 
                     }
                     <ListItemText 

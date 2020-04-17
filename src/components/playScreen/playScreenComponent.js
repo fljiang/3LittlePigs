@@ -161,6 +161,8 @@ let PlayScreen = ({
                     height={state.height}
                     width={state.width}
                     resourceSlashCards={resourceSlashCards}
+                    updateStats={() => reRenderStats()}
+                    updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
                 />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 
