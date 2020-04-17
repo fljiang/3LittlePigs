@@ -31,29 +31,29 @@ export const chooseCard = (card, cardIndex, setSelectedCardOnBackend, updateOppo
 
 export const showCardsToDiscard = () => ({
     type: 'SHOW_CARDS_TO_DISCARD'
-})
+});
 
 export const discardCard = (cardIndex) => ({
     type: 'DISCARD_CARD',
     cardIndex
-})
+});
 
 export const reRenderStats = () => ({
     type: 'RE_RENDER_STATS'
-})
+});
 
 export const setUpdatedCards = (updatedCards) => ({
     type: 'SET_UPDATED_CARDS',
     updatedCards
-})
+});
 
 export const toggleShowSlashCardResources = () => ({
     type: 'TOGGLE_SHOW_SLASH_CARD_RESOURCES'
-})
+});
 
 export const switchResources = (cardDescription, newResource, updateOpponentsStatsOnBackend) => ({
     type: 'SWITCH_RESOURCES',
     cardDescription,
     newResource,
     updateOpponentsStatsOnBackend
-})
+});
