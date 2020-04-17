@@ -1,8 +1,8 @@
 import { put, takeLatest, all, select } from 'redux-saga/effects';
 
-export const getStats = (state) => state.stats
-export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray
-export const getSelectedResourceSlashCards = (state) => state.resourceSlashCards
+export const getStats = (state) => state.stats;
+export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray;
+export const getSelectedResourceSlashCards = (state) => state.resourceSlashCards;
 
 function* setFetchedCards(action) {
     yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
@@ -115,7 +115,7 @@ function* setSwitchedResources(action) {
             updatedStats: updatedStats,
             resourceSlashCards: selectedResourceSlashCards,
             updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
-        })
+        });
     }
 }
 
