@@ -10,6 +10,12 @@ export const canBuyCard = (cost, cardIndex) => ({
     cardIndex
 });
 
+export const canBuyResource = (cost, resourceIndex) => ({
+    type: 'CAN_BUY_RESOURCE',
+    cost,
+    resourceIndex
+});
+
 export const pass = (updateOpponentsStatsOnBackend) => ({
     type: 'PASS',
     updateOpponentsStatsOnBackend
