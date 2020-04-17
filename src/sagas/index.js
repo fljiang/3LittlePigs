@@ -23,6 +23,15 @@ function* calculateIfValidCardToBuy(action) {
     yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: calculatedIsValidCardToBuy, cardIndex: action.cardIndex });
 }
 
+function* calculateIfValidResourceToBuy(action) {
+    const opponentStats = {
+        "Brick": 1,
+    };
+    if (opponentStats["Brick"]) {
+        return true;
+    }
+}
+
 function* setChosenCardIfValid(action) {
     const isValidCardToBuyArray = yield select(getIsValidCardToBuyArray);
     if (isValidCardToBuyArray[action.cardIndex]) {
@@ -113,6 +122,7 @@ function* setSwitchedResources(action) {
 function* cardsWatcher() {
     yield takeLatest('SET_CARDS', setFetchedCards);
     yield takeLatest('CAN_BUY_CARD', calculateIfValidCardToBuy);
+    yield takeLatest('CAN_BUY_RESOURCE', calculateIfValidResourceToBuy);
     yield takeLatest('CHOOSE_CARD', setChosenCardIfValid);
     yield takeLatest('SWITCH_RESOURCES', setSwitchedResources);
 }

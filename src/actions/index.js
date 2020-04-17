@@ -10,6 +10,12 @@ export const canBuyCard = (cost, cardIndex) => ({
     cardIndex
 });
 
+export const canBuyResource = (cost, resourceIndex) => ({
+    type: 'CAN_BUY_RESOURCE',
+    cost,
+    resourceIndex
+});
+
 export const pass = (updateOpponentsStatsOnBackend) => ({
     type: 'PASS',
     updateOpponentsStatsOnBackend
@@ -44,6 +50,8 @@ export const setUpdatedCards = (updatedCards) => ({
 export const toggleShowSlashCardResources = () => ({
     type: 'TOGGLE_SHOW_SLASH_CARD_RESOURCES'
 })
+<<<<<<< HEAD
+=======
 
 export const switchResources = (cardDescription, newResource, updateOpponentsStatsOnBackend) => ({
     type: 'SWITCH_RESOURCES',
@@ -51,3 +59,4 @@ export const switchResources = (cardDescription, newResource, updateOpponentsSta
     newResource,
     updateOpponentsStatsOnBackend
 })
+>>>>>>> e38f405740b81b8a2a71e59141ab5037ac3f5527

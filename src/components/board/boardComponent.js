@@ -36,6 +36,13 @@ const Board = ({
                         style={{ width: 100, height: 130 }}
                     />
                     { firstPlayer ? 
+<<<<<<< HEAD
+                        <ChooseResources height={height} width={width} resourceSlashCards={resourceSlashCards} /> 
+                        : null 
+                    }
+                    { firstPlayer ? 
+                        <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]} /> 
+=======
                         <ChooseResources 
                             height={height} 
                             width={width} 
@@ -46,6 +53,7 @@ const Board = ({
                     }
                     { firstPlayer ? 
                         <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]}/> 
+>>>>>>> e38f405740b81b8a2a71e59141ab5037ac3f5527
                         : null 
                     }
                     <ListItemText 
