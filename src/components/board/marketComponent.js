@@ -27,11 +27,12 @@ const useStyles = makeStyles(theme => ({
 const Market = ({
   isValidResourceToBuyArray
 }) => {
-  img_width = (window.innerWidth * 0.35) / 7;
-  img_height = img_width * 1.3;
+  // const img_width = (width * 0.35) / 7;
+  const img_width = "14%";
+  const img_height = img_width * 1.3;
   const classes = useStyles();
   return (
-    <Box border={1} width="35%" marginLeft={5} marginTop={-2}>
+    <Box border={1} width="40%" marginLeft={5} marginTop={-2}>
       <List>
         <ListItem style={{ marginLeft: 5 }}>
           <ListItemText
@@ -42,8 +43,8 @@ const Market = ({
         <ListItem style={{ marginTop: -2 }}>
           <Tooltip title={
             isValidResourceToBuyArray[0] ?
-            "Click to purchase" :
-            "Do not have enough coins\nor resource not owned by any other player"
+            "Click to purchase brick" :
+            "Do not have enough coins\nor sticks not available for purchase"
           } classes={
             isValidResourceToBuyArray[0] ?
             { tooltip: classes.tooltipValid } :
@@ -51,12 +52,78 @@ const Market = ({
           }>
             { <img src={ brick } alt="" style={{ width: img_width, height: img_height }} /> }
           </Tooltip>
-          <img src={ stick } alt="" style={{ width: img_width, height: img_height }} />
-          <img src={ mud } alt="" style={{ width: img_width, height: img_height }} />
-          <img src={ stone } alt="" style={{ width: img_width, height: img_height }} />
-          <img src={ water } alt="" style={{ width: img_width, height: img_height }} />
-          <img src={ apple } alt="" style={{ width: img_width, height: img_height }} />
-          <img src={ flower } alt="" style={{ width: img_width, height: img_height }} />
+
+          <Tooltip title={
+            isValidResourceToBuyArray[1] ?
+            "Click to purchase stick" :
+            "Do not have enough coins\nor sticks not available for purchase"
+          } classes={
+            isValidResourceToBuyArray[1] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
+          }>
+            { <img src={ stick } alt="" style={{ width: img_width, height: img_height }} /> }
+          </Tooltip>
+
+          <Tooltip title={
+            isValidResourceToBuyArray[2] ?
+            "Click to purchase stick" :
+            "Do not have enough coins\nor mud not available for purchase"
+          } classes={
+            isValidResourceToBuyArray[2] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
+          }>
+            { <img src={ mud } alt="" style={{ width: img_width, height: img_height }} /> }
+          </Tooltip>
+
+          <Tooltip title={
+            isValidResourceToBuyArray[3] ?
+            "Click to purchase stone" :
+            "Do not have enough coins\nor stones not available for purchase"
+          } classes={
+            isValidResourceToBuyArray[3] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
+          }>
+            { <img src={ stone } alt="" style={{ width: img_width, height: img_height }} /> }
+          </Tooltip>
+
+          <Tooltip title={
+            isValidResourceToBuyArray[4] ?
+            "Click to purchase water" :
+            "Do not have enough coins\nor water not available for purchase"
+          } classes={
+            isValidResourceToBuyArray[4] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
+          }>
+            { <img src={ water } alt="" style={{ width: img_width, height: img_height }} /> }
+          </Tooltip>
+
+          <Tooltip title={
+            isValidResourceToBuyArray[5] ?
+            "Click to purchase apple" :
+            "Do not have enough coins\nor apples not available for purchase"
+          } classes={
+            isValidResourceToBuyArray[5] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
+          }>
+            { <img src={ apple } alt="" style={{ width: img_width, height: img_height }} /> }
+          </Tooltip>
+
+          <Tooltip title={
+            isValidResourceToBuyArray[6] ?
+            "Click to purchase flower" :
+            "Do not have enough coins\nor flowers not available for purchase"
+          } classes={
+            isValidResourceToBuyArray[6] ?
+            { tooltip: classes.tooltipValid } :
+            { tooltip: classes.tooltipInvalid }
+          }>
+            { <img src={ flower } alt="" style={{ width: img_width, height: img_height }} /> }
+          </Tooltip>
         </ListItem>
       </List>
     </Box>
