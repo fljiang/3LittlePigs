@@ -28,6 +28,7 @@ let Board = ({
     stats
 }) => {
     console.log(stats);
+    
     return (
         <Box border={1} width="60%" 
             marginRight={firstPlayer ? "39px" : "0px"}
