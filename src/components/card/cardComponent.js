@@ -133,7 +133,7 @@ Card = connect(null, mapDispatchToProps)(Card);
 
 const mapStateToProps = (state) => ({
     isValidCardToBuyArray: state.isValidCardToBuyArray,
-})
+});
 
 Card = connect(mapStateToProps, null)(Card);
 

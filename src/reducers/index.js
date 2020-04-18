@@ -74,6 +74,9 @@ const reducer = (
         case 'RESOURCE_SWITCHED':
             action.updateOpponentsStatsOnBackend(action.updatedStats);
             return { ...state, stats: action.updatedStats, resourceSlashCards: action.resourceSlashCards };
+        case 'MARKET_CLICK':
+            console.log(action.resource);
+            return { ...state };
         default:
             return state;
     }
