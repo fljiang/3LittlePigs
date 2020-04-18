@@ -12,6 +12,8 @@ import flower from './../../img/icons/flower_icon.png';
 import { connect } from 'react-redux';
 import { marketClick } from '../../actions';
 
+const renderStats = {"Coin": 0, "Brick": 0, "Stick": 0, "Mud": 0, "Stone": 0, "Water": 0, "Apple": 0, "Flower": 0};
+
 const useStyles = makeStyles(theme => ({
     tooltipValid: {
         maxWidth: "130px",
@@ -31,9 +33,10 @@ let Market = ({
     stats,
     marketClick
 }) => {
-    const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
-    let isValidResourceToBuyMap = new Map();
+    stats = stats ? stats : renderStats;
     
+    let isValidResourceToBuyMap = new Map();
+    const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
     resourceList.map(resource => {
         isValidResourceToBuyMap[resource] = (stats["Coin"] > 2 && stats[resource])? true : false;
     });
@@ -145,5 +148,11 @@ const mapDispatchToProps = {
 };
 
 Market = connect(null, mapDispatchToProps)(Market);
+
+const mapStateToProps = (state) => ({
+    stats: state.stats,
+});
+
+Market = connect(mapStateToProps, null)(Market);
 
 export default Market;

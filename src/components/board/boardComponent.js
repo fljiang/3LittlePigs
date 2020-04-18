@@ -12,11 +12,7 @@ import './boardComponent.css';
 import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
 
-import { connect } from 'react-redux';
-
-const renderStats = {"Coin": 0, "Brick": 0, "Stick": 0, "Mud": 0, "Stone": 0, "Water": 0, "Apple": 0, "Flower": 0};
-
-let Board = ({ 
+const Board = ({ 
     title, 
     resource, 
     firstPlayer, 
@@ -25,9 +21,7 @@ let Board = ({
     width,
     updateStats,
     updateOpponentsStatsOnBackend,
-    stats
 }) => {
-    console.log(stats);
     
     return (
         <Box border={1} width="60%" 
@@ -51,7 +45,7 @@ let Board = ({
                         /> : null 
                     }
                     { firstPlayer ? 
-                        <Market stats={stats ? stats : renderStats} /> 
+                        <Market /> 
                         : null 
                     }
                     <ListItemText 
@@ -69,11 +63,5 @@ let Board = ({
         </Box>
     );
 }
-
-const mapStateToProps = (state) => ({
-    stats: state.stats
-});
-
-Board = connect(mapStateToProps, null)(Board);
 
 export default Board;
