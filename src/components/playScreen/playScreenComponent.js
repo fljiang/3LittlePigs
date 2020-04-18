@@ -163,7 +163,6 @@ let PlayScreen = ({
                     resourceSlashCards={resourceSlashCards}
                     updateStats={() => reRenderStats()}
                     updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
-                    stats={stats}
                 />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 
