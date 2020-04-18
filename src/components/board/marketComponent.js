@@ -146,10 +146,4 @@ const mapDispatchToProps = {
 
 Market = connect(null, mapDispatchToProps)(Market);
 
-const mapStateToProps = (state) => ({
-    stats: state.stats
-});
-
-Market = connect(mapStateToProps, null)(Market);
-
 export default Market;
