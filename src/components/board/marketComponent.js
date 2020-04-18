@@ -57,10 +57,10 @@ let Market = ({
                         "Do not have enough coins\nor sticks not available for purchase"
                     } classes={
                         isValidResourceToBuyMap["Brick"] ?
-                        { tooltip: classes.tooltipValid } :
+                        { tooltip: classes.tooltipValid} :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ brick } alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Brick")} /> }
+                        {<img src={brick} alt="" style={{ width: img_width, height: img_height }} onClick={() => isValidResourceToBuyMap["Brick"] ? marketClick("Brick") : null} />}
                     </Tooltip>
 
                     <Tooltip title={
@@ -72,7 +72,7 @@ let Market = ({
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ stick } alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Stick")} /> }
+                        {<img src={stick} alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Stick")} />}
                     </Tooltip>
 
                     <Tooltip title={
@@ -84,7 +84,7 @@ let Market = ({
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ mud } alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Mud")} /> }
+                        {<img src={mud} alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Mud")} />}
                     </Tooltip>
 
                     <Tooltip title={
@@ -96,7 +96,7 @@ let Market = ({
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ stone } alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Stone")} /> }
+                        {<img src={stone} alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Stone")} />}
                     </Tooltip>
 
                     <Tooltip title={
@@ -108,7 +108,7 @@ let Market = ({
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ water } alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Water")} /> }
+                        {<img src={water} alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Water")} />}
                     </Tooltip>
 
                     <Tooltip title={
@@ -120,7 +120,7 @@ let Market = ({
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ apple } alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Apple")} /> }
+                        {<img src={apple} alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Apple")} />}
                     </Tooltip>
 
                     <Tooltip title={
@@ -132,7 +132,7 @@ let Market = ({
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ flower } alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Flower")} /> }
+                        {<img src={flower} alt="" style={{ width: img_width, height: img_height }} onClick={() => marketClick("Flower")} />}
                     </Tooltip>
                 </ListItem>
             </List>
