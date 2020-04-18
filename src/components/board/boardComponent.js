@@ -20,7 +20,8 @@ const Board = ({
     height, 
     width,
     updateStats,
-    updateOpponentsStatsOnBackend
+    updateOpponentsStatsOnBackend,
+    stats
 }) => {
 
     return (
@@ -44,8 +45,8 @@ const Board = ({
                             updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
                         /> : null 
                     }
-                    { firstPlayer ? 
-                        <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]}/> 
+                    { (firstPlayer && stats) ? 
+                        <Market /> 
                         : null 
                     }
                     <ListItemText 
