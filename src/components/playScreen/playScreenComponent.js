@@ -28,6 +28,7 @@ let PlayScreen = ({
     updateOpponentsStatsOnBackend,
     resourceSlashCards
 }) => {
+    console.log(state.opponentsStats);
     const classes = useStyles();
 
     let primaryBoardTitle;
