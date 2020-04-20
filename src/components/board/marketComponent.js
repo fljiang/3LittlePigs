@@ -31,8 +31,12 @@ const useStyles = makeStyles(theme => ({
 
 let Market = ({
     stats,
+    opponentsStats,
+    state,
+    statsReRendered,
     marketClick
 }) => {
+    console.log(state.opponentsStats);
     stats = stats ? stats : renderStats;
     
     let isValidResourceToBuyMap = new Map();
@@ -151,6 +155,9 @@ Market = connect(null, mapDispatchToProps)(Market);
 
 const mapStateToProps = (state) => ({
     stats: state.stats,
+    opponentsStats: state.opponentsStats,
+    statsReRendered: state.statsReRendered,
+    state: state
 });
 
 Market = connect(mapStateToProps, null)(Market);
