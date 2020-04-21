@@ -35,7 +35,8 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
     }
 
     function handleUpdateOpponentsStats({ board, updatedStats }) {
-        statsManager.updateOpponentsStats(client, board, updatedStats)
+        const gameCode = gameManager.getGameCodeOfClient(client.id)
+        statsManager.updateOpponentsStats(client, board, updatedStats, gameCode)
     }
 
     function handleDisconnect() {
@@ -43,7 +44,7 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         const board = boardManager.removeClient(client.id, gameCode)
 
         gameManager.removeClient(client.id, gameCode)
-        statsManager.removeClient(client.id, board)
+        statsManager.removeClient(client.id, board, gameCode)
 
         const clientIdsForGame = gameManager.getClientIdsForGame(gameCode)
         cardManager.removeClient(client.id, gameCode, clientIdsForGame)

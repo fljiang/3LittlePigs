@@ -64,10 +64,10 @@ module.exports = function () {
         clientIdsToCardsMap.set(clientId, currentCards)
 
         // Determine whether or not all players have selected/discarded cards
-        let allCardsSetOrNot = gamesToRemainingCardsMap.get(gameCode).size === 0
+        let allCardsSetOrNot = gamesToRemainingCardsMap.get(gameCode).length === 0
         let cardsLengthToProceed = gamesToCardsLengthToProceed.get(gameCode)
-        clientIdsToCardsMap.forEach(function (value, key) {
-            if (value.length != cardsLengthToProceed) {
+        clientIdsForGame.forEach(function (item, index) {
+            if (clientIdsToCardsMap.get(item).length != cardsLengthToProceed) {
                 allCardsSetOrNot = false
             }
         })
@@ -77,16 +77,16 @@ module.exports = function () {
             cardsLengthToProceed -= 1
             gamesToCardsLengthToProceed.set(gameCode, cardsLengthToProceed)
             rotateCards(clientIdsForGame)
-            clientIdsForGame.forEach(function (value, key) {
-                clientIdsToClientObjectsMap.get(key).emit('enableRevealCardsButton')
+            clientIdsForGame.forEach(function (item, index) {
+                clientIdsToClientObjectsMap.get(item).emit('enableRevealCardsButton')
             })
         }
     }
 
     function enableViewCardsButtonOrNot(gameCode, clientIdsForGame) {
         if (gamesToRemainingCardsMap.get(gameCode).length === 0) {
-            clientIdsForGame.forEach(function (value, key) {
-                clientIdsToClientObjectsMap.get(key).emit('enableViewCardsButton')
+            clientIdsForGame.forEach(function (item, index) {
+                clientIdsToClientObjectsMap.get(item).emit('enableViewCardsButton')
             })
         }
     }
@@ -94,16 +94,16 @@ module.exports = function () {
     function rotateCards(clientIdsForGame) {
         const lastClientId = clientIdsForGame[2]
         let lastCards = clientIdsToCardsMap.get(lastClientId)
-        clientIds.forEach(function (item, index) {
+        clientIdsForGame.forEach(function (item, index) {
             tempLastCards = clientIdsToCardsMap.get(item)
             clientIdsToCardsMap.set(item, lastCards)
             lastCards = tempLastCards
         })
 
-        clientIdsForGame.forEach(function (value, key) {
-            clientIdsToClientObjectsMap.get(key).emit(
+        clientIdsForGame.forEach(function (item, index) {
+            clientIdsToClientObjectsMap.get(item).emit(
                 'rotateCards', 
-                clientIdsToCardsMap.get(key)
+                clientIdsToCardsMap.get(item)
             )
         })
     }
