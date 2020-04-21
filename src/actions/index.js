@@ -52,7 +52,10 @@ export const switchResources = (cardDescription, newResource, updateOpponentsSta
     updateOpponentsStatsOnBackend
 });
 
-export const marketClick = (resource) => ({
+export const marketClick = (resource, secondaryResourceStat, tertiaryResourceStat, updateOpponentsStatsOnBackend) => ({
     type: 'MARKET_CLICK',
-    resource
+    resource,
+    secondaryResourceStat,
+    tertiaryResourceStat,
+    updateOpponentsStatsOnBackend
 });
