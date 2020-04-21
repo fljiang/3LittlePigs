@@ -12,6 +12,8 @@ import './boardComponent.css';
 import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
 
+const renderStats = {"Coin": 0, "Brick": 0, "Stick": 0, "Mud": 0, "Stone": 0, "Water": 0, "Apple": 0, "Flower": 0};
+
 const Board = ({ 
     title, 
     resource, 
@@ -21,6 +23,8 @@ const Board = ({
     width,
     updateStats,
     updateOpponentsStatsOnBackend,
+    secondaryOpponentsStats,
+    tertiaryOpponentsStats
 }) => {
     
     return (
@@ -45,7 +49,10 @@ const Board = ({
                         /> : null 
                     }
                     { firstPlayer ? 
-                        <Market /> 
+                        <Market 
+                            secondaryOpponentsStats={secondaryOpponentsStats ? secondaryOpponentsStats : renderStats}
+                            tertiaryOpponentsStats={tertiaryOpponentsStats ? tertiaryOpponentsStats : renderStats}
+                            updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend} /> 
                         : null 
                     }
                     <ListItemText 

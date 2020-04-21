@@ -28,7 +28,6 @@ let PlayScreen = ({
     updateOpponentsStatsOnBackend,
     resourceSlashCards
 }) => {
-    console.log(state.opponentsStats);
     const classes = useStyles();
 
     let primaryBoardTitle;
@@ -164,7 +163,8 @@ let PlayScreen = ({
                     resourceSlashCards={resourceSlashCards}
                     updateStats={() => reRenderStats()}
                     updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
-                    state={state}
+                    secondaryOpponentsStats={state.opponentsStats.get(secondaryBoardResource)}
+                    tertiaryOpponentsStats={state.opponentsStats.get(tertiaryBoardResource)}
                 />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 
