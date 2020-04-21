@@ -21,6 +21,10 @@ export default function (
         updateCardsAfterRotation(updatedCards)
     })
 
+    function startGame(callback) {
+        socket.emit('startGame', callback)
+    }
+
     function registerEnableViewCardsButtonHandler() {
         socket.on('enableViewCardsButton', function () {
             setEnableViewCardsButton()
@@ -62,6 +66,7 @@ export default function (
     }
   
     return {
+        startGame,
         getRandomBoard,
         getRandomCards,
         initializeStats,

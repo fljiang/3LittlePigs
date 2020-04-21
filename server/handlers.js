@@ -1,15 +1,25 @@
-module.exports = function (client, boardManager, cardManager, statsManager) {
+module.exports = function (client, gameManager, boardManager, cardManager, statsManager) {
+    function handleStartGame(callback) {
+        const gameCode = gameManager.startGame(client.id)
+        return callback(null, gameCode)
+    }
+
     function handleGetRandomBoard(callback) {
-        if (boardManager.isGameFull()) {
+        const gameCode = gameManager.getGameCodeOfClient(client.id)
+
+        if (boardManager.isGameFull(gameCode)) {
             return callback('Selected game is full')
         }
 
-        const board = boardManager.getRandomBoard(client.id)
+        const board = boardManager.getRandomBoard(client.id, gameCode)
         return callback(null, board)
     }
 
     function handleGetRandomCards(callback) {
-        const cards = cardManager.getRandomCards(client)
+        const gameCode = gameManager.getGameCodeOfClient(client.id)
+        const clientIdsForGame = gameManager.getClientIdsForGame(gameCode)
+
+        const cards = cardManager.getRandomCards(client, gameCode, clientIdsForGame)
         return callback(null, cards)
     }
 
@@ -18,7 +28,10 @@ module.exports = function (client, boardManager, cardManager, statsManager) {
     }
 
     function handleSetSelectedCard({ selectedCard, selectOrDiscard }) {
-        cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard)
+        const gameCode = gameManager.getGameCodeOfClient(client.id)
+        const clientIdsForGame = gameManager.getClientIdsForGame(gameCode)
+
+        cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard, gameCode, clientIdsForGame)
     }
 
     function handleUpdateOpponentsStats({ board, updatedStats }) {
@@ -26,12 +39,18 @@ module.exports = function (client, boardManager, cardManager, statsManager) {
     }
 
     function handleDisconnect() {
-        const board = boardManager.removeClient(client.id)
-        cardManager.removeClient(client.id)
+        const gameCode = gameManager.getGameCodeOfClient(client.id)
+        const board = boardManager.removeClient(client.id, gameCode)
+
+        gameManager.removeClient(client.id, gameCode)
         statsManager.removeClient(client.id, board)
+
+        const clientIdsForGame = gameManager.getClientIdsForGame(gameCode)
+        cardManager.removeClient(client.id, gameCode, clientIdsForGame)
     }
 
     return {
+        handleStartGame,
         handleGetRandomBoard,
         handleGetRandomCards,
         handleInitializeStats,
