@@ -3,6 +3,7 @@ import { put, takeLatest, all, select } from 'redux-saga/effects';
 export const getStats = (state) => state.stats;
 export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray;
 export const getSelectedResourceSlashCards = (state) => state.resourceSlashCards;
+export const getMarketDemandMap = (state) => state.marketDemandMap;
 
 function* setFetchedCards(action) {
     yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
@@ -112,6 +113,7 @@ function* setSwitchedResources(action) {
 
 function* setMarketResource(action) {
     let stats = yield select(getStats);
+    let marketDemandMap = yield select(getMarketDemandMap);
 
     if (action.secondaryResourceStat) {
         if (action.tertiaryResourceStat) {
@@ -127,10 +129,12 @@ function* setMarketResource(action) {
 
     stats["Coin"] -=2;
     stats[action.resource] += 1;
+    marketDemandMap[action.resource] += 1;
 
     yield put({
         type: 'MARKET_RESOURCE_CHOSEN',
         updatedStats: stats,
+        updatedMarketDemandMap: marketDemandMap,
         updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
     });
 }

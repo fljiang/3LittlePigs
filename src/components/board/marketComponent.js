@@ -32,9 +32,11 @@ let Market = ({
     tertiaryOpponentsStats,
     updateOpponentsStatsOnBackend,
     stats,
+    marketDemandMap,
     statsReRendered,
     marketClick
 }) => {
+    console.log(marketDemandMap);
 
     stats = stats ? stats : secondaryOpponentsStats;
     let marketSupplyMap = new Map();
@@ -187,6 +189,7 @@ Market = connect(null, mapDispatchToProps)(Market);
 
 const mapStateToProps = (state) => ({
     stats: state.stats,
+    marketDemandMap: state.marketDemandMap,
     statsReRendered: state.statsReRendered
 });
 
