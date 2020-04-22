@@ -4,6 +4,10 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         return callback(null, gameCode)
     }
 
+    function handleJoinGame({ gameCode }) {
+        gameManager.joinGame(client.id, gameCode)
+    }
+
     function handleGetRandomBoard(callback) {
         const gameCode = gameManager.getGameCodeOfClient(client.id)
 
@@ -52,6 +56,7 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
 
     return {
         handleStartGame,
+        handleJoinGame,
         handleGetRandomBoard,
         handleGetRandomCards,
         handleInitializeStats,

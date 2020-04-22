@@ -1,7 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Fab, Typography } from '@material-ui/core';
+import { Fab, Typography, TextField } from '@material-ui/core';
 import { green, blue } from '@material-ui/core/colors';
+
+import { connect } from 'react-redux';
+import { setGameToJoin } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -30,10 +33,19 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-let CreateOrJoinGame = ({ width, height, gameCode, startGame, launchGameBoard }) => {
+let CreateOrJoinGame = ({ 
+    width, 
+    height, 
+    gameCode, 
+    startGame, 
+    joinGame, 
+    launchGameBoard,
+    setGameToJoin,
+    gameToJoin = false
+}) => {
     const classes = useStyles();
 
-    if (gameCode != null) {
+    if (gameCode != null && !gameToJoin) {
         return (
             <div style={{
                 alignItems: 'center',
@@ -53,6 +65,30 @@ let CreateOrJoinGame = ({ width, height, gameCode, startGame, launchGameBoard })
                     onClick={() => launchGameBoard()}
                 > 
                     Launch Game Board
+                </Fab>  
+            </div>
+        )
+    } else if (gameToJoin) {
+        return (
+            <div style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: height,
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
+                <TextField onChange={(event) => gameCode = event.target.value} />
+                <Fab
+                    variant="extended"
+                    color="inherit"
+                    className={classes.fab, classes.greenFab}
+                    onClick={() => {
+                        joinGame(gameCode)
+                        launchGameBoard()
+                    }}
+                > 
+                    Join Game
                 </Fab>  
             </div>
         )
@@ -77,6 +113,7 @@ let CreateOrJoinGame = ({ width, height, gameCode, startGame, launchGameBoard })
                     variant="extended"
                     color="inherit"
                     className={classes.fab, classes.greenFab}
+                    onClick={() => setGameToJoin()}
                 > 
                     Join Existing Game
                 </Fab>      
@@ -84,5 +121,17 @@ let CreateOrJoinGame = ({ width, height, gameCode, startGame, launchGameBoard })
         )
     }
 }
+
+const mapDispatchToProps = {
+    setGameToJoin: setGameToJoin
+};
+
+CreateOrJoinGame = connect(null, mapDispatchToProps)(CreateOrJoinGame);
+
+const mapStateToProps = (state) => ({
+    gameToJoin: state.gameToJoin
+});
+
+CreateOrJoinGame = connect(mapStateToProps, null)(CreateOrJoinGame);
 
 export default CreateOrJoinGame;

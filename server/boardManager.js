@@ -27,6 +27,9 @@ module.exports = function () {
         updatedBoards.set(clientId, randomBoard)
         gamesToBoardsMap.set(gameCode, updatedBoards)
 
+        // console.log(gamesToBoardsMap)
+        // console.log(gamesToRemainingBoardsMap)
+
         return randomBoard
     }
 

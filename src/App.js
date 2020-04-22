@@ -28,6 +28,7 @@ export default class App extends React.Component {
 
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
         this.startGame = this.startGame.bind(this)
+        this.joinGame = this.joinGame.bind(this)
         this.launchGameBoard = this.launchGameBoard.bind(this)
         this.setSelectedCard = this.setSelectedCard.bind(this)
         this.updateOpponentsStats = this.updateOpponentsStats.bind(this)
@@ -53,6 +54,11 @@ export default class App extends React.Component {
         })
     }
 
+    joinGame(gameCode) {
+        this.state.client.joinGame(gameCode)
+        this.setState({ gameCode })
+    }
+
     launchGameBoard() {
         this.state.client.getRandomBoard((error, board) => {
             if (error) return console.error(error);
@@ -66,6 +72,8 @@ export default class App extends React.Component {
         })
         
         this.state.client.initializeStats()
+
+        console.log(this.state)
     }
 
     setSelectedCard(selectedCard, selectOrDiscard) {
@@ -111,6 +119,7 @@ export default class App extends React.Component {
                     height={this.state.height}
                     gameCode={this.state.gameCode}
                     startGame={this.startGame}
+                    joinGame={this.joinGame}
                     launchGameBoard={this.launchGameBoard}
                 />
             );

@@ -4,6 +4,8 @@ const reducer = (
 ) => {
     let emptyArray = Array.apply(null, Array(7)).map(function () {});
     switch (action.type) {
+        case 'SET_GAME_TO_JOIN':
+            return { ...state, gameToJoin: true };
         case 'SET_CARDS':
             return { ...state, loading: true };
         case 'CARDS_SET':

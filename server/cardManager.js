@@ -25,9 +25,12 @@ module.exports = function () {
         }
 
         for (let cardNum = 1; cardNum <= 7; cardNum++) {
-            const randomNum = Math.floor((Math.random() * (22 - remainingCards.length)))
+            const randomNum = Math.floor((Math.random() * remainingCards.length))
+            console.log(randomNum)
             const randomCard = remainingCards[randomNum]
+            console.log(randomCard)
             remainingCards.splice(randomNum, 1)
+            console.log(remainingCards.length)
             cards.push(randomCard)
     
             if (cardNum === 7) {
@@ -36,6 +39,9 @@ module.exports = function () {
                 clientIdsToCardsMap.set(client.id, cards)
                 gamesToRemainingCardsMap.set(gameCode, remainingCards)
                 enableViewCardsButtonOrNot(gameCode, clientIdsForGame)
+
+                console.log(gamesToCardsLengthToProceed)
+                console.log(cards)
                 return cards
             }
         }

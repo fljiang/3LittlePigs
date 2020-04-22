@@ -11,11 +11,7 @@ module.exports = function () {
         }
 
         clientIdsToGamesMap.set(clientId, gameCode)
-        let clientIds = []
-        if (gamesToClientIdsMap.get(gameCode) != null) {
-            clientIds = gamesToClientIdsMap.get(gameCode)
-        }
-        clientIds.push(clientId)
+        let clientIds = [clientId]
         gamesToClientIdsMap.set(gameCode, clientIds)
         return gameCode;
     }
@@ -30,6 +26,13 @@ module.exports = function () {
             gameCode += charset.charAt(Math.floor(Math.random() * (charsetLength + 1)))
         }
         return gameCode
+    }
+
+    function joinGame(clientId, gameCode) {
+        clientIdsToGamesMap.set(clientId, gameCode)
+        let clientIds = gamesToClientIdsMap.get(gameCode)
+        clientIds.push(clientId)
+        gamesToClientIdsMap.set(gameCode, clientIds)
     }
 
     function getGameCodeOfClient(clientId) {
@@ -55,6 +58,7 @@ module.exports = function () {
 
     return {
         startGame,
+        joinGame,
         getGameCodeOfClient,
         getClientIdsForGame,
         removeClient
