@@ -4,16 +4,16 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         return callback(null, gameCode)
     }
 
-    function handleJoinGame({ gameCode }) {
+    function handleJoinGame(callback, { gameCode }) {
+        if (boardManager.isGameFull(gameCode)) {
+            return callback('Selected game is full')
+        }
+
         gameManager.joinGame(client.id, gameCode)
     }
 
     function handleGetRandomBoard(callback) {
         const gameCode = gameManager.getGameCodeOfClient(client.id)
-
-        if (boardManager.isGameFull(gameCode)) {
-            return callback('Selected game is full')
-        }
 
         const board = boardManager.getRandomBoard(client.id, gameCode)
         return callback(null, board)

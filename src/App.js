@@ -55,11 +55,20 @@ export default class App extends React.Component {
     }
 
     joinGame(gameCode) {
-        this.state.client.joinGame(gameCode)
-        this.setState({ gameCode })
+        console.log('in joinGame')
+        this.state.client.joinGame((error) => {
+            if (error) return console.error(error);
+            
+            this.setState({ gameCode: gameCode })
+            this.launchGameBoard()
+        }, gameCode)
+
+        console.log(this.state)
     }
 
     launchGameBoard() {
+        console.log('in launchGameBoard')
+
         this.state.client.getRandomBoard((error, board) => {
             if (error) return console.error(error);
             this.setState({ board })
