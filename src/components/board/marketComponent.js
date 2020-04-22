@@ -36,7 +36,6 @@ let Market = ({
     statsReRendered,
     marketClick
 }) => {
-    console.log(marketDemandMap);
 
     stats = stats ? stats : secondaryOpponentsStats;
     let marketSupplyMap = new Map();
@@ -48,7 +47,7 @@ let Market = ({
     });
 
     resourceList.map(resource => {
-        isValidResourceToBuyMap[resource] = (stats["Coin"] > 2 && marketSupplyMap[resource])? true : false;
+        isValidResourceToBuyMap[resource] = (stats["Coin"] > 2 && marketSupplyMap[resource] && marketSupplyMap[resource] > marketDemandMap[resource]) ? true : false;
     });
 
     const img_width = "14%";
