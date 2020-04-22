@@ -12,6 +12,8 @@ import './boardComponent.css';
 import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
 
+const renderStats = {"Coin": 0, "Brick": 0, "Stick": 0, "Mud": 0, "Stone": 0, "Water": 0, "Apple": 0, "Flower": 0};
+
 const Board = ({ 
     title, 
     resource, 
@@ -20,9 +22,11 @@ const Board = ({
     height, 
     width,
     updateStats,
-    updateOpponentsStatsOnBackend
+    updateOpponentsStatsOnBackend,
+    secondaryOpponentsStats,
+    tertiaryOpponentsStats
 }) => {
-
+    
     return (
         <Box border={1} width="60%" 
             marginRight={firstPlayer ? "39px" : "0px"}
@@ -45,7 +49,10 @@ const Board = ({
                         /> : null 
                     }
                     { firstPlayer ? 
-                        <Market isValidResourceToBuyArray={[true, true, false, false, true, false, true]}/> 
+                        <Market 
+                            secondaryOpponentsStats={secondaryOpponentsStats ? secondaryOpponentsStats : renderStats}
+                            tertiaryOpponentsStats={tertiaryOpponentsStats ? tertiaryOpponentsStats : renderStats}
+                            updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend} /> 
                         : null 
                     }
                     <ListItemText 

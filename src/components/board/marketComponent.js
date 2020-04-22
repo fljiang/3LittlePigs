@@ -9,6 +9,9 @@ import water from './../../img/icons/water_icon.png';
 import apple from './../../img/icons/apple_icon.png';
 import flower from './../../img/icons/flower_icon.png';
 
+import { connect } from 'react-redux';
+import { marketClick } from '../../actions';
+
 const useStyles = makeStyles(theme => ({
     tooltipValid: {
         maxWidth: "130px",
@@ -24,10 +27,29 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Market = ({
-    isValidResourceToBuyArray
+let Market = ({
+    secondaryOpponentsStats,
+    tertiaryOpponentsStats,
+    updateOpponentsStatsOnBackend,
+    stats,
+    marketDemandMap,
+    statsReRendered,
+    marketClick
 }) => {
-    // const img_width = (width * 0.35) / 7;
+
+    stats = stats ? stats : secondaryOpponentsStats;
+    let marketSupplyMap = new Map();
+    let isValidResourceToBuyMap = new Map();
+    const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
+
+    resourceList.map(resource => {
+        marketSupplyMap[resource] = secondaryOpponentsStats[resource] + tertiaryOpponentsStats[resource];
+    });
+
+    resourceList.map(resource => {
+        isValidResourceToBuyMap[resource] = (stats["Coin"] > 2 && marketSupplyMap[resource] && marketSupplyMap[resource] > marketDemandMap[resource]) ? true : false;
+    });
+
     const img_width = "14%";
     const img_height = img_width * 1.3;
     const classes = useStyles();
@@ -42,92 +64,134 @@ const Market = ({
                 </ListItem>
                 <ListItem style={{ marginTop: -2 }}>
                     <Tooltip title={
-                        isValidResourceToBuyArray[0] ?
+                        isValidResourceToBuyMap["Brick"] ?
                         "Click to purchase brick" :
                         "Do not have enough coins\nor sticks not available for purchase"
                     } classes={
-                        isValidResourceToBuyArray[0] ?
-                        { tooltip: classes.tooltipValid } :
+                        isValidResourceToBuyMap["Brick"] ?
+                        { tooltip: classes.tooltipValid} :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ brick } alt="" style={{ width: img_width, height: img_height }} /> }
+                        {<img 
+                            src={brick} 
+                            alt="" 
+                            style={{ width: img_width, height: img_height }} 
+                            onClick={() => isValidResourceToBuyMap["Brick"] ? marketClick("Brick", secondaryOpponentsStats["Brick"] ? true : false, tertiaryOpponentsStats["Brick"] ? true : false, updateOpponentsStatsOnBackend) : null} />}
                     </Tooltip>
 
                     <Tooltip title={
-                        isValidResourceToBuyArray[1] ?
+                        isValidResourceToBuyMap["Stick"] ?
                         "Click to purchase stick" :
                         "Do not have enough coins\nor sticks not available for purchase"
                     } classes={
-                        isValidResourceToBuyArray[1] ?
+                        isValidResourceToBuyMap["Stick"] ?
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ stick } alt="" style={{ width: img_width, height: img_height }} /> }
+                        {<img 
+                            src={stick} 
+                            alt="" 
+                            style={{ width: img_width, height: img_height }} 
+                            onClick={() => isValidResourceToBuyMap["Stick"] ? marketClick("Stick", secondaryOpponentsStats["Stick"] ? true : false, tertiaryOpponentsStats["Stick"] ? true : false, updateOpponentsStatsOnBackend) : null} />}
                     </Tooltip>
 
                     <Tooltip title={
-                        isValidResourceToBuyArray[2] ?
-                        "Click to purchase stick" :
+                        isValidResourceToBuyMap["Mud"] ?
+                        "Click to purchase mud" :
                         "Do not have enough coins\nor mud not available for purchase"
                     } classes={
-                        isValidResourceToBuyArray[2] ?
+                        isValidResourceToBuyMap["Mud"] ?
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ mud } alt="" style={{ width: img_width, height: img_height }} /> }
+                        {<img 
+                            src={mud} 
+                            alt="" 
+                            style={{ width: img_width, height: img_height }} 
+                            onClick={() => isValidResourceToBuyMap["Mud"] ? marketClick("Mud", secondaryOpponentsStats["Mud"] ? true : false, tertiaryOpponentsStats["Mud"] ? true : false, updateOpponentsStatsOnBackend) : null} />}
                     </Tooltip>
 
                     <Tooltip title={
-                        isValidResourceToBuyArray[3] ?
+                        isValidResourceToBuyMap["Stone"] ?
                         "Click to purchase stone" :
                         "Do not have enough coins\nor stones not available for purchase"
                     } classes={
-                        isValidResourceToBuyArray[3] ?
+                        isValidResourceToBuyMap["Stone"] ?
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ stone } alt="" style={{ width: img_width, height: img_height }} /> }
+                        {<img 
+                            src={stone} 
+                            alt="" 
+                            style={{ width: img_width, height: img_height }} 
+                            onClick={() => isValidResourceToBuyMap["Stone"] ? marketClick("Stone", secondaryOpponentsStats["Stone"] ? true : false, tertiaryOpponentsStats["Stone"] ? true : false, updateOpponentsStatsOnBackend) : null} />}
                     </Tooltip>
 
                     <Tooltip title={
-                        isValidResourceToBuyArray[4] ?
+                        isValidResourceToBuyMap["Water"] ?
                         "Click to purchase water" :
                         "Do not have enough coins\nor water not available for purchase"
                     } classes={
-                        isValidResourceToBuyArray[4] ?
+                        isValidResourceToBuyMap["Water"] ?
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ water } alt="" style={{ width: img_width, height: img_height }} /> }
+                        {<img 
+                            src={water} 
+                            alt="" 
+                            style={{ width: img_width, height: img_height }} 
+                            onClick={() => isValidResourceToBuyMap["Water"] ? marketClick("Water", secondaryOpponentsStats["Water"] ? true : false, tertiaryOpponentsStats["Water"] ? true : false, updateOpponentsStatsOnBackend) : null} />}
                     </Tooltip>
 
                     <Tooltip title={
-                        isValidResourceToBuyArray[5] ?
+                        isValidResourceToBuyMap["Apple"] ?
                         "Click to purchase apple" :
                         "Do not have enough coins\nor apples not available for purchase"
                     } classes={
-                        isValidResourceToBuyArray[5] ?
+                        isValidResourceToBuyMap["Apple"] ?
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ apple } alt="" style={{ width: img_width, height: img_height }} /> }
+                        {<img 
+                            src={apple} 
+                            alt="" 
+                            style={{ width: img_width, height: img_height }} 
+                            onClick={() => isValidResourceToBuyMap["Apple"] ? marketClick("Apple", secondaryOpponentsStats["Apple"] ? true : false, tertiaryOpponentsStats["Apple"] ? true : false, updateOpponentsStatsOnBackend) : null} />}
                     </Tooltip>
 
                     <Tooltip title={
-                        isValidResourceToBuyArray[6] ?
+                        isValidResourceToBuyMap["Flower"] ?
                         "Click to purchase flower" :
                         "Do not have enough coins\nor flowers not available for purchase"
                     } classes={
-                        isValidResourceToBuyArray[6] ?
+                        isValidResourceToBuyMap["Flower"]  ?
                         { tooltip: classes.tooltipValid } :
                         { tooltip: classes.tooltipInvalid }
                     }>
-                        { <img src={ flower } alt="" style={{ width: img_width, height: img_height }} /> }
+                        {<img 
+                            src={flower} 
+                            alt="" 
+                            style={{ width: img_width, height: img_height }} 
+                            onClick={() => isValidResourceToBuyMap["Flower"] ? marketClick("Flower", secondaryOpponentsStats["Flower"] ? true : false, tertiaryOpponentsStats["Flower"] ? true : false, updateOpponentsStatsOnBackend) : null} />}
                     </Tooltip>
                 </ListItem>
             </List>
         </Box>
     );
 }
-    
+
+const mapDispatchToProps = {
+    marketClick: marketClick
+};
+
+Market = connect(null, mapDispatchToProps)(Market);
+
+const mapStateToProps = (state) => ({
+    stats: state.stats,
+    marketDemandMap: state.marketDemandMap,
+    statsReRendered: state.statsReRendered
+});
+
+Market = connect(mapStateToProps, null)(Market);
+
 export default Market;

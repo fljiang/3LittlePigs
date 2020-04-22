@@ -163,6 +163,8 @@ let PlayScreen = ({
                     resourceSlashCards={resourceSlashCards}
                     updateStats={() => reRenderStats()}
                     updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
+                    secondaryOpponentsStats={state.opponentsStats.get(secondaryBoardResource)}
+                    tertiaryOpponentsStats={state.opponentsStats.get(tertiaryBoardResource)}
                 />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 

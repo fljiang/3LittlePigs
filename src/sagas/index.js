@@ -3,6 +3,7 @@ import { put, takeLatest, all, select } from 'redux-saga/effects';
 export const getStats = (state) => state.stats;
 export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray;
 export const getSelectedResourceSlashCards = (state) => state.resourceSlashCards;
+export const getMarketDemandMap = (state) => state.marketDemandMap;
 
 function* setFetchedCards(action) {
     yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
@@ -21,15 +22,6 @@ function* calculateIfValidCardToBuy(action) {
     );
 
     yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: calculatedIsValidCardToBuy, cardIndex: action.cardIndex });
-}
-
-function* calculateIfValidResourceToBuy(action) {
-    const opponentStats = {
-        "Brick": 1,
-    };
-    if (opponentStats["Brick"]) {
-        return true;
-    }
 }
 
 function* setChosenCardIfValid(action) {
@@ -119,12 +111,40 @@ function* setSwitchedResources(action) {
     }
 }
 
+function* setMarketResource(action) {
+    let stats = yield select(getStats);
+    let marketDemandMap = yield select(getMarketDemandMap);
+
+    if (action.secondaryResourceStat) {
+        if (action.tertiaryResourceStat) {
+            console.log("bought from both opponents");
+        }
+        else {
+            console.log("buy from second opponent");
+        }
+    }
+    else {
+        console.log("buy from third opponent");
+    }
+
+    stats["Coin"] -=2;
+    stats[action.resource] += 1;
+    marketDemandMap[action.resource] += 1;
+
+    yield put({
+        type: 'MARKET_RESOURCE_CHOSEN',
+        updatedStats: stats,
+        updatedMarketDemandMap: marketDemandMap,
+        updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
+    });
+}
+
 function* cardsWatcher() {
     yield takeLatest('SET_CARDS', setFetchedCards);
     yield takeLatest('CAN_BUY_CARD', calculateIfValidCardToBuy);
-    yield takeLatest('CAN_BUY_RESOURCE', calculateIfValidResourceToBuy);
     yield takeLatest('CHOOSE_CARD', setChosenCardIfValid);
     yield takeLatest('SWITCH_RESOURCES', setSwitchedResources);
+    yield takeLatest('MARKET_CLICK', setMarketResource)
 }
 
 export default function* rootSaga() {

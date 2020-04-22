@@ -20,10 +20,11 @@ export default class App extends React.Component {
             board: null,
             cards: null,
             opponentsStats: new Map(),
+            isValidResourcesToBuy: null,
             enableViewCardsButton: false,
             enableRevealCardsButton: false,
             width: 0,
-            height: 0
+            height: 0,
         }
 
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this)

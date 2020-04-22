@@ -1,3 +1,13 @@
+const defaultMarketDemandMap = {
+    "Brick": 0,
+    "Stick": 0,
+    "Mud": 0,
+    "Stone" : 0,
+    "Water": 0,
+    "Flower": 0,
+    "Apple": 0
+};
+
 const reducer = (
     state = {},
     action
@@ -33,7 +43,8 @@ const reducer = (
                     "Pot": 0,
                     "Spoon": 0
                 },
-                showSlashCardResources: false
+                showSlashCardResources: false,
+                marketDemandMap: defaultMarketDemandMap
             };
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':
             state.isValidCardToBuyArray[action.cardIndex] = action.isValidCardToBuy;
@@ -42,7 +53,7 @@ const reducer = (
             state.stats["Coin"] += 3;
             state.stats[state.board] += 1;
             action.updateOpponentsStatsOnBackend(state.stats);
-            return { ...state, showCardToDiscardButton: true, cardChosen: false };
+            return { ...state, showCardToDiscardButton: true, cardChosen: false, marketSupplyMap: defaultMarketDemandMap };
         case 'CARD_CHOSEN':
             emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
 
@@ -53,7 +64,7 @@ const reducer = (
             state.selectedCards.push(action.selectedCard);
             state.cards.splice(action.selectedCardIndex, 1);
             action.updateOpponentsStatsOnBackend(action.updatedStats);
-            return { ...state, cardChosen: true, stats: action.updatedStats, isValidCardToBuyArray: emptyArray };
+            return { ...state, cardChosen: true, stats: action.updatedStats, isValidCardToBuyArray: emptyArray, marketDemandMap: defaultMarketDemandMap };
         case 'SHOW_CARDS_TO_DISCARD':
             return { ...state, showCardToDiscardButton: false };
         case 'DISCARD_CARD':
@@ -61,7 +72,7 @@ const reducer = (
 
             delete state.showCardToDiscardButton;
             state.cards.splice(action.cardIndex, 1);
-            return { ...state, cardChosen: true, isValidCardToBuyArray: emptyArray };
+            return { ...state, cardChosen: true, isValidCardToBuyArray: emptyArray, marketDemandMap: defaultMarketDemandMap };
         case 'RE_RENDER_STATS':
             return { 
                 ...state,
@@ -76,6 +87,9 @@ const reducer = (
         case 'RESOURCE_SWITCHED':
             action.updateOpponentsStatsOnBackend(action.updatedStats);
             return { ...state, stats: action.updatedStats, resourceSlashCards: action.resourceSlashCards };
+        case 'MARKET_RESOURCE_CHOSEN':
+            action.updateOpponentsStatsOnBackend(action.updatedStats);
+            return { ...state, stats: action.updatedStats, marketDemandMap: action.updatedMarketDemandMap, statsReRendered: !state.statsReRendered };
         default:
             return state;
     }

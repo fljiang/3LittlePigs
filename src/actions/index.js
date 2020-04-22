@@ -14,12 +14,6 @@ export const canBuyCard = (cost, cardIndex) => ({
     cardIndex
 });
 
-export const canBuyResource = (cost, resourceIndex) => ({
-    type: 'CAN_BUY_RESOURCE',
-    cost,
-    resourceIndex
-});
-
 export const pass = (updateOpponentsStatsOnBackend) => ({
     type: 'PASS',
     updateOpponentsStatsOnBackend
@@ -59,5 +53,13 @@ export const switchResources = (cardDescription, newResource, updateOpponentsSta
     type: 'SWITCH_RESOURCES',
     cardDescription,
     newResource,
+    updateOpponentsStatsOnBackend
+});
+
+export const marketClick = (resource, secondaryResourceStat, tertiaryResourceStat, updateOpponentsStatsOnBackend) => ({
+    type: 'MARKET_CLICK',
+    resource,
+    secondaryResourceStat,
+    tertiaryResourceStat,
     updateOpponentsStatsOnBackend
 });
