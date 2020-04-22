@@ -14,8 +14,6 @@ module.exports = function () {
         let clientIds = [clientId]
         gamesToClientIdsMap.set(gameCode, clientIds)
 
-        console.log(gamesToClientIdsMap)
-        console.log(clientIdsToGamesMap)
         return gameCode;
     }
 
@@ -36,9 +34,6 @@ module.exports = function () {
         let clientIds = gamesToClientIdsMap.get(gameCode)
         clientIds.push(clientId)
         gamesToClientIdsMap.set(gameCode, clientIds)
-
-        console.log(gamesToClientIdsMap)
-        console.log(clientIdsToGamesMap)
     }
 
     function getGameCodeOfClient(clientId) {
