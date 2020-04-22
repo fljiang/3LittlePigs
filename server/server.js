@@ -1,26 +1,34 @@
 const server = require('http').createServer()
 const io = require('socket.io')(server)
 
+const GameManager = require('./gameManager')
 const BoardManager = require('./boardManager')
 const CardManager = require('./cardManager')
 const StatsManager = require('./statsManager')
 const makeHandlers = require('./handlers')
 
+const gameManager = GameManager()
 const boardManager = BoardManager()
 const cardManager = CardManager()
 const statsManager = StatsManager()
 
 io.on('connection', function (client) {
     const {
+        handleStartGame,
+        handleJoinGame,
         handleGetRandomBoard,
         handleGetRandomCards,
         handleInitializeStats,
         handleSetSelectedCard,
         handleUpdateOpponentsStats,
         handleDisconnect
-    } = makeHandlers(client, boardManager, cardManager, statsManager)
+    } = makeHandlers(client, gameManager, boardManager, cardManager, statsManager)
 
     console.log('client connected...', client.id)
+
+    client.on('startGame', handleStartGame)
+
+    client.on('joinGame', handleJoinGame)
 
     client.on('getRandomBoard', handleGetRandomBoard)
 

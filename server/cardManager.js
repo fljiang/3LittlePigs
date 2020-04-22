@@ -1,6 +1,10 @@
 const cardsPhase1 = require('./cardsPhase1.json')
 
 module.exports = function () {
+    // Mapping of games to the remaining cards
+    let gamesToRemainingCardsMap = new Map()
+    // Mapping of games to the number of cards not selected/discarded per player to proceed
+    let gamesToCardsLengthToProceed = new Map()
     // List of client IDs
     let clientIds = []
     // Mapping of client IDs to client Objects
@@ -9,33 +13,35 @@ module.exports = function () {
     let clientIdsToCardsMap = new Map()
     // Mapping of players to an array of their selected cards
     let clientIdsToSelectedCardsMap = new Map()
-
-    let remainingCards = cardsPhase1.map(element => element)
-
-    // Length each array in clientIdsToCardsMap must be to indicate 
-    // that all players have selected/discarded their cards
-    let cardsLengthToProceed = 6;
     
-    function getRandomCards(client) {
+    function getRandomCards(client, gameCode, clientIdsForGame) {
         let cards = []
 
+        let remainingCards = gamesToRemainingCardsMap.get(gameCode)
+        if (gamesToRemainingCardsMap.get(gameCode) == null) {
+            remainingCards = cardsPhase1.map(element => element)
+            gamesToRemainingCardsMap.set(gameCode, remainingCards)
+            gamesToCardsLengthToProceed.set(gameCode, 6)
+        }
+
         for (let cardNum = 1; cardNum <= 7; cardNum++) {
-            const randomNum = Math.floor((Math.random() * (22 - cardNum - (7 * clientIdsToCardsMap.size))))
+            const randomNum = Math.floor((Math.random() * remainingCards.length))
             const randomCard = remainingCards[randomNum]
             remainingCards.splice(randomNum, 1)
             cards.push(randomCard)
-    
+
             if (cardNum === 7) {
                 clientIds.push(client.id)
                 clientIdsToClientObjectsMap.set(client.id, client)
                 clientIdsToCardsMap.set(client.id, cards)
-                enableViewCardsButtonOrNot()
+                gamesToRemainingCardsMap.set(gameCode, remainingCards)
+                enableViewCardsButtonOrNot(gameCode, clientIdsForGame)
                 return cards
             }
         }
     }
 
-    function setSelectedCard(clientId, selectedCard, selectOrDiscard) {
+    function setSelectedCard(clientId, selectedCard, selectOrDiscard, gameCode, clientIdsForGame) {
         // Add selected card to clientIdsToSelectedCardsMap (if player didn't choose "Pass")
         if (selectOrDiscard === "select") {
             let selectedCards = [];
@@ -58,12 +64,10 @@ module.exports = function () {
         clientIdsToCardsMap.set(clientId, currentCards)
 
         // Determine whether or not all players have selected/discarded cards
-        let allCardsSetOrNot = true
-        if (clientIdsToCardsMap.size < 3) {
-            allCardsSetOrNot = false
-        }
-        clientIdsToCardsMap.forEach(function (value, key) {
-            if (value.length != cardsLengthToProceed) {
+        let allCardsSetOrNot = gamesToRemainingCardsMap.get(gameCode).length === 0
+        let cardsLengthToProceed = gamesToCardsLengthToProceed.get(gameCode)
+        clientIdsForGame.forEach(function (item, index) {
+            if (clientIdsToCardsMap.get(item).length != cardsLengthToProceed) {
                 allCardsSetOrNot = false
             }
         })
@@ -71,51 +75,59 @@ module.exports = function () {
         // Broadcast to all players that all players have selected/discarded cards
         if (allCardsSetOrNot) {
             cardsLengthToProceed -= 1
-            rotateCards()
-            clientIdsToClientObjectsMap.forEach(function (value, key) {
-                clientIdsToClientObjectsMap.get(key).emit('enableRevealCardsButton')
+            gamesToCardsLengthToProceed.set(gameCode, cardsLengthToProceed)
+            rotateCards(clientIdsForGame)
+            clientIdsForGame.forEach(function (item, index) {
+                clientIdsToClientObjectsMap.get(item).emit('enableRevealCardsButton')
             })
         }
     }
 
-    function enableViewCardsButtonOrNot() {
-        if (clientIdsToCardsMap.size == 3) {
-            clientIdsToClientObjectsMap.forEach(function (value, key) {
-                clientIdsToClientObjectsMap.get(key).emit('enableViewCardsButton')
+    function enableViewCardsButtonOrNot(gameCode, clientIdsForGame) {
+        if (gamesToRemainingCardsMap.get(gameCode).length === 0) {
+            clientIdsForGame.forEach(function (item, index) {
+                clientIdsToClientObjectsMap.get(item).emit('enableViewCardsButton')
             })
         }
     }
 
-    function rotateCards() {
-        const lastClientId = clientIds[2]
+    function rotateCards(clientIdsForGame) {
+        const lastClientId = clientIdsForGame[2]
         let lastCards = clientIdsToCardsMap.get(lastClientId)
-        clientIds.forEach(function (item, index) {
+        clientIdsForGame.forEach(function (item, index) {
             tempLastCards = clientIdsToCardsMap.get(item)
             clientIdsToCardsMap.set(item, lastCards)
             lastCards = tempLastCards
         })
 
-        clientIdsToClientObjectsMap.forEach(function (value, key) {
-            clientIdsToClientObjectsMap.get(key).emit(
+        clientIdsForGame.forEach(function (item, index) {
+            clientIdsToClientObjectsMap.get(item).emit(
                 'rotateCards', 
-                clientIdsToCardsMap.get(key)
+                clientIdsToCardsMap.get(item)
             )
         })
     }
 
-    function removeClient(clientId) {
-        remainingCards = remainingCards.concat(clientIdsToCardsMap.get(clientId))
+    function removeClient(clientId, gameCode, clientIdsForGame) {
         clientIdsToCardsMap.delete(clientId)
         clientIdsToSelectedCardsMap.delete(clientId)
         clientIdsToClientObjectsMap.delete(clientId)
 
-        let clientIdIndex = 0
+        let clientIdIndex = -1
         clientIds.forEach(function (item, index) {
             if (item === clientId) {
                 clientIdIndex = index
             }
         })
-        clientIds.splice(clientIdIndex, 1)
+
+        if (clientIdIndex !== -1) {
+            clientIds.splice(clientIdIndex, 1)
+        }
+
+        if (clientIdsForGame != null && clientIdsForGame.size === 0) {
+            gamesToRemainingCardsMap.delete(gameCode)
+            gamesToCardsLengthToProceed.delete(gameCode)
+        }
     }
 
     return {

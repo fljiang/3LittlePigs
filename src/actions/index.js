@@ -1,3 +1,7 @@
+export const setGameToJoin = () => ({
+    type: 'SET_GAME_TO_JOIN'
+})
+
 export const setCards = (board, cards) => ({
     type: 'SET_CARDS',
     board,
