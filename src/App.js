@@ -24,7 +24,7 @@ export default class App extends React.Component {
             enableViewCardsButton: false,
             enableRevealCardsButton: false,
             width: 0,
-            height: 0
+            height: 0,
         }
 
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
