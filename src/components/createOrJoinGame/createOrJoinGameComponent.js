@@ -78,15 +78,18 @@ let CreateOrJoinGame = ({
                 display: 'flex',
                 flexDirection: 'column'
             }}>
-                <TextField onChange={(event) => gameCode = event.target.value} />
+                <Typography style={{ marginBottom: 5 }}>
+                    Enter game code below:
+                </Typography>
+                <TextField 
+                    style={{ marginBottom: 10 }}
+                    onChange={(event) => gameCode = event.target.value} 
+                />
                 <Fab
                     variant="extended"
                     color="inherit"
                     className={classes.fab, classes.greenFab}
-                    onClick={() => {
-                        joinGame(gameCode)
-                        launchGameBoard()
-                    }}
+                    onClick={() => joinGame(gameCode)}
                 > 
                     Join Game
                 </Fab>  

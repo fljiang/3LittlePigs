@@ -11,7 +11,8 @@ module.exports = function () {
         }
 
         clientIdsToGamesMap.set(clientId, gameCode)
-        let clientIds = [clientId]
+        let clientIds = []
+        clientIds.push(clientId)
         gamesToClientIdsMap.set(gameCode, clientIds)
 
         return gameCode;
@@ -30,10 +31,14 @@ module.exports = function () {
     }
 
     function joinGame(clientId, gameCode) {
-        clientIdsToGamesMap.set(clientId, gameCode)
-        let clientIds = gamesToClientIdsMap.get(gameCode)
-        clientIds.push(clientId)
-        gamesToClientIdsMap.set(gameCode, clientIds)
+        let updatedClientIds = gamesToClientIdsMap.get(gameCode)
+        if (updatedClientIds != null) {
+            clientIdsToGamesMap.set(clientId, gameCode)
+            updatedClientIds.push(clientId)
+            gamesToClientIdsMap.set(gameCode, updatedClientIds)
+            return gameCode
+        }
+        return null
     }
 
     function getGameCodeOfClient(clientId) {
@@ -48,12 +53,17 @@ module.exports = function () {
         clientIdsToGamesMap.delete(clientId)
 
         let updatedClientIds = gamesToClientIdsMap.get(gameCode)
-        const clientIdIndex = updatedClientIds.indexOf(clientId)
-        updatedClientIds.splice(clientIdIndex, 1)
-        if (updatedClientIds.size === 0) {
-            gamesToClientIdsMap.delete(gameCode)
-        } else {
-            gamesToClientIdsMap.set(gameCode, updatedClientIds)
+
+        if (updatedClientIds != null) {
+            const clientIdIndex = updatedClientIds.indexOf(clientId)
+            if (clientIdIndex !== -1) {
+                updatedClientIds.splice(clientIdIndex, 1)
+                if (updatedClientIds.size === 0) {
+                    gamesToClientIdsMap.delete(gameCode)
+                } else {
+                    gamesToClientIdsMap.set(gameCode, updatedClientIds)
+                }
+            }
         }
     }
 

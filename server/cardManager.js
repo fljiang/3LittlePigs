@@ -29,7 +29,7 @@ module.exports = function () {
             const randomCard = remainingCards[randomNum]
             remainingCards.splice(randomNum, 1)
             cards.push(randomCard)
-    
+
             if (cardNum === 7) {
                 clientIds.push(client.id)
                 clientIdsToClientObjectsMap.set(client.id, client)
@@ -113,15 +113,18 @@ module.exports = function () {
         clientIdsToSelectedCardsMap.delete(clientId)
         clientIdsToClientObjectsMap.delete(clientId)
 
-        let clientIdIndex = 0
+        let clientIdIndex = -1
         clientIds.forEach(function (item, index) {
             if (item === clientId) {
                 clientIdIndex = index
             }
         })
-        clientIds.splice(clientIdIndex, 1)
 
-        if (clientIdsForGame.size === 0) {
+        if (clientIdIndex !== -1) {
+            clientIds.splice(clientIdIndex, 1)
+        }
+
+        if (clientIdsForGame != null && clientIdsForGame.size === 0) {
             gamesToRemainingCardsMap.delete(gameCode)
             gamesToCardsLengthToProceed.delete(gameCode)
         }

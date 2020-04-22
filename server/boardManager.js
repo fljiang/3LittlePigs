@@ -30,16 +30,20 @@ module.exports = function () {
 
     function removeClient(clientId, gameCode) {
         let updatedBoards = gamesToBoardsMap.get(gameCode)
-        const board = gamesToBoardsMap.get(gameCode).get(clientId)
-        updatedBoards.delete(clientId)
-        gamesToBoardsMap.set(gameCode, updatedBoards)
 
-        if (updatedBoards.length === 0) {
-            gamesToBoardsMap.delete(gameCode)
-            gamesToRemainingBoardsMap.delete(gameCode)
+        if (updatedBoards != null) {
+            const board = updatedBoards.get(clientId)
+            if (board != null) {
+                updatedBoards.delete(clientId)
+                gamesToBoardsMap.set(gameCode, updatedBoards)
+
+                if (updatedBoards.length === 0) {
+                    gamesToBoardsMap.delete(gameCode)
+                    gamesToRemainingBoardsMap.delete(gameCode)
+                }
+                return board
+            }
         }
-
-        return board
     }
 
     return {

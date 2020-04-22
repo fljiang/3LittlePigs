@@ -26,7 +26,7 @@ export default function (
     }
 
     function joinGame(callback, gameCode) {
-        socket.emit('joinGame', callback, { gameCode })
+        socket.emit('joinGame', { gameCode }, callback)
     }
 
     function registerEnableViewCardsButtonHandler() {

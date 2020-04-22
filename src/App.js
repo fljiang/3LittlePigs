@@ -55,20 +55,15 @@ export default class App extends React.Component {
     }
 
     joinGame(gameCode) {
-        console.log('in joinGame')
-        this.state.client.joinGame((error) => {
+        this.state.client.joinGame((error, gameCode) => {
             if (error) return console.error(error);
-            
+
             this.setState({ gameCode: gameCode })
             this.launchGameBoard()
         }, gameCode)
-
-        console.log(this.state)
     }
 
     launchGameBoard() {
-        console.log('in launchGameBoard')
-
         this.state.client.getRandomBoard((error, board) => {
             if (error) return console.error(error);
             this.setState({ board })
@@ -81,8 +76,6 @@ export default class App extends React.Component {
         })
         
         this.state.client.initializeStats()
-
-        console.log(this.state)
     }
 
     setSelectedCard(selectedCard, selectOrDiscard) {
