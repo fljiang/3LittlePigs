@@ -12,8 +12,6 @@ import './boardComponent.css';
 import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
 
-const renderStats = {"Coin": 0, "Brick": 0, "Stick": 0, "Mud": 0, "Stone": 0, "Water": 0, "Apple": 0, "Flower": 0};
-
 const Board = ({ 
     title, 
     resource, 
@@ -26,7 +24,7 @@ const Board = ({
     secondaryOpponentsStats,
     tertiaryOpponentsStats
 }) => {
-    
+    console.log('in board component')
     return (
         <Box border={1} width="60%" 
             marginRight={firstPlayer ? "39px" : "0px"}
@@ -50,8 +48,8 @@ const Board = ({
                     }
                     { firstPlayer ? 
                         <Market 
-                            secondaryOpponentsStats={secondaryOpponentsStats ? secondaryOpponentsStats : renderStats}
-                            tertiaryOpponentsStats={tertiaryOpponentsStats ? tertiaryOpponentsStats : renderStats}
+                            secondaryOpponentsStats={secondaryOpponentsStats}
+                            tertiaryOpponentsStats={tertiaryOpponentsStats}
                             updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend} /> 
                         : null 
                     }

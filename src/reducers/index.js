@@ -19,6 +19,9 @@ const reducer = (
         case 'SET_CARDS':
             return { ...state, loading: true };
         case 'CARDS_SET':
+            console.log(state)
+            console.log(defaultMarketDemandMap)
+
             return { 
                 ...state, 
                 loading: false, 
@@ -44,7 +47,8 @@ const reducer = (
                     "Spoon": 0
                 },
                 showSlashCardResources: false,
-                marketDemandMap: defaultMarketDemandMap
+                marketDemandMap: defaultMarketDemandMap,
+                isValidResourceToBuyMapCalculated: false
             };
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':
             state.isValidCardToBuyArray[action.cardIndex] = action.isValidCardToBuy;
@@ -53,7 +57,12 @@ const reducer = (
             state.stats["Coin"] += 3;
             state.stats[state.board] += 1;
             action.updateOpponentsStatsOnBackend(state.stats);
-            return { ...state, showCardToDiscardButton: true, cardChosen: false, marketSupplyMap: defaultMarketDemandMap };
+            return { 
+                ...state, 
+                showCardToDiscardButton: true, 
+                cardChosen: false, 
+                marketSupplyMap: defaultMarketDemandMap 
+            };
         case 'CARD_CHOSEN':
             emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
 
@@ -64,7 +73,13 @@ const reducer = (
             state.selectedCards.push(action.selectedCard);
             state.cards.splice(action.selectedCardIndex, 1);
             action.updateOpponentsStatsOnBackend(action.updatedStats);
-            return { ...state, cardChosen: true, stats: action.updatedStats, isValidCardToBuyArray: emptyArray, marketDemandMap: defaultMarketDemandMap };
+            return { 
+                ...state, 
+                cardChosen: true, 
+                stats: action.updatedStats, 
+                isValidCardToBuyArray: emptyArray, 
+                marketDemandMap: defaultMarketDemandMap 
+            };
         case 'SHOW_CARDS_TO_DISCARD':
             return { ...state, showCardToDiscardButton: false };
         case 'DISCARD_CARD':
@@ -72,7 +87,12 @@ const reducer = (
 
             delete state.showCardToDiscardButton;
             state.cards.splice(action.cardIndex, 1);
-            return { ...state, cardChosen: true, isValidCardToBuyArray: emptyArray, marketDemandMap: defaultMarketDemandMap };
+            return { 
+                ...state, 
+                cardChosen: true, 
+                isValidCardToBuyArray: emptyArray, 
+                marketDemandMap: defaultMarketDemandMap 
+            };
         case 'RE_RENDER_STATS':
             return { 
                 ...state,
@@ -81,15 +101,33 @@ const reducer = (
                 resourceSlashCards: state.resourceSlashCards
             };
         case 'SET_UPDATED_CARDS':
-            return { ...state, cards: action.updatedCards, cardChosen: false  };
+            return { 
+                ...state, 
+                cards: action.updatedCards, 
+                cardChosen: false,
+                isValidResourceToBuyMapCalculated: false
+            };
         case 'TOGGLE_SHOW_SLASH_CARD_RESOURCES':
             return { ...state, showSlashCardResources: !state.showSlashCardResources };
         case 'RESOURCE_SWITCHED':
             action.updateOpponentsStatsOnBackend(action.updatedStats);
             return { ...state, stats: action.updatedStats, resourceSlashCards: action.resourceSlashCards };
+        case 'IS_VALID_RESOURCE_TO_BUY_MAP_CALCULATED':
+            action.updateOpponentsStatsOnBackend(action.updatedStats);
+            return { 
+                ...state, 
+                marketSupplyMap: action.marketSupplyMap, 
+                isValidResourceToBuyMap: action.isValidResourceToBuyMap,
+                isValidResourceToBuyMapCalculated: true
+            }
         case 'MARKET_RESOURCE_CHOSEN':
             action.updateOpponentsStatsOnBackend(action.updatedStats);
-            return { ...state, stats: action.updatedStats, marketDemandMap: action.updatedMarketDemandMap, statsReRendered: !state.statsReRendered };
+            return { 
+                ...state, 
+                stats: action.updatedStats, 
+                marketDemandMap: action.updatedMarketDemandMap, 
+                statsReRendered: !state.statsReRendered 
+            };
         default:
             return state;
     }

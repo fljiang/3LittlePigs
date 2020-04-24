@@ -3,9 +3,11 @@ import { put, takeLatest, all, select } from 'redux-saga/effects';
 export const getStats = (state) => state.stats;
 export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray;
 export const getSelectedResourceSlashCards = (state) => state.resourceSlashCards;
+export const getMarketSupplyMap = (state) => state.marketSupplyMap;
 export const getMarketDemandMap = (state) => state.marketDemandMap;
 
 function* setFetchedCards(action) {
+    console.log('in setFetchedCards')
     yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
 }
 
@@ -21,7 +23,11 @@ function* calculateIfValidCardToBuy(action) {
         })
     );
 
-    yield put({ type: 'IS_VALID_CARD_TO_BUY_CALCULATED', isValidCardToBuy: calculatedIsValidCardToBuy, cardIndex: action.cardIndex });
+    yield put({ 
+        type: 'IS_VALID_CARD_TO_BUY_CALCULATED', 
+        isValidCardToBuy: calculatedIsValidCardToBuy, 
+        cardIndex: action.cardIndex 
+    });
 }
 
 function* setChosenCardIfValid(action) {
@@ -111,44 +117,71 @@ function* setSwitchedResources(action) {
     }
 }
 
-function* setMarketResource(action) {
-    let stats = yield select(getStats);
-    let marketDemandMap = yield select(getMarketDemandMap);
+function* setIsValidResourceToBuyMap(action) {
+    console.log('in here')
 
-    if (action.secondaryResourceStat) {
-        if (action.tertiaryResourceStat) {
-            console.log("bought from both opponents");
-        }
-        else {
-            console.log("buy from second opponent");
-        }
+    const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
+    let marketSupplyMap = new Map();
+    let isValidResourceToBuyMap = new Map();
+
+    const stats = yield select(getStats);
+    const marketDemandMap = yield select(getMarketDemandMap);
+
+    if (stats != null && marketDemandMap != null) {
+        resourceList.map(resource => {
+            let marketSupplyResource = action.secondaryOpponentsStats[resource] + action.tertiaryOpponentsStats[resource];
+            marketSupplyMap[resource] = marketSupplyResource;
+        })
+    
+        resourceList.map(resource => {
+            isValidResourceToBuyMap[resource] = stats["Coin"] > 2 && 
+                marketSupplyMap[resource] && 
+                marketSupplyMap[resource] > marketDemandMap[resource];
+        })
+    
+        console.log(marketSupplyMap)
+        console.log(isValidResourceToBuyMap)
+    
+        yield put({
+            type: 'IS_VALID_RESOURCE_TO_BUY_MAP_CALCULATED',
+            marketSupplyMap: marketSupplyMap,
+            isValidResourceToBuyMap: isValidResourceToBuyMap,
+            updatedStats: stats,
+            updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
+        })
     }
-    else {
-        console.log("buy from third opponent");
-    }
-
-    stats["Coin"] -=2;
-    stats[action.resource] += 1;
-    marketDemandMap[action.resource] += 1;
-
-    yield put({
-        type: 'MARKET_RESOURCE_CHOSEN',
-        updatedStats: stats,
-        updatedMarketDemandMap: marketDemandMap,
-        updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
-    });
 }
 
-function* cardsWatcher() {
+function* setMarketResource(action) {
+    let stats = yield select(getStats);
+    let marketSupplyMap = yield select(getMarketSupplyMap);
+    let marketDemandMap = yield select(getMarketDemandMap);
+
+    if (stats["Coin"] > 2 && marketSupplyMap[action.resource] > marketDemandMap[action.resource]) {
+        stats["Coin"] -=2;
+        stats[action.resource] += 1;
+        marketDemandMap[action.resource] += 1;
+
+        yield put({
+            type: 'MARKET_RESOURCE_CHOSEN',
+            updatedStats: stats,
+            updatedMarketDemandMap: marketDemandMap,
+            updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
+        });
+    }
+}
+
+function* gameWatcher() {
     yield takeLatest('SET_CARDS', setFetchedCards);
     yield takeLatest('CAN_BUY_CARD', calculateIfValidCardToBuy);
     yield takeLatest('CHOOSE_CARD', setChosenCardIfValid);
     yield takeLatest('SWITCH_RESOURCES', setSwitchedResources);
-    yield takeLatest('MARKET_CLICK', setMarketResource)
+    yield takeLatest('CALCULATE_IS_VALID_RESOURCE_TO_BUY_MAP', setIsValidResourceToBuyMap);
+    yield takeLatest('MARKET_CLICK', setMarketResource);
 }
 
 export default function* rootSaga() {
     yield all([
-        cardsWatcher()
+        gameWatcher()
     ]);
 }

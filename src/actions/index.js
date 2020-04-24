@@ -56,10 +56,19 @@ export const switchResources = (cardDescription, newResource, updateOpponentsSta
     updateOpponentsStatsOnBackend
 });
 
-export const marketClick = (resource, secondaryResourceStat, tertiaryResourceStat, updateOpponentsStatsOnBackend) => ({
+export const calculateIsValidResourceToBuyMap = (
+    secondaryOpponentsStats, 
+    tertiaryOpponentsStats, 
+    updateOpponentsStatsOnBackend
+) => ({
+    type: 'CALCULATE_IS_VALID_RESOURCE_TO_BUY_MAP',
+    secondaryOpponentsStats,
+    tertiaryOpponentsStats,
+    updateOpponentsStatsOnBackend
+});
+
+export const marketClick = (resource, updateOpponentsStatsOnBackend) => ({
     type: 'MARKET_CLICK',
     resource,
-    secondaryResourceStat,
-    tertiaryResourceStat,
     updateOpponentsStatsOnBackend
 });
