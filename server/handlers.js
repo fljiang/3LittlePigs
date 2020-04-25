@@ -54,10 +54,6 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
                     "Pot": 0,
                     "Spoon": 0
                 }
-                console.log(board)
-                console.log(clientId)
-                console.log(updatedStats)
-                console.log(gameCode)
                 statsManager.updateOpponentsStats(clientId, board, updatedStats, gameCode)
             })
     }
@@ -71,7 +67,9 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
 
     function handleUpdateOpponentsStats({ board, updatedStats }) {
         const gameCode = gameManager.getGameCodeOfClient(client.id)
-        statsManager.updateOpponentsStats(client.id, board, updatedStats, gameCode)
+        if (updatedStats != null) {
+            statsManager.updateOpponentsStats(client.id, board, updatedStats, gameCode)
+        }
     }
 
     function handleDisconnect() {

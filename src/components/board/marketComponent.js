@@ -37,10 +37,6 @@ let Market = ({
     isValidResourceToBuyMapCalculated,
     marketClick
 }) => {
-    console.log(secondaryOpponentsStats)
-    console.log(tertiaryOpponentsStats)
-    console.log(isValidResourceToBuyMapCalculated)
-
     if (secondaryOpponentsStats != null && 
         tertiaryOpponentsStats != null && 
         (!isValidResourceToBuyMapCalculated || isValidResourceToBuyMapCalculated == null)) {
@@ -51,8 +47,6 @@ let Market = ({
             updateOpponentsStatsOnBackend
         );
     }
-
-    console.log(isValidResourceToBuyMap)
 
     const img_width = "14%";
     const img_height = img_width * 1.3;

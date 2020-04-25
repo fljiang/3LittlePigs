@@ -92,7 +92,6 @@ export default class App extends React.Component {
         let stats = this.state.opponentsStats
         stats.set(board, updatedStats)
         this.setState({ opponentsStats: stats })
-        console.log(this.state.opponentsStats)
     }
 
     setEnableRevealCardsButton() {
