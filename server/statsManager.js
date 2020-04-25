@@ -8,7 +8,7 @@ module.exports = function () {
         clientIdsToClientObjectsMap.set(client.id, client)
     }
 
-    function updateOpponentsStats(client, board, updatedStats, gameCode) {
+    function updateOpponentsStats(clientId, board, updatedStats, gameCode) {
         let boardResourcesToStatsMap = gamesToStatsMap.get(gameCode)
         if (boardResourcesToStatsMap == null) {
             boardResourcesToStatsMap = new Map()
@@ -17,7 +17,7 @@ module.exports = function () {
         gamesToStatsMap.set(gameCode, boardResourcesToStatsMap)
         
         clientIdsToClientObjectsMap.forEach(function (value, key) {
-            if (client.id != key) {
+            if (clientId != key) {
                 clientIdsToClientObjectsMap.get(key).emit('updateOpponentsStatsUI', { board, updatedStats })
             }
         })

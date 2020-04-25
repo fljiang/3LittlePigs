@@ -19,35 +19,15 @@ const reducer = (
         case 'SET_CARDS':
             return { ...state, loading: true };
         case 'CARDS_SET':
-            console.log(state)
-            console.log(defaultMarketDemandMap)
-
             return { 
                 ...state, 
                 loading: false, 
-                board: action.board,
                 selectedCards: [],
                 resourceSlashCards: [],
                 cards: action.cards,
                 isValidCardToBuyArray: emptyArray,
                 cardChosen: false,
-                stats: {
-                    "Coin": 3,
-                    "Victory": 0,
-                    "Brick": action.board === "Brick" ? 1 : 0,
-                    "Stick": action.board === "Stick" ? 1 : 0,
-                    "Mud": action.board === "Mud" ? 1 : 0,
-                    "Stone": 0,
-                    "Apple": 0,
-                    "Water": 0,
-                    "Flower": 0,
-                    "Wolf": 0,
-                    "Glass": 0,
-                    "Pot": 0,
-                    "Spoon": 0
-                },
                 showSlashCardResources: false,
-                marketDemandMap: defaultMarketDemandMap,
                 isValidResourceToBuyMapCalculated: false
             };
         case 'IS_VALID_CARD_TO_BUY_CALCULATED':
@@ -61,7 +41,7 @@ const reducer = (
                 ...state, 
                 showCardToDiscardButton: true, 
                 cardChosen: false, 
-                marketSupplyMap: defaultMarketDemandMap 
+                marketDemandMap: defaultMarketDemandMap 
             };
         case 'CARD_CHOSEN':
             emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
@@ -116,9 +96,12 @@ const reducer = (
             action.updateOpponentsStatsOnBackend(action.updatedStats);
             return { 
                 ...state, 
+                board: action.board,
+                stats: action.stats,
                 marketSupplyMap: action.marketSupplyMap, 
                 isValidResourceToBuyMap: action.isValidResourceToBuyMap,
-                isValidResourceToBuyMapCalculated: true
+                isValidResourceToBuyMapCalculated: true,
+                marketDemandMap: action.marketDemandMap
             }
         case 'MARKET_RESOURCE_CHOSEN':
             action.updateOpponentsStatsOnBackend(action.updatedStats);

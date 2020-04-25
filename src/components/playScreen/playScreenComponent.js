@@ -30,9 +30,6 @@ let PlayScreen = ({
 }) => {
     const classes = useStyles();
 
-    console.log(cards);
-    console.log('in playscreen component')
-
     let primaryBoardTitle;
     let secondaryBoardTitle;
     let tertiaryBoardTitle;

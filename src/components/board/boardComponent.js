@@ -24,7 +24,6 @@ const Board = ({
     secondaryOpponentsStats,
     tertiaryOpponentsStats
 }) => {
-    console.log('in board component')
     return (
         <Box border={1} width="60%" 
             marginRight={firstPlayer ? "39px" : "0px"}
@@ -48,6 +47,7 @@ const Board = ({
                     }
                     { firstPlayer ? 
                         <Market 
+                            resource={resource}
                             secondaryOpponentsStats={secondaryOpponentsStats}
                             tertiaryOpponentsStats={tertiaryOpponentsStats}
                             updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend} /> 

@@ -7,7 +7,6 @@ export const getMarketSupplyMap = (state) => state.marketSupplyMap;
 export const getMarketDemandMap = (state) => state.marketDemandMap;
 
 function* setFetchedCards(action) {
-    console.log('in setFetchedCards')
     yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
 }
 
@@ -119,37 +118,73 @@ function* setSwitchedResources(action) {
 
 function* setIsValidResourceToBuyMap(action) {
     console.log('in here')
-
     const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
     let marketSupplyMap = new Map();
     let isValidResourceToBuyMap = new Map();
 
-    const stats = yield select(getStats);
-    const marketDemandMap = yield select(getMarketDemandMap);
+    let stats = yield select(getStats);
+    let marketDemandMap = yield select(getMarketDemandMap);
 
-    if (stats != null && marketDemandMap != null) {
-        resourceList.map(resource => {
-            let marketSupplyResource = action.secondaryOpponentsStats[resource] + action.tertiaryOpponentsStats[resource];
-            marketSupplyMap[resource] = marketSupplyResource;
-        })
-    
-        resourceList.map(resource => {
-            isValidResourceToBuyMap[resource] = stats["Coin"] > 2 && 
-                marketSupplyMap[resource] && 
-                marketSupplyMap[resource] > marketDemandMap[resource];
-        })
-    
-        console.log(marketSupplyMap)
-        console.log(isValidResourceToBuyMap)
-    
-        yield put({
-            type: 'IS_VALID_RESOURCE_TO_BUY_MAP_CALCULATED',
-            marketSupplyMap: marketSupplyMap,
-            isValidResourceToBuyMap: isValidResourceToBuyMap,
-            updatedStats: stats,
-            updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
-        })
+    if (stats == null) {
+        stats = {
+            "Coin": 3,
+            "Victory": 0,
+            "Brick": action.resource === "Brick" ? 1 : 0,
+            "Stick": action.resource === "Stick" ? 1 : 0,
+            "Mud": action.resource === "Mud" ? 1 : 0,
+            "Stone": 0,
+            "Apple": 0,
+            "Water": 0,
+            "Flower": 0,
+            "Wolf": 0,
+            "Glass": 0,
+            "Pot": 0,
+            "Spoon": 0
+        }
     }
+
+    if (marketDemandMap == null) {
+        marketDemandMap = {
+            "Brick": 0,
+            "Stick": 0,
+            "Mud": 0,
+            "Stone" : 0,
+            "Water": 0,
+            "Flower": 0,
+            "Apple": 0
+        };
+    }
+
+    console.log(action.secondaryOpponentsStats)
+    console.log(action.tertiaryOpponentsStats)
+
+    resourceList.map(resource => {
+        let marketSupplyResource = action.secondaryOpponentsStats[resource] + action.tertiaryOpponentsStats[resource];
+        console.log(marketSupplyResource)
+        marketSupplyMap.set(resource, marketSupplyResource);
+    })
+
+    console.log(marketSupplyMap)
+
+    resourceList.map(resource => {
+        console.log()
+        isValidResourceToBuyMap.set(resource, 
+            stats["Coin"] > 2 && 
+            marketSupplyMap.get(resource) && 
+            marketSupplyMap.get(resource) > marketDemandMap[resource]);
+    })
+
+    console.log(isValidResourceToBuyMap)
+
+    yield put({
+        type: 'IS_VALID_RESOURCE_TO_BUY_MAP_CALCULATED',
+        board: action.resource,
+        stats: stats,
+        marketSupplyMap: marketSupplyMap,
+        isValidResourceToBuyMap: isValidResourceToBuyMap,
+        updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend,
+        marketDemandMap: marketDemandMap
+    })
 }
 
 function* setMarketResource(action) {

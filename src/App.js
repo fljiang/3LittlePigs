@@ -69,14 +69,13 @@ export default class App extends React.Component {
             if (error) return console.error(error);
             this.setState({ board })
             this.state.client.registerEnableViewCardsButtonHandler()
+            this.state.client.initializeStats(this.state.gameCode)
         });
 
         this.state.client.getRandomCards((error, cards) => {
             if (error) return console.error(error);
             this.setState({ cards })
         })
-        
-        this.state.client.initializeStats()
     }
 
     setSelectedCard(selectedCard, selectOrDiscard) {
@@ -93,6 +92,7 @@ export default class App extends React.Component {
         let stats = this.state.opponentsStats
         stats.set(board, updatedStats)
         this.setState({ opponentsStats: stats })
+        console.log(this.state.opponentsStats)
     }
 
     setEnableRevealCardsButton() {
