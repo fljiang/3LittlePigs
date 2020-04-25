@@ -21,7 +21,9 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         const gameCode = gameManager.getGameCodeOfClient(client.id)
         
         const board = boardManager.getRandomBoard(client.id, gameCode)
-        return callback(null, board)
+        if (board != null) {
+            return callback(null, board)
+        }
     }
 
     function handleGetRandomCards(callback) {
@@ -29,7 +31,9 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         const clientIdsForGame = gameManager.getClientIdsForGame(gameCode)
 
         const cards = cardManager.getRandomCards(client, gameCode, clientIdsForGame)
-        return callback(null, cards)
+        if (cards != null) {
+            return callback(null, cards)
+        }
     }
 
     function handleInitializeStats({ gameCode }) {

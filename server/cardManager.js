@@ -15,30 +15,33 @@ module.exports = function () {
     let clientIdsToSelectedCardsMap = new Map()
     
     function getRandomCards(client, gameCode, clientIdsForGame) {
-        let cards = []
+        if (clientIdsToClientObjectsMap.get(client.id) == null) {
+            let cards = []
 
-        let remainingCards = gamesToRemainingCardsMap.get(gameCode)
-        if (gamesToRemainingCardsMap.get(gameCode) == null) {
-            remainingCards = cardsPhase1.map(element => element)
-            gamesToRemainingCardsMap.set(gameCode, remainingCards)
-            gamesToCardsLengthToProceed.set(gameCode, 6)
-        }
-
-        for (let cardNum = 1; cardNum <= 7; cardNum++) {
-            const randomNum = Math.floor((Math.random() * remainingCards.length))
-            const randomCard = remainingCards[randomNum]
-            remainingCards.splice(randomNum, 1)
-            cards.push(randomCard)
-
-            if (cardNum === 7) {
-                clientIds.push(client.id)
-                clientIdsToClientObjectsMap.set(client.id, client)
-                clientIdsToCardsMap.set(client.id, cards)
+            let remainingCards = gamesToRemainingCardsMap.get(gameCode)
+            if (gamesToRemainingCardsMap.get(gameCode) == null) {
+                remainingCards = cardsPhase1.map(element => element)
                 gamesToRemainingCardsMap.set(gameCode, remainingCards)
-                enableViewCardsButtonOrNot(gameCode, clientIdsForGame)
-                return cards
+                gamesToCardsLengthToProceed.set(gameCode, 6)
+            }
+
+            for (let cardNum = 1; cardNum <= 7; cardNum++) {
+                const randomNum = Math.floor((Math.random() * remainingCards.length))
+                const randomCard = remainingCards[randomNum]
+                remainingCards.splice(randomNum, 1)
+                cards.push(randomCard)
+
+                if (cardNum === 7) {
+                    clientIds.push(client.id)
+                    clientIdsToClientObjectsMap.set(client.id, client)
+                    clientIdsToCardsMap.set(client.id, cards)
+                    gamesToRemainingCardsMap.set(gameCode, remainingCards)
+                    enableViewCardsButtonOrNot(gameCode, clientIdsForGame)
+                    return cards
+                }
             }
         }
+        return null
     }
 
     function setSelectedCard(clientId, selectedCard, selectOrDiscard, gameCode, clientIdsForGame) {
