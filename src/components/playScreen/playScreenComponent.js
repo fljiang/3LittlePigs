@@ -8,7 +8,7 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { setCards, reRenderStats } from '../../actions';
+import { setCards, reRenderStats, updateMarket } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -26,7 +26,9 @@ let PlayScreen = ({
     stats,
     setSelectedCardOnBackend,
     updateOpponentsStatsOnBackend,
-    resourceSlashCards
+    resourceSlashCards,
+    updateMarket,
+    isValidResourceToBuyMapCalculated
 }) => {
     const classes = useStyles();
 
@@ -55,6 +57,10 @@ let PlayScreen = ({
         tertiaryBoardTitle = "Sarah's House";
         secondaryBoardResource = "Brick";
         tertiaryBoardResource = "Stick";
+    }
+
+    if (state.enableRevealCardsButton && isValidResourceToBuyMapCalculated) {
+        updateMarket();
     }
 
     return (
@@ -195,6 +201,7 @@ let PlayScreen = ({
 const mapDispatchToProps = {
     setCards: setCards,
     reRenderStats: reRenderStats,
+    updateMarket: updateMarket
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
@@ -204,7 +211,8 @@ const mapStateToProps = (state) => ({
     loading: state.loading,
     stats: state.stats,
     statsReRendered: state.statsReRendered,
-    resourceSlashCards: state.resourceSlashCards
+    resourceSlashCards: state.resourceSlashCards,
+    isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);

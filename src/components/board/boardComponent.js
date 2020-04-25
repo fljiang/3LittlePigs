@@ -22,7 +22,8 @@ const Board = ({
     updateStats,
     updateOpponentsStatsOnBackend,
     secondaryOpponentsStats,
-    tertiaryOpponentsStats
+    tertiaryOpponentsStats,
+    enableRevealCardsButton
 }) => {
     return (
         <Box border={1} width="60%" 
