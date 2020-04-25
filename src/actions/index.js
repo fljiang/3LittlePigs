@@ -69,6 +69,10 @@ export const calculateIsValidResourceToBuyMap = (
     updateOpponentsStatsOnBackend
 });
 
+export const updateMarket = () => ({
+    type: 'UPDATE_MARKET'
+})
+
 export const marketClick = (resource, updateOpponentsStatsOnBackend) => ({
     type: 'MARKET_CLICK',
     resource,

@@ -37,10 +37,6 @@ let Market = ({
     isValidResourceToBuyMapCalculated,
     marketClick
 }) => {
-    console.log(secondaryOpponentsStats)
-    console.log(tertiaryOpponentsStats)
-    console.log(resource)
-
     if (secondaryOpponentsStats != null && 
         tertiaryOpponentsStats != null && 
         (!isValidResourceToBuyMapCalculated || isValidResourceToBuyMapCalculated == null)) {

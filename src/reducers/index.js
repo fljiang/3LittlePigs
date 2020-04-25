@@ -103,6 +103,8 @@ const reducer = (
                 isValidResourceToBuyMapCalculated: true,
                 marketDemandMap: action.marketDemandMap
             }
+        case 'UPDATE_MARKET':
+            return { ...state, isValidResourceToBuyMapCalculated: false }
         case 'MARKET_RESOURCE_CHOSEN':
             action.updateOpponentsStatsOnBackend(action.updatedStats);
             return { 
