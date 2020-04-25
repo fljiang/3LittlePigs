@@ -161,7 +161,7 @@ function* setIsValidResourceToBuyMap(action) {
 
     resourceList.map(resource => {
         isValidResourceToBuyMap.set(resource, 
-            stats["Coin"] > 2 && 
+            stats["Coin"] >= 2 && 
             marketSupplyMap.get(resource) && 
             marketSupplyMap.get(resource) > marketDemandMap[resource]);
     })
@@ -182,7 +182,7 @@ function* setMarketResource(action) {
     let marketSupplyMap = yield select(getMarketSupplyMap);
     let marketDemandMap = yield select(getMarketDemandMap);
 
-    if (stats["Coin"] > 2 && marketSupplyMap.get(action.resource) > marketDemandMap[action.resource]) {
+    if (stats["Coin"] >= 2 && marketSupplyMap.get(action.resource) > marketDemandMap[action.resource]) {
         stats["Coin"] -=2;
         stats[action.resource] += 1;
         marketDemandMap[action.resource] += 1;
