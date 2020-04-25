@@ -57,8 +57,8 @@ export default function (
         socket.emit('getRandomCards', callback)
     }
 
-    function initializeStats() {
-        socket.emit('initializeStats')
+    function initializeStats(gameCode) {
+        socket.emit('initializeStats', { gameCode })
     }
 
     function setSelectedCard(selectedCard, selectOrDiscard) {

@@ -32,8 +32,30 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         return callback(null, cards)
     }
 
-    function handleInitializeStats() {
+    function handleInitializeStats({ gameCode }) {
         statsManager.initializeStats(client)
+
+        let clientIds = gameManager.getClientIdsForGame(gameCode)
+        let boards = boardManager.getBoardsForGameCode(gameCode)
+        clientIds.map(clientId => {
+                let board = boards.get(clientId)
+                let updatedStats = {
+                    "Coin": 3,
+                    "Victory": 0,
+                    "Brick": board === "Brick" ? 1 : 0,
+                    "Stick": board === "Stick" ? 1 : 0,
+                    "Mud": board === "Mud" ? 1 : 0,
+                    "Stone": 0,
+                    "Apple": 0,
+                    "Water": 0,
+                    "Flower": 0,
+                    "Wolf": 0,
+                    "Glass": 0,
+                    "Pot": 0,
+                    "Spoon": 0
+                }
+                statsManager.updateOpponentsStats(clientId, board, updatedStats, gameCode)
+            })
     }
 
     function handleSetSelectedCard({ selectedCard, selectOrDiscard }) {
@@ -45,7 +67,9 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
 
     function handleUpdateOpponentsStats({ board, updatedStats }) {
         const gameCode = gameManager.getGameCodeOfClient(client.id)
-        statsManager.updateOpponentsStats(client, board, updatedStats, gameCode)
+        if (updatedStats != null) {
+            statsManager.updateOpponentsStats(client.id, board, updatedStats, gameCode)
+        }
     }
 
     function handleDisconnect() {

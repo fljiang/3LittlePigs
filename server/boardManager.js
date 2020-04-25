@@ -28,6 +28,14 @@ module.exports = function () {
         return randomBoard
     }
 
+    function getBoardsForGameCode(gameCode) {
+        return gamesToBoardsMap.get(gameCode)
+    }
+
+    function getRemainingBoard(gameCode) {
+        return gamesToRemainingBoardsMap.get(gameCode)[0]
+    }
+
     function removeClient(clientId, gameCode) {
         let updatedBoards = gamesToBoardsMap.get(gameCode)
 
@@ -49,6 +57,8 @@ module.exports = function () {
     return {
         isGameFull,
         getRandomBoard,
+        getBoardsForGameCode,
+        getRemainingBoard,
         removeClient
     }
 }
