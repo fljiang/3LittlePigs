@@ -14,18 +14,22 @@ module.exports = function () {
             gamesToBoardsMap.set(gameCode, new Map())
         }
 
-        let updatedRemainingBoards= gamesToRemainingBoardsMap.get(gameCode)
-        const numRemainingBoards = updatedRemainingBoards.length
-        const randomBoardIndex = Math.floor((Math.random() * numRemainingBoards))
-        const randomBoard = updatedRemainingBoards[randomBoardIndex]
-
-        updatedRemainingBoards.splice(randomBoardIndex, 1)
-        gamesToRemainingBoardsMap.set(gameCode, updatedRemainingBoards)
-        let updatedBoards = gamesToBoardsMap.get(gameCode)
-        updatedBoards.set(clientId, randomBoard)
-        gamesToBoardsMap.set(gameCode, updatedBoards)
-
-        return randomBoard
+        if (gamesToBoardsMap.get(gameCode) != null &&
+            gamesToBoardsMap.get(gameCode).get(clientId) == null) {
+                let updatedRemainingBoards = gamesToRemainingBoardsMap.get(gameCode)
+                const numRemainingBoards = updatedRemainingBoards.length
+                const randomBoardIndex = Math.floor((Math.random() * numRemainingBoards))
+                const randomBoard = updatedRemainingBoards[randomBoardIndex]
+        
+                updatedRemainingBoards.splice(randomBoardIndex, 1)
+                gamesToRemainingBoardsMap.set(gameCode, updatedRemainingBoards)
+                let updatedBoards = gamesToBoardsMap.get(gameCode)
+                updatedBoards.set(clientId, randomBoard)
+                gamesToBoardsMap.set(gameCode, updatedBoards)
+        
+                return randomBoard
+        }
+        return null
     }
 
     function getBoardsForGameCode(gameCode) {
