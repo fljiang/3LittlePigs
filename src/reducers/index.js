@@ -111,6 +111,7 @@ const reducer = (
                 ...state, 
                 stats: action.updatedStats, 
                 marketDemandMap: action.updatedMarketDemandMap, 
+                isValidResourceToBuyMapCalculated: false,
                 statsReRendered: !state.statsReRendered 
             };
         default:
