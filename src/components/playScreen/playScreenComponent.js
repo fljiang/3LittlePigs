@@ -192,6 +192,7 @@ let PlayScreen = ({
                         state.opponentsStats.get(tertiaryBoardResource),
                         updateOpponentsStatsOnBackend
                     )}
+                    chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
                 />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 

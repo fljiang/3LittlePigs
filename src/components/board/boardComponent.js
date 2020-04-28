@@ -55,6 +55,7 @@ const Board = ({
                             tertiaryOpponentsStats={tertiaryOpponentsStats}
                             updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
                             marketClick={marketClick}
+                            chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
                         /> : null 
                     }
                     { !firstPlayer && chooseOpponentToBuyFrom ?
