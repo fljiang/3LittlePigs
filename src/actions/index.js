@@ -19,11 +19,18 @@ export const pass = (updateOpponentsStatsOnBackend) => ({
     updateOpponentsStatsOnBackend
 });
 
-export const chooseCard = (card, cardIndex, setSelectedCardOnBackend, updateOpponentsStatsOnBackend) => ({
+export const chooseCard = (
+    card, 
+    cardIndex, 
+    setSelectedCardOnBackend, 
+    chooseOpponentToBuyFrom,
+    updateOpponentsStatsOnBackend
+) => ({
     type: 'CHOOSE_CARD',
     card,
     cardIndex,
     setSelectedCardOnBackend,
+    chooseOpponentToBuyFrom,
     updateOpponentsStatsOnBackend
 });
 

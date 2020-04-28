@@ -57,7 +57,7 @@ function* setChosenCardIfValid(action) {
             })
         }
 
-        action.setSelectedCardOnBackend(action.card, "select");
+        action.setSelectedCardOnBackend(action.card, "select", action.chooseOpponentToBuyFrom);
 
         yield put({ 
             type: 'CARD_CHOSEN', 

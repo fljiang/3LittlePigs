@@ -158,7 +158,8 @@ let PlayScreen = ({
                     updateStats={() => reRenderStats()} 
                     updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
                     setSelectedCardOnBackend={setSelectedCardOnBackend} 
-                    enableRevealCardsButton={state.enableRevealCardsButton} /> 
+                    enableRevealCardsButton={state.enableRevealCardsButton}
+                    chooseOpponentToBuyFrom={chooseOpponentToBuyFrom} /> 
                 :
                 <div className="view-cards-button-wrapper">
                     <Fab 
