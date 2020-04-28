@@ -8,7 +8,7 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { setCards, reRenderStats, updateMarket } from '../../actions';
+import { setCards, reRenderStats, updateMarket, marketClick } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -28,7 +28,10 @@ let PlayScreen = ({
     updateOpponentsStatsOnBackend,
     resourceSlashCards,
     updateMarket,
-    isValidResourceToBuyMapCalculated
+    marketClick,
+    isValidResourceToBuyMapCalculated,
+    chooseOpponentToBuyFrom,
+    opponentsToCoinsToAdd
 }) => {
     const classes = useStyles();
 
@@ -100,8 +103,18 @@ let PlayScreen = ({
                     numFlowers={state.opponentsStats.get(secondaryBoardResource) ?
                         state.opponentsStats.get(secondaryBoardResource)["Flower"] : 0}
                 />
-                <Board title={secondaryBoardTitle} resource={secondaryBoardResource} firstPlayer={false} />
-                <Board title={tertiaryBoardTitle} resource={tertiaryBoardResource} firstPlayer={false} />
+                <Board 
+                    title={secondaryBoardTitle} 
+                    resource={secondaryBoardResource} 
+                    firstPlayer={false} 
+                    chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
+                />
+                <Board 
+                    title={tertiaryBoardTitle} 
+                    resource={tertiaryBoardResource} 
+                    firstPlayer={false} 
+                    chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
+                />
                 <Stats 
                     numCoins={state.opponentsStats.get(tertiaryBoardResource) ?
                         state.opponentsStats.get(tertiaryBoardResource)["Coin"] : 3} 
@@ -171,6 +184,14 @@ let PlayScreen = ({
                     updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
                     secondaryOpponentsStats={state.opponentsStats.get(secondaryBoardResource)}
                     tertiaryOpponentsStats={state.opponentsStats.get(tertiaryBoardResource)}
+                    marketClick={(resource) => marketClick(
+                        resource, 
+                        secondaryBoardResource,
+                        state.opponentsStats.get(secondaryBoardResource),
+                        tertiaryBoardResource,
+                        state.opponentsStats.get(tertiaryBoardResource),
+                        updateOpponentsStatsOnBackend
+                    )}
                 />
                 <Stats 
                     numCoins={stats ? stats["Coin"] : 3} 
@@ -201,7 +222,8 @@ let PlayScreen = ({
 const mapDispatchToProps = {
     setCards: setCards,
     reRenderStats: reRenderStats,
-    updateMarket: updateMarket
+    updateMarket: updateMarket,
+    marketClick: marketClick
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
@@ -212,7 +234,9 @@ const mapStateToProps = (state) => ({
     stats: state.stats,
     statsReRendered: state.statsReRendered,
     resourceSlashCards: state.resourceSlashCards,
-    isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated
+    isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated,
+    chooseOpponentToBuyFrom: state.chooseOpponentToBuyFrom,
+    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);

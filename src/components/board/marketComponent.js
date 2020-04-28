@@ -10,7 +10,7 @@ import apple from './../../img/icons/apple_icon.png';
 import flower from './../../img/icons/flower_icon.png';
 
 import { connect } from 'react-redux';
-import { marketClick, calculateIsValidResourceToBuyMap } from '../../actions';
+import { calculateIsValidResourceToBuyMap } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     tooltipValid: {
@@ -78,7 +78,7 @@ let Market = ({
                             src={brick} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Brick", updateOpponentsStatsOnBackend)}
+                            onClick={() => marketClick("Brick")}
                         />
                     </Tooltip>
 
@@ -98,7 +98,7 @@ let Market = ({
                             src={stick} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Stick", updateOpponentsStatsOnBackend)}
+                            onClick={() => marketClick("Stick")}
                         />
                     </Tooltip>
 
@@ -118,7 +118,7 @@ let Market = ({
                             src={mud} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Mud", updateOpponentsStatsOnBackend)}
+                            onClick={() => marketClick("Mud")}
                         />
                     </Tooltip>
 
@@ -138,7 +138,7 @@ let Market = ({
                             src={stone} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Stone", updateOpponentsStatsOnBackend)}
+                            onClick={() => marketClick("Stone")}
                         />
                     </Tooltip>
 
@@ -158,7 +158,7 @@ let Market = ({
                             src={water} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Water", updateOpponentsStatsOnBackend)}
+                            onClick={() => marketClick("Water")}
                         />
                     </Tooltip>
 
@@ -178,7 +178,7 @@ let Market = ({
                             src={apple} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Apple", updateOpponentsStatsOnBackend)}
+                            onClick={() => marketClick("Apple")}
                         />
                     </Tooltip>
 
@@ -198,7 +198,7 @@ let Market = ({
                             src={flower} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Flower", updateOpponentsStatsOnBackend)}
+                            onClick={() => marketClick("Flower")}
                         />
                     </Tooltip>
                 </ListItem>
@@ -208,7 +208,6 @@ let Market = ({
 }
 
 const mapDispatchToProps = {
-    marketClick: marketClick,
     calculateIsValidResourceToBuyMap: calculateIsValidResourceToBuyMap
 };
 
@@ -216,7 +215,9 @@ Market = connect(null, mapDispatchToProps)(Market);
 
 const mapStateToProps = (state) => ({
     isValidResourceToBuyMap: state.isValidResourceToBuyMap,
-    isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated
+    isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated,
+    chooseOpponentToBuyFrom: state.chooseOpponentToBuyFrom,
+    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd
 });
 
 Market = connect(mapStateToProps, null)(Market);

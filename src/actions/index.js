@@ -73,8 +73,19 @@ export const updateMarket = () => ({
     type: 'UPDATE_MARKET'
 })
 
-export const marketClick = (resource, updateOpponentsStatsOnBackend) => ({
+export const marketClick = (
+    resource, 
+    secondaryBoardResource,
+    secondaryOpponentsStats, 
+    tertiaryBoardResource,
+    tertiaryOpponentsStats, 
+    updateOpponentsStatsOnBackend
+) => ({
     type: 'MARKET_CLICK',
     resource,
+    secondaryBoardResource,
+    secondaryOpponentsStats,
+    tertiaryBoardResource,
+    tertiaryOpponentsStats,
     updateOpponentsStatsOnBackend
 });
