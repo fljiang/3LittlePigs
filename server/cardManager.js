@@ -87,7 +87,10 @@ module.exports = function () {
 
         // Broadcast to all players that all players have selected/discarded cards
         let opponentsToChooseFromForGame = false
-        clientIdsToOpponentsToChooseFromMap.set(clientId, opponentsToChooseFrom)
+        clientIdsToOpponentsToChooseFromMap.set(
+            clientId, 
+            opponentsToChooseFrom != null ? opponentsToChooseFrom : false
+        )
         clientIdsForGame.forEach(function (item, index) {
             if (clientIdsToOpponentsToChooseFromMap.get(item)) {
                 opponentsToChooseFromForGame = true
@@ -135,9 +138,9 @@ module.exports = function () {
         clientIdsToOpponentsToChooseFromMap.set(clientId, false)
         clientIds.forEach(function (item, index) {
             let currentCardsLength = clientIdsToCardsMap.get(item).length
-            if (currentCardsLength !== cardsLengthToProceed &&
+            if (currentCardsLength != cardsLengthToProceed ||
                 clientIdsToOpponentsToChooseFromMap.get(clientId)) {
-                enableViewCardsButtonOrNot = false
+                enableRevealCardsButton = false
             }
         })
 

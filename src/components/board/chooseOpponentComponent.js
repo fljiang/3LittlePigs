@@ -6,7 +6,7 @@ import { Fab } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
     fab: {
         width: "200px",
-        height: "60px",
+        height: "70px",
         marginLeft: "5px"
     }
   }))
