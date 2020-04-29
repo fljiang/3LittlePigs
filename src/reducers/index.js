@@ -110,7 +110,7 @@ const reducer = (
                 stats: action.updatedStats, 
                 marketDemandMap: action.updatedMarketDemandMap, 
                 chooseOpponentToBuyFrom: action.chooseOpponentToBuyFrom,
-                opponentsToCoinsToAdd: action.opponentsToCoinsToAdd,
+                opponentsToCoinsToAddMap: action.opponentsToCoinsToAddMap,
                 isValidResourceToBuyMapCalculated: false,
                 statsReRendered: !state.statsReRendered,
                 resourceToBuy: action.chooseOpponentToBuyFrom ? action.resourceToBuy : null

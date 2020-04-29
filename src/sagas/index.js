@@ -5,8 +5,7 @@ export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray;
 export const getSelectedResourceSlashCards = (state) => state.resourceSlashCards;
 export const getMarketSupplyMap = (state) => state.marketSupplyMap;
 export const getMarketDemandMap = (state) => state.marketDemandMap;
-export const getOpponentsToCoinsToAddMap = (state) => 
-    state.opponentsToCoinsToAddMap ? state.opponentsToCoinsToAddMap : new Map();
+export const getOpponentsToCoinsToAddMap = (state) => state.opponentsToCoinsToAddMap;
 
 const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
 
@@ -184,6 +183,10 @@ function* setMarketResource(action) {
     let marketSupplyMap = yield select(getMarketSupplyMap);
     let marketDemandMap = yield select(getMarketDemandMap);
     let opponentsToCoinsToAddMap = yield select(getOpponentsToCoinsToAddMap);
+    console.log(opponentsToCoinsToAddMap)
+    if (opponentsToCoinsToAddMap == null) {
+        opponentsToCoinsToAddMap = new Map();
+    }
     
     let chooseOpponentToBuyFrom = false;
 
@@ -222,7 +225,7 @@ function* setMarketResource(action) {
             updatedStats: stats,
             updatedMarketDemandMap: marketDemandMap,
             chooseOpponentToBuyFrom: chooseOpponentToBuyFrom,
-            opponentsToCoinsToAdd: opponentsToCoinsToAddMap,
+            opponentsToCoinsToAddMap: opponentsToCoinsToAddMap,
             updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend,
             resourceToBuy: action.resource
         });
@@ -231,6 +234,9 @@ function* setMarketResource(action) {
 
 function* setOpponentToBuyFrom(action) {
     let opponentsToCoinsToAddMap = yield select(getOpponentsToCoinsToAddMap);
+    if (opponentsToCoinsToAddMap == null) {
+        opponentsToCoinsToAddMap = new Map();
+    }
     
     if (opponentsToCoinsToAddMap.get(action.opponentToBuyFrom) != null) {
         opponentsToCoinsToAddMap.set(

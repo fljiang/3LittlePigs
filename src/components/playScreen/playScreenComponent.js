@@ -33,7 +33,7 @@ let PlayScreen = ({
     chooseOpponentToBuyFrom,
     chooseOpponentToBuyFromClick,
     resourceToBuy,
-    opponentsToCoinsToAdd
+    opponentsToCoinsToAddMap
 }) => {
     const classes = useStyles();
 
@@ -249,7 +249,7 @@ const mapStateToProps = (state) => ({
     resourceSlashCards: state.resourceSlashCards,
     isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated,
     chooseOpponentToBuyFrom: state.chooseOpponentToBuyFrom,
-    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd,
+    opponentsToCoinsToAddMap: state.opponentsToCoinsToAddMap,
     resourceToBuy: state.resourceToBuy
 })
 
