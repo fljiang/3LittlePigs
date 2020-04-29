@@ -62,11 +62,18 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
             })
     }
 
-    function handleSetSelectedCard({ selectedCard, selectOrDiscard }) {
+    function handleSetSelectedCard({ selectedCard, selectOrDiscard, opponentsToChooseFrom }) {
         const gameCode = gameManager.getGameCodeOfClient(client.id)
         const clientIdsForGame = gameManager.getClientIdsForGame(gameCode)
 
-        cardManager.setSelectedCard(client.id, selectedCard, selectOrDiscard, gameCode, clientIdsForGame)
+        cardManager.setSelectedCard(
+            client.id, 
+            selectedCard, 
+            selectOrDiscard, 
+            gameCode, 
+            clientIdsForGame, 
+            opponentsToChooseFrom
+        )
     }
 
     function handleUpdateOpponentsStats({ board, updatedStats }) {

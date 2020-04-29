@@ -78,10 +78,10 @@ export default class App extends React.Component {
         })
     }
 
-    setSelectedCard(selectedCard, selectOrDiscard) {
+    setSelectedCard(selectedCard, selectOrDiscard, opponentsToChooseFrom) {
         this.setState({ enableRevealCardsButton: false })
         this.state.client.registerEnableRevealCardsButtonHandler()
-        this.state.client.setSelectedCard(selectedCard, selectOrDiscard)
+        this.state.client.setSelectedCard(selectedCard, selectOrDiscard, opponentsToChooseFrom)
     }
 
     updateOpponentsStats(updatedStats) {

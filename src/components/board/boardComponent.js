@@ -11,6 +11,7 @@ import './boardComponent.css';
 
 import Market from './marketComponent';
 import ChooseResources from './chooseResourcesComponent';
+import ChooseOpponent from './chooseOpponentComponent';
 
 const Board = ({ 
     title, 
@@ -23,7 +24,8 @@ const Board = ({
     updateOpponentsStatsOnBackend,
     secondaryOpponentsStats,
     tertiaryOpponentsStats,
-    enableRevealCardsButton
+    marketClick,
+    chooseOpponentToBuyFrom
 }) => {
     return (
         <Box border={1} width="60%" 
@@ -51,8 +53,13 @@ const Board = ({
                             resource={resource}
                             secondaryOpponentsStats={secondaryOpponentsStats}
                             tertiaryOpponentsStats={tertiaryOpponentsStats}
-                            updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend} /> 
-                        : null 
+                            updateOpponentsStatsOnBackend={updateOpponentsStatsOnBackend}
+                            marketClick={marketClick}
+                            chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
+                        /> : null 
+                    }
+                    { !firstPlayer && chooseOpponentToBuyFrom ?
+                        <ChooseOpponent /> : null
                     }
                     <ListItemText 
                         disableTypography

@@ -19,11 +19,18 @@ export const pass = (updateOpponentsStatsOnBackend) => ({
     updateOpponentsStatsOnBackend
 });
 
-export const chooseCard = (card, cardIndex, setSelectedCardOnBackend, updateOpponentsStatsOnBackend) => ({
+export const chooseCard = (
+    card, 
+    cardIndex, 
+    setSelectedCardOnBackend, 
+    chooseOpponentToBuyFrom,
+    updateOpponentsStatsOnBackend
+) => ({
     type: 'CHOOSE_CARD',
     card,
     cardIndex,
     setSelectedCardOnBackend,
+    chooseOpponentToBuyFrom,
     updateOpponentsStatsOnBackend
 });
 
@@ -73,8 +80,19 @@ export const updateMarket = () => ({
     type: 'UPDATE_MARKET'
 })
 
-export const marketClick = (resource, updateOpponentsStatsOnBackend) => ({
+export const marketClick = (
+    resource, 
+    secondaryBoardResource,
+    secondaryOpponentsStats, 
+    tertiaryBoardResource,
+    tertiaryOpponentsStats, 
+    updateOpponentsStatsOnBackend
+) => ({
     type: 'MARKET_CLICK',
     resource,
+    secondaryBoardResource,
+    secondaryOpponentsStats,
+    tertiaryBoardResource,
+    tertiaryOpponentsStats,
     updateOpponentsStatsOnBackend
 });

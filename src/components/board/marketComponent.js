@@ -10,7 +10,7 @@ import apple from './../../img/icons/apple_icon.png';
 import flower from './../../img/icons/flower_icon.png';
 
 import { connect } from 'react-redux';
-import { marketClick, calculateIsValidResourceToBuyMap } from '../../actions';
+import { calculateIsValidResourceToBuyMap } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     tooltipValid: {
@@ -35,7 +35,8 @@ let Market = ({
     updateOpponentsStatsOnBackend,
     calculateIsValidResourceToBuyMap,
     isValidResourceToBuyMapCalculated,
-    marketClick
+    marketClick,
+    chooseOpponentToBuyFrom
 }) => {
     if (secondaryOpponentsStats != null && 
         tertiaryOpponentsStats != null && 
@@ -64,12 +65,16 @@ let Market = ({
                 <ListItem style={{ marginTop: -2 }}>
                     <Tooltip 
                         title={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Brick") ?
-                                "Click to purchase brick" :
-                                    "Do not have enough coins\nor brick is not available for purchase"
+                            chooseOpponentToBuyFrom ?
+                                "Cannot purchase another resource until you choose from which opponent to " +
+                                "buy the previously selected resource" :
+                                    isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Brick") ?
+                                        "Click to purchase brick" :
+                                            "Do not have enough coins\nor brick is not available for purchase"
                         } 
                         classes={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Brick") ?
+                            !chooseOpponentToBuyFrom && isValidResourceToBuyMap != null && 
+                            isValidResourceToBuyMap.get("Brick") ?
                                 { tooltip: classes.tooltipValid } :
                                     { tooltip: classes.tooltipInvalid }
                         }
@@ -78,18 +83,26 @@ let Market = ({
                             src={brick} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Brick", updateOpponentsStatsOnBackend)}
+                            onClick={() => {
+                                if (!chooseOpponentToBuyFrom) {
+                                    marketClick("Brick")
+                                }
+                            }}
                         />
                     </Tooltip>
 
                     <Tooltip 
                         title={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Stick") ?
-                                "Click to purchase stick" :
-                                    "Do not have enough coins\nor stick is not available for purchase"
+                            chooseOpponentToBuyFrom ?
+                                "Cannot purchase another resource until you choose from which opponent to " +
+                                "buy the previously selected resource" :
+                                    isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Stick") ?
+                                        "Click to purchase stick" :
+                                            "Do not have enough coins\nor stick is not available for purchase"
                         } 
                         classes={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Stick") ?
+                            !chooseOpponentToBuyFrom && isValidResourceToBuyMap != null && 
+                            isValidResourceToBuyMap.get("Stick") ?
                                 { tooltip: classes.tooltipValid } :
                                     { tooltip: classes.tooltipInvalid }
                         }
@@ -98,18 +111,26 @@ let Market = ({
                             src={stick} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Stick", updateOpponentsStatsOnBackend)}
+                            onClick={() => {
+                                if (!chooseOpponentToBuyFrom) {
+                                    marketClick("Stick")
+                                }
+                            }}
                         />
                     </Tooltip>
 
                     <Tooltip 
                         title={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Mud") ?
-                                "Click to purchase mud" :
-                                    "Do not have enough coins\nor mud is not available for purchase"
+                            chooseOpponentToBuyFrom ?
+                                "Cannot purchase another resource until you choose from which opponent to " +
+                                "buy the previously selected resource" :
+                                    isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Mud") ?
+                                        "Click to purchase mud" :
+                                            "Do not have enough coins\nor mud is not available for purchase"
                         } 
                         classes={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Mud") ?
+                            !chooseOpponentToBuyFrom && isValidResourceToBuyMap != null && 
+                            isValidResourceToBuyMap.get("Mud") ?
                                 { tooltip: classes.tooltipValid } :
                                     { tooltip: classes.tooltipInvalid }
                         }
@@ -118,18 +139,26 @@ let Market = ({
                             src={mud} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Mud", updateOpponentsStatsOnBackend)}
+                            onClick={() => {
+                                if (!chooseOpponentToBuyFrom) {
+                                    marketClick("Mud")
+                                }
+                            }}
                         />
                     </Tooltip>
 
                     <Tooltip 
                         title={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Stone") ?
-                                "Click to purchase stone" :
-                                    "Do not have enough coins\nor stone is not available for purchase"
+                            chooseOpponentToBuyFrom ?
+                                "Cannot purchase another resource until you choose from which opponent to " +
+                                "buy the previously selected resource" :
+                                    isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Stone") ?
+                                        "Click to purchase stone" :
+                                            "Do not have enough coins\nor stone is not available for purchase"
                         } 
                         classes={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Stone") ?
+                            !chooseOpponentToBuyFrom && isValidResourceToBuyMap != null && 
+                            isValidResourceToBuyMap.get("Stone") ?
                                 { tooltip: classes.tooltipValid } :
                                     { tooltip: classes.tooltipInvalid }
                         }
@@ -138,18 +167,26 @@ let Market = ({
                             src={stone} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Stone", updateOpponentsStatsOnBackend)}
+                            onClick={() => {
+                                if (!chooseOpponentToBuyFrom) {
+                                    marketClick("Stone")
+                                }
+                            }}
                         />
                     </Tooltip>
 
                     <Tooltip 
                         title={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Water") ?
-                                "Click to purchase water" :
-                                    "Do not have enough coins\nor water is not available for purchase"
+                            chooseOpponentToBuyFrom ?
+                                "Cannot purchase another resource until you choose from which opponent to " +
+                                "buy the previously selected resource" :
+                                    isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Water") ?
+                                        "Click to purchase water" :
+                                            "Do not have enough coins\nor water is not available for purchase"
                         } 
                         classes={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Water") ?
+                            !chooseOpponentToBuyFrom && isValidResourceToBuyMap != null && 
+                            isValidResourceToBuyMap.get("Water") ?
                                 { tooltip: classes.tooltipValid } :
                                 { tooltip: classes.tooltipInvalid }
                         }
@@ -158,18 +195,26 @@ let Market = ({
                             src={water} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Water", updateOpponentsStatsOnBackend)}
+                            onClick={() => {
+                                if (!chooseOpponentToBuyFrom) {
+                                    marketClick("Water")
+                                }
+                            }}
                         />
                     </Tooltip>
 
                     <Tooltip 
                         title={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Apple") ?
-                                "Click to purchase apple" :
-                                    "Do not have enough coins\nor apple is not available for purchase"
+                            chooseOpponentToBuyFrom ?
+                                "Cannot purchase another resource until you choose from which opponent to " +
+                                "buy the previously selected resource" :
+                                    isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Apple") ?
+                                        "Click to purchase apple" :
+                                            "Do not have enough coins\nor apple is not available for purchase"
                         } 
                         classes={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Apple") ?
+                            !chooseOpponentToBuyFrom && isValidResourceToBuyMap != null && 
+                            isValidResourceToBuyMap.get("Apple") ?
                                 { tooltip: classes.tooltipValid } :
                                     { tooltip: classes.tooltipInvalid }
                         }
@@ -178,18 +223,26 @@ let Market = ({
                             src={apple} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Apple", updateOpponentsStatsOnBackend)}
+                            onClick={() => {
+                                if (!chooseOpponentToBuyFrom) {
+                                    marketClick("Apple")
+                                }
+                            }}
                         />
                     </Tooltip>
 
                     <Tooltip 
                         title={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Flower") ?
-                                "Click to purchase flower" :
-                                    "Do not have enough coins\nor flower is not available for purchase"
+                            chooseOpponentToBuyFrom ?
+                                "Cannot purchase another resource until you choose from which opponent to " +
+                                "buy the previously selected resource" :
+                                    isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Flower") ?
+                                        "Click to purchase flower" :
+                                            "Do not have enough coins\nor flower is not available for purchase"
                         } 
                         classes={
-                            isValidResourceToBuyMap != null && isValidResourceToBuyMap.get("Flower")  ?
+                            !chooseOpponentToBuyFrom && isValidResourceToBuyMap != null && 
+                            isValidResourceToBuyMap.get("Flower") ?
                                 { tooltip: classes.tooltipValid } :
                                     { tooltip: classes.tooltipInvalid }
                         }
@@ -198,7 +251,11 @@ let Market = ({
                             src={flower} 
                             alt="" 
                             style={{ width: img_width, height: img_height }} 
-                            onClick={() => marketClick("Flower", updateOpponentsStatsOnBackend)}
+                            onClick={() => {
+                                if (!chooseOpponentToBuyFrom) {
+                                    marketClick("Flower")
+                                }
+                            }}
                         />
                     </Tooltip>
                 </ListItem>
@@ -208,7 +265,6 @@ let Market = ({
 }
 
 const mapDispatchToProps = {
-    marketClick: marketClick,
     calculateIsValidResourceToBuyMap: calculateIsValidResourceToBuyMap
 };
 
@@ -216,7 +272,9 @@ Market = connect(null, mapDispatchToProps)(Market);
 
 const mapStateToProps = (state) => ({
     isValidResourceToBuyMap: state.isValidResourceToBuyMap,
-    isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated
+    isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated,
+    chooseOpponentToBuyFrom: state.chooseOpponentToBuyFrom,
+    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd
 });
 
 Market = connect(mapStateToProps, null)(Market);

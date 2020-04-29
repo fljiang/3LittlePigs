@@ -57,7 +57,7 @@ function* setChosenCardIfValid(action) {
             })
         }
 
-        action.setSelectedCardOnBackend(action.card, "select");
+        action.setSelectedCardOnBackend(action.card, "select", action.chooseOpponentToBuyFrom);
 
         yield put({ 
             type: 'CARD_CHOSEN', 
@@ -181,16 +181,46 @@ function* setMarketResource(action) {
     let stats = yield select(getStats);
     let marketSupplyMap = yield select(getMarketSupplyMap);
     let marketDemandMap = yield select(getMarketDemandMap);
+    
+    let chooseOpponentToBuyFrom = false;
+    let opponentsToCoinsToAddMap = new Map();
 
     if (stats["Coin"] >= 2 && marketSupplyMap.get(action.resource) > marketDemandMap[action.resource]) {
         stats["Coin"] -=2;
         stats[action.resource] += 1;
         marketDemandMap[action.resource] += 1;
 
+        if (action.secondaryOpponentsStats[action.resource] > 0 && 
+            action.tertiaryOpponentsStats[action.resource] > 0) {
+            chooseOpponentToBuyFrom = true;
+        } else {
+            if (action.secondaryOpponentsStats[action.resource] > 0) {
+                if (opponentsToCoinsToAddMap.get(action.secondaryBoardResource) != null) {
+                    opponentsToCoinsToAddMap.set(
+                        action.secondaryBoardResource,
+                        opponentsToCoinsToAddMap.get(action.secondaryBoardResource) + 2
+                    )
+                } else {
+                    opponentsToCoinsToAddMap.set(action.secondaryBoardResource, 2);
+                }
+            } else {
+                if (opponentsToCoinsToAddMap.get(action.tertiaryBoardResource) != null) {
+                    opponentsToCoinsToAddMap.set(
+                        action.tertiaryBoardResource,
+                        opponentsToCoinsToAddMap.get(action.tertiaryBoardResource) + 2
+                    )
+                } else {
+                    opponentsToCoinsToAddMap.set(action.tertiaryBoardResource, 2);
+                }
+            }
+        }
+
         yield put({
             type: 'MARKET_RESOURCE_CHOSEN',
             updatedStats: stats,
             updatedMarketDemandMap: marketDemandMap,
+            chooseOpponentToBuyFrom: chooseOpponentToBuyFrom,
+            opponentsToCoinsToAdd: opponentsToCoinsToAddMap,
             updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
         });
     }

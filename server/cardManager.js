@@ -13,6 +13,8 @@ module.exports = function () {
     let clientIdsToCardsMap = new Map()
     // Mapping of players to an array of their selected cards
     let clientIdsToSelectedCardsMap = new Map()
+    // Mapping of games to opponentToChooseFrom value
+    let gamesToOpponentsToChooseFromMap = new Map()
     
     function getRandomCards(client, gameCode, clientIdsForGame) {
         if (clientIdsToClientObjectsMap.get(client.id) == null) {
@@ -44,7 +46,15 @@ module.exports = function () {
         return null
     }
 
-    function setSelectedCard(clientId, selectedCard, selectOrDiscard, gameCode, clientIdsForGame) {
+    function setSelectedCard(
+        clientId, 
+        selectedCard, 
+        selectOrDiscard, 
+        gameCode, 
+        clientIdsForGame, 
+        opponentsToChooseFrom
+    ) {
+
         // Add selected card to clientIdsToSelectedCardsMap (if player didn't choose "Pass")
         if (selectOrDiscard === "select") {
             let selectedCards = [];
@@ -76,7 +86,11 @@ module.exports = function () {
         })
 
         // Broadcast to all players that all players have selected/discarded cards
-        if (allCardsSetOrNot) {
+        let opponentsToChooseFromForGameCode = gamesToOpponentsToChooseFromMap.get(gameCode)
+        if (opponentsToChooseFromForGameCode == null || opponentsToChooseFrom) {
+            gamesToOpponentsToChooseFromMap.set(gameCode, opponentsToChooseFrom)
+        }
+        if (allCardsSetOrNot && !gamesToOpponentsToChooseFromMap.get(gameCode)) {
             cardsLengthToProceed -= 1
             gamesToCardsLengthToProceed.set(gameCode, cardsLengthToProceed)
             rotateCards(clientIdsForGame)
@@ -130,6 +144,7 @@ module.exports = function () {
         if (clientIdsForGame != null && clientIdsForGame.size === 0) {
             gamesToRemainingCardsMap.delete(gameCode)
             gamesToCardsLengthToProceed.delete(gameCode)
+            gamesToOpponentsToChooseFromMap.delete(gameCode)
         }
     }
 

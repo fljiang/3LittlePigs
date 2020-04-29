@@ -61,8 +61,8 @@ export default function (
         socket.emit('initializeStats', { gameCode })
     }
 
-    function setSelectedCard(selectedCard, selectOrDiscard) {
-        socket.emit('setSelectedCard', { selectedCard, selectOrDiscard })
+    function setSelectedCard(selectedCard, selectOrDiscard, opponentsToChooseFrom) {
+        socket.emit('setSelectedCard', { selectedCard, selectOrDiscard, opponentsToChooseFrom })
     }
 
     function updateOpponentsStats(board, updatedStats) {
