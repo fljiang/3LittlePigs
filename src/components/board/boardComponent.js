@@ -25,7 +25,8 @@ const Board = ({
     secondaryOpponentsStats,
     tertiaryOpponentsStats,
     marketClick,
-    chooseOpponentToBuyFrom
+    chooseOpponentToBuyFrom,
+    chooseOpponentToBuyFromClick
 }) => {
     return (
         <Box border={1} width="60%" 
@@ -59,7 +60,9 @@ const Board = ({
                         /> : null 
                     }
                     { !firstPlayer && chooseOpponentToBuyFrom ?
-                        <ChooseOpponent /> : null
+                        <ChooseOpponent 
+                            chooseOpponentToBuyFromClick={chooseOpponentToBuyFromClick}
+                        /> : null
                     }
                     <ListItemText 
                         disableTypography

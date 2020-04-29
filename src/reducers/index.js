@@ -116,6 +116,8 @@ const reducer = (
                 isValidResourceToBuyMapCalculated: false,
                 statsReRendered: !state.statsReRendered 
             };
+        case 'OPPONENT_TO_BUY_FROM_CHOSEN':
+            return { ...state, chooseOpponentToBuyFrom: false, opponentsToCoinsToAdd: action.opponentsToCoinsToAdd }
         default:
             return state;
     }

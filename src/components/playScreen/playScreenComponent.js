@@ -8,7 +8,7 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { setCards, reRenderStats, updateMarket, marketClick } from '../../actions';
+import { setCards, reRenderStats, updateMarket, marketClick, chooseOpponentToBuyFromClick } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -31,6 +31,7 @@ let PlayScreen = ({
     marketClick,
     isValidResourceToBuyMapCalculated,
     chooseOpponentToBuyFrom,
+    chooseOpponentToBuyFromClick,
     opponentsToCoinsToAdd
 }) => {
     const classes = useStyles();
@@ -108,12 +109,20 @@ let PlayScreen = ({
                     resource={secondaryBoardResource} 
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
+                    chooseOpponentToBuyFromClick={() => chooseOpponentToBuyFromClick(
+                        resource, 
+                        secondaryBoardResource
+                    )}
                 />
                 <Board 
                     title={tertiaryBoardTitle} 
                     resource={tertiaryBoardResource} 
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
+                    chooseOpponentToBuyFromClick={() => chooseOpponentToBuyFromClick(
+                        resource, 
+                        tertiaryBoardResource
+                    )}
                 />
                 <Stats 
                     numCoins={state.opponentsStats.get(tertiaryBoardResource) ?
@@ -225,7 +234,8 @@ const mapDispatchToProps = {
     setCards: setCards,
     reRenderStats: reRenderStats,
     updateMarket: updateMarket,
-    marketClick: marketClick
+    marketClick: marketClick,
+    chooseOpponentToBuyFromClick: chooseOpponentToBuyFromClick
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);

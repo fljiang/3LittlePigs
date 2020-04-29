@@ -5,6 +5,8 @@ export const getIsValidCardToBuyArray = (state) => state.isValidCardToBuyArray;
 export const getSelectedResourceSlashCards = (state) => state.resourceSlashCards;
 export const getMarketSupplyMap = (state) => state.marketSupplyMap;
 export const getMarketDemandMap = (state) => state.marketDemandMap;
+export const getOpponentsToCoinsToAddMap = (state) => 
+    state.opponentsToCoinsToAddMap ? state.opponentsToCoinsToAddMap : new Map();
 
 function* setFetchedCards(action) {
     yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
@@ -181,9 +183,9 @@ function* setMarketResource(action) {
     let stats = yield select(getStats);
     let marketSupplyMap = yield select(getMarketSupplyMap);
     let marketDemandMap = yield select(getMarketDemandMap);
+    let opponentsToCoinsToAddMap = yield select(getOpponentsToCoinsToAddMap);
     
     let chooseOpponentToBuyFrom = false;
-    let opponentsToCoinsToAddMap = new Map();
 
     if (stats["Coin"] >= 2 && marketSupplyMap.get(action.resource) > marketDemandMap[action.resource]) {
         stats["Coin"] -=2;
@@ -226,6 +228,25 @@ function* setMarketResource(action) {
     }
 }
 
+function* setOpponentToBuyFrom(action) {
+    let opponentsToCoinsToAddMap = yield select(getOpponentsToCoinsToAddMap);
+    
+    if (opponentsToCoinsToAddMap.get(action.opponentToBuyFrom) != null) {
+        opponentsToCoinsToAddMap.set(
+            action.opponentToBuyFrom,
+            opponentsToCoinsToAddMap.get(action.opponentToBuyFrom) + 2
+        )
+    } else {
+        opponentsToCoinsToAddMap.set(action.opponentToBuyFrom, 2);
+    }
+
+    yield put({
+        type: 'OPPONENT_TO_BUY_FROM_CHOSEN',
+        chooseOpponentToBuyFrom: false,
+        opponentsToCoinsToAdd: getOpponentsToCoinsToAddMap
+    })
+}
+
 function* gameWatcher() {
     yield takeLatest('SET_CARDS', setFetchedCards);
     yield takeLatest('CAN_BUY_CARD', calculateIfValidCardToBuy);
@@ -233,6 +254,7 @@ function* gameWatcher() {
     yield takeLatest('SWITCH_RESOURCES', setSwitchedResources);
     yield takeLatest('CALCULATE_IS_VALID_RESOURCE_TO_BUY_MAP', setIsValidResourceToBuyMap);
     yield takeLatest('MARKET_CLICK', setMarketResource);
+    yield takeLatest('CHOOSE_OPPONENT_TO_BUY_FROM_CLICK', setOpponentToBuyFrom);
 }
 
 export default function* rootSaga() {
