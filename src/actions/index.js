@@ -47,8 +47,8 @@ export const reRenderStats = () => ({
     type: 'RE_RENDER_STATS'
 });
 
-export const setUpdatedCards = (updatedCards) => ({
-    type: 'SET_UPDATED_CARDS',
+export const resetMarketResources = (updatedCards) => ({
+    type: 'RESET_MARKET_RESOURCES',
     updatedCards
 });
 

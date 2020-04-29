@@ -40,8 +40,7 @@ const reducer = (
             return { 
                 ...state, 
                 showCardToDiscardButton: true, 
-                cardChosen: false, 
-                marketDemandMap: defaultMarketDemandMap 
+                cardChosen: false
             };
         case 'CARD_CHOSEN':
             emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
@@ -57,8 +56,7 @@ const reducer = (
                 ...state, 
                 cardChosen: true, 
                 stats: action.updatedStats, 
-                isValidCardToBuyArray: emptyArray, 
-                marketDemandMap: defaultMarketDemandMap 
+                isValidCardToBuyArray: emptyArray
             };
         case 'SHOW_CARDS_TO_DISCARD':
             return { ...state, showCardToDiscardButton: false };
@@ -70,8 +68,7 @@ const reducer = (
             return { 
                 ...state, 
                 cardChosen: true, 
-                isValidCardToBuyArray: emptyArray, 
-                marketDemandMap: defaultMarketDemandMap 
+                isValidCardToBuyArray: emptyArray
             };
         case 'RE_RENDER_STATS':
             return { 
@@ -81,12 +78,12 @@ const reducer = (
                 resourceSlashCards: state.resourceSlashCards
             };
         case 'SET_UPDATED_CARDS':
-            console.log("here");
             return { 
                 ...state, 
-                cards: action.updatedCards, 
+                cards: action.cards, 
                 cardChosen: false,
-                isValidResourceToBuyMapCalculated: false
+                isValidResourceToBuyMapCalculated: false,
+                marketDemandMap: defaultMarketDemandMap 
             };
         case 'TOGGLE_SHOW_SLASH_CARD_RESOURCES':
             return { ...state, showSlashCardResources: !state.showSlashCardResources };
