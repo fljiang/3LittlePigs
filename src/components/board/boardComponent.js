@@ -26,7 +26,7 @@ const Board = ({
     tertiaryOpponentsStats,
     marketClick,
     chooseOpponentToBuyFrom,
-    chooseOpponentToBuyFromClick
+    chooseOpponentToBuyFromClick,
 }) => {
     return (
         <Box border={1} width="60%" 

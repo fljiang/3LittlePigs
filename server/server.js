@@ -21,6 +21,7 @@ io.on('connection', function (client) {
         handleInitializeStats,
         handleSetSelectedCard,
         handleUpdateOpponentsStats,
+        handleEnableRevealCardsButtonOrNot,
         handleDisconnect
     } = makeHandlers(client, gameManager, boardManager, cardManager, statsManager)
 
@@ -39,6 +40,8 @@ io.on('connection', function (client) {
     client.on('setSelectedCard', handleSetSelectedCard)
 
     client.on('updateOpponentsStats', handleUpdateOpponentsStats)
+
+    client.on('enableRevealCardsButtonOrNot', handleEnableRevealCardsButtonOrNot)
 
     client.on('disconnect', function () {
         console.log('client disconnect...', client.id)

@@ -32,6 +32,7 @@ let PlayScreen = ({
     isValidResourceToBuyMapCalculated,
     chooseOpponentToBuyFrom,
     chooseOpponentToBuyFromClick,
+    resourceToBuy,
     opponentsToCoinsToAdd
 }) => {
     const classes = useStyles();
@@ -109,20 +110,20 @@ let PlayScreen = ({
                     resource={secondaryBoardResource} 
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
-                    chooseOpponentToBuyFromClick={() => chooseOpponentToBuyFromClick(
-                        resource, 
-                        secondaryBoardResource
-                    )}
+                    chooseOpponentToBuyFromClick={() => {
+                        chooseOpponentToBuyFromClick(resourceToBuy, secondaryBoardResource)
+                        state.client.enableRevealCardsButtonOrNot()
+                    }}
                 />
                 <Board 
                     title={tertiaryBoardTitle} 
                     resource={tertiaryBoardResource} 
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
-                    chooseOpponentToBuyFromClick={() => chooseOpponentToBuyFromClick(
-                        resource, 
-                        tertiaryBoardResource
-                    )}
+                    chooseOpponentToBuyFromClick={() => {
+                        chooseOpponentToBuyFromClick(resourceToBuy, tertiaryBoardResource)
+                        state.client.enableRevealCardsButtonOrNot()
+                    }}
                 />
                 <Stats 
                     numCoins={state.opponentsStats.get(tertiaryBoardResource) ?
@@ -248,7 +249,8 @@ const mapStateToProps = (state) => ({
     resourceSlashCards: state.resourceSlashCards,
     isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated,
     chooseOpponentToBuyFrom: state.chooseOpponentToBuyFrom,
-    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd
+    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd,
+    resourceToBuy: state.resourceToBuy
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);

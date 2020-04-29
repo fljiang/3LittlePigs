@@ -11,7 +11,9 @@ const useStyles = makeStyles(theme => ({
     }
   }))
 
-let ChooseOpponent = ({ chooseOpponentToBuyFromClick }) => {
+let ChooseOpponent = ({ 
+    chooseOpponentToBuyFromClick
+}) => {
     const classes = useStyles();
 
     return (

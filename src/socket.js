@@ -68,6 +68,10 @@ export default function (
     function updateOpponentsStats(board, updatedStats) {
         socket.emit('updateOpponentsStats', { board, updatedStats })
     }
+
+    function enableRevealCardsButtonOrNot() {
+        socket.emit('enableRevealCardsButtonOrNot')
+    }
   
     return {
         startGame,
@@ -80,6 +84,7 @@ export default function (
         registerEnableViewCardsButtonHandler,
         unregisterEnableViewCardsButtonHandler,
         registerEnableRevealCardsButtonHandler,
-        unregisterEnableRevealCardsButtonHandler
+        unregisterEnableRevealCardsButtonHandler,
+        enableRevealCardsButtonOrNot
     }
 }

@@ -223,7 +223,8 @@ function* setMarketResource(action) {
             updatedMarketDemandMap: marketDemandMap,
             chooseOpponentToBuyFrom: chooseOpponentToBuyFrom,
             opponentsToCoinsToAdd: opponentsToCoinsToAddMap,
-            updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
+            updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend,
+            resourceToBuy: action.resource
         });
     }
 }
