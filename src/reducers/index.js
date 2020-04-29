@@ -81,6 +81,7 @@ const reducer = (
                 resourceSlashCards: state.resourceSlashCards
             };
         case 'SET_UPDATED_CARDS':
+            console.log("here");
             return { 
                 ...state, 
                 cards: action.updatedCards, 
