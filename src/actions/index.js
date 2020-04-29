@@ -102,3 +102,12 @@ export const chooseOpponentToBuyFromClick = (resource, opponentToBuyFrom) => ({
     resource,
     opponentToBuyFrom
 });
+
+export const resetOpponentsToCoinsToAddMap = () => ({
+    type: 'RESET_OPPONENTS_TO_COINS_TO_ADD_MAP'
+})
+
+export const updateStatsFromBackend = (updatedStats) => ({
+    type: 'UPDATE_STATS_FROM_BACKEND',
+    updatedStats
+})

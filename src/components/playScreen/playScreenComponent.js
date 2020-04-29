@@ -8,7 +8,15 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { setCards, reRenderStats, updateMarket, marketClick, chooseOpponentToBuyFromClick } from '../../actions';
+import { 
+    setCards, 
+    reRenderStats, 
+    updateMarket, 
+    marketClick, 
+    chooseOpponentToBuyFromClick,
+    resetOpponentsToCoinsToAddMap,
+    updateStatsFromBackend
+} from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -33,7 +41,10 @@ let PlayScreen = ({
     chooseOpponentToBuyFrom,
     chooseOpponentToBuyFromClick,
     resourceToBuy,
-    opponentsToCoinsToAddMap
+    opponentsToCoinsToAddMap,
+    marketUpdateOpponentsStats,
+    resetOpponentsToCoinsToAddMap,
+    updateStatsFromBackend
 }) => {
     const classes = useStyles();
 
@@ -66,6 +77,18 @@ let PlayScreen = ({
 
     if (state.enableRevealCardsButton && isValidResourceToBuyMapCalculated) {
         updateMarket();
+    }
+
+    if (state.enableRevealCardsButton && opponentsToCoinsToAddMap != null && opponentsToCoinsToAddMap.size > 0) {
+        marketUpdateOpponentsStats(opponentsToCoinsToAddMap);
+        resetOpponentsToCoinsToAddMap();
+        console.log(state)
+    }
+
+    console.log(state.updatedStats)
+    console.log(stats)
+    if (state.updatedStats != null && state.updatedStats["Coin"] !== stats["Coin"]) {
+        updateStatsFromBackend(state.updatedStats)
     }
 
     return (
@@ -236,7 +259,9 @@ const mapDispatchToProps = {
     reRenderStats: reRenderStats,
     updateMarket: updateMarket,
     marketClick: marketClick,
-    chooseOpponentToBuyFromClick: chooseOpponentToBuyFromClick
+    chooseOpponentToBuyFromClick: chooseOpponentToBuyFromClick,
+    resetOpponentsToCoinsToAddMap: resetOpponentsToCoinsToAddMap,
+    updateStatsFromBackend: updateStatsFromBackend
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);

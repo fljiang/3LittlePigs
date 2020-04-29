@@ -40,7 +40,8 @@ const reducer = (
             return { 
                 ...state, 
                 showCardToDiscardButton: true, 
-                cardChosen: false
+                cardChosen: false, 
+                marketDemandMap: defaultMarketDemandMap
             };
         case 'CARD_CHOSEN':
             emptyArray = Array.apply(null, Array(state.isValidCardToBuyArray.length - 1)).map(function () {});
@@ -119,8 +120,14 @@ const reducer = (
             return { 
                 ...state, 
                 chooseOpponentToBuyFrom: false, 
-                opponentsToCoinsToAdd: action.opponentsToCoinsToAdd 
+                opponentsToCoinsToAddMap: action.opponentsToCoinsToAddMap 
             }
+        case 'RESET_OPPONENTS_TO_COINS_TO_ADD_MAP':
+            console.log('in here')
+            return { ...state, opponentsToCoinsToAddMap: new Map() }
+        case 'UPDATE_STATS_FROM_BACKEND':
+            console.log(action.updatedStats)
+            return { ...state, stats: action.updatedStats }
         default:
             return state;
     }

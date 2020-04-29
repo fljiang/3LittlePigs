@@ -219,6 +219,7 @@ function* setMarketResource(action) {
                 }
             }
         }
+        console.log(opponentsToCoinsToAddMap)
 
         yield put({
             type: 'MARKET_RESOURCE_CHOSEN',
@@ -250,6 +251,7 @@ function* setOpponentToBuyFrom(action) {
     yield put({
         type: 'OPPONENT_TO_BUY_FROM_CHOSEN',
         chooseOpponentToBuyFrom: false,
+<<<<<<< HEAD
         opponentsToCoinsToAdd: getOpponentsToCoinsToAddMap
     });
 }
@@ -267,6 +269,10 @@ function* resetMarketResources(action) {
         updatedStats: stats, 
         cards: action.updatedCards
     });
+=======
+        opponentsToCoinsToAddMap: getOpponentsToCoinsToAddMap
+    })
+>>>>>>> Update stats but very buggy
 }
 
 function* gameWatcher() {

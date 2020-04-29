@@ -19,6 +19,7 @@ export default class App extends React.Component {
             gameCode: null,
             board: null,
             cards: null,
+            updatedStats: null,
             opponentsStats: new Map(),
             isValidResourcesToBuy: null,
             enableViewCardsButton: false,
@@ -33,6 +34,7 @@ export default class App extends React.Component {
         this.launchGameBoard = this.launchGameBoard.bind(this)
         this.setSelectedCard = this.setSelectedCard.bind(this)
         this.updateOpponentsStats = this.updateOpponentsStats.bind(this)
+        this.marketUpdateOpponentsStats = this.marketUpdateOpponentsStats.bind(this)
     }
 
     componentDidMount() {
@@ -89,14 +91,31 @@ export default class App extends React.Component {
     }
 
     updateOpponentsStatsUI(board, updatedStats) {
-        let stats = this.state.opponentsStats
-        stats.set(board, updatedStats)
-        this.setState({ opponentsStats: stats })
+        if (board === this.state.board) {
+            console.log(updatedStats)
+            this.setState({ updatedStats })
+        } else {
+            let stats = this.state.opponentsStats
+            stats.set(board, updatedStats)
+            this.setState({ opponentsStats: stats })
+        }
+    }
+
+    marketUpdateOpponentsStats(opponentsToCoinsToAddMap) {
+        let opponentsStats = this.state.opponentsStats
+        let client = this.state.client
+        opponentsToCoinsToAddMap.forEach(function (value, key) {
+            let updatedStats = opponentsStats.get(key)
+            updatedStats["Coin"] += value
+            console.log(updatedStats)
+            client.updateOpponentsStats(key, updatedStats)
+        })
     }
 
     setEnableRevealCardsButton() {
         this.setState({ enableRevealCardsButton: true })
         this.state.client.unregisterEnableRevealCardsButtonHandler()
+        this.setState({ updatedStats: null })
     }
 
     setEnableViewCardsButton() {
@@ -113,7 +132,8 @@ export default class App extends React.Component {
             return <PlayScreen 
                 state={this.state} 
                 setSelectedCardOnBackend={this.setSelectedCard}
-                updateOpponentsStatsOnBackend={this.updateOpponentsStats} />
+                updateOpponentsStatsOnBackend={this.updateOpponentsStats}
+                marketUpdateOpponentsStats={this.marketUpdateOpponentsStats} />
         } else {
             return (
                 <CreateOrJoinGame 
