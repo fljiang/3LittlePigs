@@ -8,7 +8,7 @@ import Cards from '../card/cardsComponent.js';
 import './playScreenComponent.css';
 
 import { connect } from 'react-redux';
-import { setCards, reRenderStats, updateMarket, marketClick } from '../../actions';
+import { setCards, reRenderStats, updateMarket, marketClick, chooseOpponentToBuyFromClick } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -31,6 +31,8 @@ let PlayScreen = ({
     marketClick,
     isValidResourceToBuyMapCalculated,
     chooseOpponentToBuyFrom,
+    chooseOpponentToBuyFromClick,
+    resourceToBuy,
     opponentsToCoinsToAdd
 }) => {
     const classes = useStyles();
@@ -108,12 +110,20 @@ let PlayScreen = ({
                     resource={secondaryBoardResource} 
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
+                    chooseOpponentToBuyFromClick={() => {
+                        chooseOpponentToBuyFromClick(resourceToBuy, secondaryBoardResource)
+                        state.client.enableRevealCardsButtonOrNot()
+                    }}
                 />
                 <Board 
                     title={tertiaryBoardTitle} 
                     resource={tertiaryBoardResource} 
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
+                    chooseOpponentToBuyFromClick={() => {
+                        chooseOpponentToBuyFromClick(resourceToBuy, tertiaryBoardResource)
+                        state.client.enableRevealCardsButtonOrNot()
+                    }}
                 />
                 <Stats 
                     numCoins={state.opponentsStats.get(tertiaryBoardResource) ?
@@ -225,7 +235,8 @@ const mapDispatchToProps = {
     setCards: setCards,
     reRenderStats: reRenderStats,
     updateMarket: updateMarket,
-    marketClick: marketClick
+    marketClick: marketClick,
+    chooseOpponentToBuyFromClick: chooseOpponentToBuyFromClick
 };
 
 PlayScreen = connect(null, mapDispatchToProps)(PlayScreen);
@@ -238,7 +249,8 @@ const mapStateToProps = (state) => ({
     resourceSlashCards: state.resourceSlashCards,
     isValidResourceToBuyMapCalculated: state.isValidResourceToBuyMapCalculated,
     chooseOpponentToBuyFrom: state.chooseOpponentToBuyFrom,
-    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd
+    opponentsToCoinsToAdd: state.opponentsToCoinsToAdd,
+    resourceToBuy: state.resourceToBuy
 })
 
 PlayScreen = connect(mapStateToProps, null)(PlayScreen);

@@ -114,8 +114,15 @@ const reducer = (
                 chooseOpponentToBuyFrom: action.chooseOpponentToBuyFrom,
                 opponentsToCoinsToAdd: action.opponentsToCoinsToAdd,
                 isValidResourceToBuyMapCalculated: false,
-                statsReRendered: !state.statsReRendered 
+                statsReRendered: !state.statsReRendered,
+                resourceToBuy: action.chooseOpponentToBuyFrom ? action.resourceToBuy : null
             };
+        case 'OPPONENT_TO_BUY_FROM_CHOSEN':
+            return { 
+                ...state, 
+                chooseOpponentToBuyFrom: false, 
+                opponentsToCoinsToAdd: action.opponentsToCoinsToAdd 
+            }
         default:
             return state;
     }

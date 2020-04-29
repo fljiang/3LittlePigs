@@ -13,8 +13,8 @@ module.exports = function () {
     let clientIdsToCardsMap = new Map()
     // Mapping of players to an array of their selected cards
     let clientIdsToSelectedCardsMap = new Map()
-    // Mapping of games to opponentToChooseFrom value
-    let gamesToOpponentsToChooseFromMap = new Map()
+    // Mapping of client IDs to opponentToChooseFrom value
+    let clientIdsToOpponentsToChooseFromMap = new Map()
     
     function getRandomCards(client, gameCode, clientIdsForGame) {
         if (clientIdsToClientObjectsMap.get(client.id) == null) {
@@ -86,11 +86,17 @@ module.exports = function () {
         })
 
         // Broadcast to all players that all players have selected/discarded cards
-        let opponentsToChooseFromForGameCode = gamesToOpponentsToChooseFromMap.get(gameCode)
-        if (opponentsToChooseFromForGameCode == null || opponentsToChooseFrom) {
-            gamesToOpponentsToChooseFromMap.set(gameCode, opponentsToChooseFrom)
-        }
-        if (allCardsSetOrNot && !gamesToOpponentsToChooseFromMap.get(gameCode)) {
+        let opponentsToChooseFromForGame = false
+        clientIdsToOpponentsToChooseFromMap.set(
+            clientId, 
+            opponentsToChooseFrom != null ? opponentsToChooseFrom : false
+        )
+        clientIdsForGame.forEach(function (item, index) {
+            if (clientIdsToOpponentsToChooseFromMap.get(item)) {
+                opponentsToChooseFromForGame = true
+            }
+        })
+        if (allCardsSetOrNot && !opponentsToChooseFromForGame) {
             cardsLengthToProceed -= 1
             gamesToCardsLengthToProceed.set(gameCode, cardsLengthToProceed)
             rotateCards(clientIdsForGame)
@@ -125,6 +131,29 @@ module.exports = function () {
         })
     }
 
+    function enableRevealCardsButtonOrNot(gameCode, clientId, clientIds) {
+        let cardsLengthToProceed = gamesToCardsLengthToProceed.get(gameCode)
+        let enableRevealCardsButton = true
+
+        clientIdsToOpponentsToChooseFromMap.set(clientId, false)
+        clientIds.forEach(function (item, index) {
+            let currentCardsLength = clientIdsToCardsMap.get(item).length
+            if (currentCardsLength != cardsLengthToProceed ||
+                clientIdsToOpponentsToChooseFromMap.get(clientId)) {
+                enableRevealCardsButton = false
+            }
+        })
+
+        if (enableRevealCardsButton) {
+            cardsLengthToProceed -= 1
+            gamesToCardsLengthToProceed.set(gameCode, cardsLengthToProceed)
+            rotateCards(clientIds)
+            clientIds.forEach(function (item, index) {
+                clientIdsToClientObjectsMap.get(item).emit('enableRevealCardsButton')
+            })
+        }
+    }
+
     function removeClient(clientId, gameCode, clientIdsForGame) {
         clientIdsToCardsMap.delete(clientId)
         clientIdsToSelectedCardsMap.delete(clientId)
@@ -144,13 +173,14 @@ module.exports = function () {
         if (clientIdsForGame != null && clientIdsForGame.size === 0) {
             gamesToRemainingCardsMap.delete(gameCode)
             gamesToCardsLengthToProceed.delete(gameCode)
-            gamesToOpponentsToChooseFromMap.delete(gameCode)
+            clientsIdsToOpponentsToChooseFromMap.delete(gameCode)
         }
     }
 
     return {
         getRandomCards,
         setSelectedCard,
+        enableRevealCardsButtonOrNot,
         removeClient
     }
 }

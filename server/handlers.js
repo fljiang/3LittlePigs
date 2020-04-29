@@ -83,6 +83,12 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         }
     }
 
+    function handleEnableRevealCardsButtonOrNot() {
+        const gameCode = gameManager.getGameCodeOfClient(client.id)
+        const clientIds = gameManager.getClientIdsForGame(gameCode)
+        cardManager.enableRevealCardsButtonOrNot(gameCode, client.id, clientIds)
+    }
+
     function handleDisconnect() {
         const gameCode = gameManager.getGameCodeOfClient(client.id)
         const board = boardManager.removeClient(client.id, gameCode)
@@ -102,6 +108,7 @@ module.exports = function (client, gameManager, boardManager, cardManager, stats
         handleInitializeStats,
         handleSetSelectedCard,
         handleUpdateOpponentsStats,
+        handleEnableRevealCardsButtonOrNot,
         handleDisconnect
     }
 }
