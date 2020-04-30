@@ -97,9 +97,8 @@ export const marketClick = (
     updateOpponentsStatsOnBackend
 });
 
-export const chooseOpponentToBuyFromClick = (resource, opponentToBuyFrom) => ({
+export const chooseOpponentToBuyFromClick = (opponentToBuyFrom) => ({
     type: 'CHOOSE_OPPONENT_TO_BUY_FROM_CLICK',
-    resource,
     opponentToBuyFrom
 });
 

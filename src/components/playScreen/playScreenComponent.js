@@ -44,7 +44,8 @@ let PlayScreen = ({
     opponentsToCoinsToAddMap,
     marketUpdateOpponentsStats,
     resetOpponentsToCoinsToAddMap,
-    updateStatsFromBackend
+    updateStatsFromBackend,
+    updateStatsFromBackendFinished
 }) => {
     const classes = useStyles();
 
@@ -82,13 +83,11 @@ let PlayScreen = ({
     if (state.enableRevealCardsButton && opponentsToCoinsToAddMap != null && opponentsToCoinsToAddMap.size > 0) {
         marketUpdateOpponentsStats(opponentsToCoinsToAddMap);
         resetOpponentsToCoinsToAddMap();
-        console.log(state)
     }
 
-    console.log(state.updatedStats)
-    console.log(stats)
     if (state.updatedStats != null && state.updatedStats["Coin"] !== stats["Coin"]) {
         updateStatsFromBackend(state.updatedStats)
+        updateStatsFromBackendFinished()
     }
 
     return (
@@ -134,7 +133,7 @@ let PlayScreen = ({
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
                     chooseOpponentToBuyFromClick={() => {
-                        chooseOpponentToBuyFromClick(resourceToBuy, secondaryBoardResource)
+                        chooseOpponentToBuyFromClick(secondaryBoardResource)
                         state.client.enableRevealCardsButtonOrNot()
                     }}
                 />
@@ -144,7 +143,7 @@ let PlayScreen = ({
                     firstPlayer={false} 
                     chooseOpponentToBuyFrom={chooseOpponentToBuyFrom}
                     chooseOpponentToBuyFromClick={() => {
-                        chooseOpponentToBuyFromClick(resourceToBuy, tertiaryBoardResource)
+                        chooseOpponentToBuyFromClick(tertiaryBoardResource)
                         state.client.enableRevealCardsButtonOrNot()
                     }}
                 />

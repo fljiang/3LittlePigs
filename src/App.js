@@ -35,6 +35,7 @@ export default class App extends React.Component {
         this.setSelectedCard = this.setSelectedCard.bind(this)
         this.updateOpponentsStats = this.updateOpponentsStats.bind(this)
         this.marketUpdateOpponentsStats = this.marketUpdateOpponentsStats.bind(this)
+        this.updateStatsFromBackendFinished = this.updateStatsFromBackendFinished.bind(this)
     }
 
     componentDidMount() {
@@ -92,7 +93,6 @@ export default class App extends React.Component {
 
     updateOpponentsStatsUI(board, updatedStats) {
         if (board === this.state.board) {
-            console.log(updatedStats)
             this.setState({ updatedStats })
         } else {
             let stats = this.state.opponentsStats
@@ -107,7 +107,6 @@ export default class App extends React.Component {
         opponentsToCoinsToAddMap.forEach(function (value, key) {
             let updatedStats = opponentsStats.get(key)
             updatedStats["Coin"] += value
-            console.log(updatedStats)
             client.updateOpponentsStats(key, updatedStats)
         })
     }
@@ -115,7 +114,6 @@ export default class App extends React.Component {
     setEnableRevealCardsButton() {
         this.setState({ enableRevealCardsButton: true })
         this.state.client.unregisterEnableRevealCardsButtonHandler()
-        this.setState({ updatedStats: null })
     }
 
     setEnableViewCardsButton() {
@@ -127,13 +125,18 @@ export default class App extends React.Component {
         this.setState({ cards: updatedCards })
     }
 
+    updateStatsFromBackendFinished() {
+        this.setState({ updatedStats: null })
+    }
+
     render() {
         if (this.state.board != null && this.state.cards != null) {
             return <PlayScreen 
                 state={this.state} 
                 setSelectedCardOnBackend={this.setSelectedCard}
                 updateOpponentsStatsOnBackend={this.updateOpponentsStats}
-                marketUpdateOpponentsStats={this.marketUpdateOpponentsStats} />
+                marketUpdateOpponentsStats={this.marketUpdateOpponentsStats}
+                updateStatsFromBackendFinished={this.updateStatsFromBackendFinished} />
         } else {
             return (
                 <CreateOrJoinGame 

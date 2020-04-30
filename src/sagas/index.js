@@ -238,6 +238,7 @@ function* setOpponentToBuyFrom(action) {
     if (opponentsToCoinsToAddMap == null) {
         opponentsToCoinsToAddMap = new Map();
     }
+    console.log(opponentsToCoinsToAddMap)
     
     if (opponentsToCoinsToAddMap.get(action.opponentToBuyFrom) != null) {
         opponentsToCoinsToAddMap.set(
@@ -247,6 +248,7 @@ function* setOpponentToBuyFrom(action) {
     } else {
         opponentsToCoinsToAddMap.set(action.opponentToBuyFrom, 2);
     }
+    console.log(opponentsToCoinsToAddMap)
 
     yield put({
         type: 'OPPONENT_TO_BUY_FROM_CHOSEN',

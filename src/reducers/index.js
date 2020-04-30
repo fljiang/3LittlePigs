@@ -117,16 +117,15 @@ const reducer = (
                 resourceToBuy: action.chooseOpponentToBuyFrom ? action.resourceToBuy : null
             };
         case 'OPPONENT_TO_BUY_FROM_CHOSEN':
+            console.log(state)
             return { 
                 ...state, 
                 chooseOpponentToBuyFrom: false, 
                 opponentsToCoinsToAddMap: action.opponentsToCoinsToAddMap 
             }
         case 'RESET_OPPONENTS_TO_COINS_TO_ADD_MAP':
-            console.log('in here')
             return { ...state, opponentsToCoinsToAddMap: new Map() }
         case 'UPDATE_STATS_FROM_BACKEND':
-            console.log(action.updatedStats)
             return { ...state, stats: action.updatedStats }
         default:
             return state;
