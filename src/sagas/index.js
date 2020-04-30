@@ -8,6 +8,8 @@ export const getMarketDemandMap = (state) => state.marketDemandMap;
 export const getOpponentsToCoinsToAddMap = (state) => 
     state.opponentsToCoinsToAddMap ? state.opponentsToCoinsToAddMap : new Map();
 
+const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
+
 function* setFetchedCards(action) {
     yield put({ type: "CARDS_SET", cards: action.cards, board: action.board });
 }
@@ -67,7 +69,7 @@ function* setChosenCardIfValid(action) {
             selectedCard: action.card, 
             selectedCardIndex: action.cardIndex,
             updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend
-         })
+        });
     }
 }
 
@@ -102,7 +104,6 @@ function* setSwitchedResources(action) {
                             .reward[rewardElementIndex])[0]
                         updatedStats[resource] -= 1;
                     }
-
                 })
             }
         }
@@ -119,7 +120,6 @@ function* setSwitchedResources(action) {
 }
 
 function* setIsValidResourceToBuyMap(action) {
-    const resourceList = ["Brick", "Stick", "Mud", "Stone", "Water", "Apple", "Flower"];
     let marketSupplyMap = new Map();
     let isValidResourceToBuyMap = new Map();
 
@@ -176,7 +176,7 @@ function* setIsValidResourceToBuyMap(action) {
         isValidResourceToBuyMap: isValidResourceToBuyMap,
         updateOpponentsStatsOnBackend: action.updateOpponentsStatsOnBackend,
         marketDemandMap: marketDemandMap
-    })
+    });
 }
 
 function* setMarketResource(action) {
@@ -245,7 +245,22 @@ function* setOpponentToBuyFrom(action) {
         type: 'OPPONENT_TO_BUY_FROM_CHOSEN',
         chooseOpponentToBuyFrom: false,
         opponentsToCoinsToAdd: getOpponentsToCoinsToAddMap
-    })
+    });
+}
+
+function* resetMarketResources(action) {
+    let stats = yield select(getStats);
+    let marketDemandMap = yield select(getMarketDemandMap);
+
+    resourceList.map(resource => {
+        stats[resource] -= marketDemandMap[resource]
+    });
+
+    yield put({
+        type: 'SET_UPDATED_CARDS',
+        updatedStats: stats, 
+        cards: action.updatedCards
+    });
 }
 
 function* gameWatcher() {
@@ -256,6 +271,7 @@ function* gameWatcher() {
     yield takeLatest('CALCULATE_IS_VALID_RESOURCE_TO_BUY_MAP', setIsValidResourceToBuyMap);
     yield takeLatest('MARKET_CLICK', setMarketResource);
     yield takeLatest('CHOOSE_OPPONENT_TO_BUY_FROM_CLICK', setOpponentToBuyFrom);
+    yield takeLatest('RESET_MARKET_RESOURCES', resetMarketResources);
 }
 
 export default function* rootSaga() {

@@ -6,7 +6,7 @@ import Card from './cardComponent.js';
 import './cardComponent.css';
 
 import { connect } from 'react-redux';
-import { pass, chooseCard, showCardsToDiscard, discardCard, setUpdatedCards } from '../../actions';
+import { pass, chooseCard, showCardsToDiscard, discardCard, resetMarketResources } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
     fab: {
@@ -35,7 +35,7 @@ let Cards = ({
     setSelectedCardOnBackend,
     enableRevealCardsButton,
     updateOpponentsStatsOnBackend,
-    setUpdatedCards,
+    resetMarketResources,
     chooseOpponentToBuyFrom
 }) => {
     const classes = useStyles();
@@ -174,7 +174,7 @@ let Cards = ({
                             variant="extended" 
                             color="primary"
                             disabled={ enableRevealCardsButton ? false : true }
-                            onClick={() => setUpdatedCards(state.cards)}
+                            onClick={() => resetMarketResources(state.cards)}
                             className={classes.longFab}>
                                 Reveal Cards
                         </Fab>
@@ -265,7 +265,7 @@ const mapDispatchToProps = {
     chooseCard,
     showCardsToDiscard,
     discardCard,
-    setUpdatedCards
+    resetMarketResources
 };
 
 Cards = connect(null, mapDispatchToProps)(Cards);
