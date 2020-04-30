@@ -79,7 +79,9 @@ const reducer = (
             };
         case 'SET_UPDATED_CARDS':
             return { 
-                ...state, 
+                ...state,
+                statsReRendered: !state.statsReRendered,
+                stats: action.updatedStats, 
                 cards: action.cards, 
                 cardChosen: false,
                 isValidResourceToBuyMapCalculated: false,
