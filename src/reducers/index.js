@@ -1,13 +1,3 @@
-const defaultMarketDemandMap = {
-    "Brick": 0,
-    "Stick": 0,
-    "Mud": 0,
-    "Stone" : 0,
-    "Water": 0,
-    "Flower": 0,
-    "Apple": 0
-};
-
 const reducer = (
     state = {},
     action
@@ -79,11 +69,13 @@ const reducer = (
             };
         case 'SET_UPDATED_CARDS':
             return { 
-                ...state, 
+                ...state,
+                statsReRendered: !state.statsReRendered,
+                stats: action.updatedStats, 
                 cards: action.cards, 
                 cardChosen: false,
                 isValidResourceToBuyMapCalculated: false,
-                marketDemandMap: defaultMarketDemandMap 
+                marketDemandMap: null
             };
         case 'TOGGLE_SHOW_SLASH_CARD_RESOURCES':
             return { ...state, showSlashCardResources: !state.showSlashCardResources };
