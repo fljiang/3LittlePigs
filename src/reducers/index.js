@@ -117,7 +117,6 @@ const reducer = (
                 resourceToBuy: action.chooseOpponentToBuyFrom ? action.resourceToBuy : null
             };
         case 'OPPONENT_TO_BUY_FROM_CHOSEN':
-            console.log(state)
             return { 
                 ...state, 
                 chooseOpponentToBuyFrom: false, 

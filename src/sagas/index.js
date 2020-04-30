@@ -183,7 +183,6 @@ function* setMarketResource(action) {
     let marketSupplyMap = yield select(getMarketSupplyMap);
     let marketDemandMap = yield select(getMarketDemandMap);
     let opponentsToCoinsToAddMap = yield select(getOpponentsToCoinsToAddMap);
-    console.log(opponentsToCoinsToAddMap)
     if (opponentsToCoinsToAddMap == null) {
         opponentsToCoinsToAddMap = new Map();
     }
@@ -219,7 +218,6 @@ function* setMarketResource(action) {
                 }
             }
         }
-        console.log(opponentsToCoinsToAddMap)
 
         yield put({
             type: 'MARKET_RESOURCE_CHOSEN',
@@ -238,7 +236,6 @@ function* setOpponentToBuyFrom(action) {
     if (opponentsToCoinsToAddMap == null) {
         opponentsToCoinsToAddMap = new Map();
     }
-    console.log(opponentsToCoinsToAddMap)
     
     if (opponentsToCoinsToAddMap.get(action.opponentToBuyFrom) != null) {
         opponentsToCoinsToAddMap.set(
@@ -248,12 +245,10 @@ function* setOpponentToBuyFrom(action) {
     } else {
         opponentsToCoinsToAddMap.set(action.opponentToBuyFrom, 2);
     }
-    console.log(opponentsToCoinsToAddMap)
 
     yield put({
         type: 'OPPONENT_TO_BUY_FROM_CHOSEN',
         chooseOpponentToBuyFrom: false,
-<<<<<<< HEAD
         opponentsToCoinsToAdd: getOpponentsToCoinsToAddMap
     });
 }
@@ -271,10 +266,6 @@ function* resetMarketResources(action) {
         updatedStats: stats, 
         cards: action.updatedCards
     });
-=======
-        opponentsToCoinsToAddMap: getOpponentsToCoinsToAddMap
-    })
->>>>>>> Update stats but very buggy
 }
 
 function* gameWatcher() {
