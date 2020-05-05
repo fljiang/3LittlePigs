@@ -8,6 +8,8 @@
 
 Cost icon: 20%
 
+3 cost icon: 15%
+
 Card size: 375 x 500 px
 
 Slash size: 25%
