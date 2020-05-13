@@ -232,7 +232,7 @@
             "phase": 2
         },
         {
-            "description": "Wolf_2_Stone",
+            "description": "Wolf_2_Stone_3",
             "cardType": "Wolf",
             "costType": {"Stone": 3},
             "rewardType": {"Wolf": 2},
@@ -250,7 +250,7 @@
             "phase": 2
         },
         {
-            "description": "Wolf_2_Stick_Mud",
+            "description": "Wolf_2_Stick_2_Mud",
             "cardType": "Wolf",
             "costType": {
                 "Stick": 2,
@@ -260,7 +260,7 @@
             "phase": 2
         },
         {
-            "description": "Glass_Mud_Water",
+            "description": "Glass_Mud_2_Water",
             "cardType": "Appliance",
             "costType": {
                 "Mud": 2,
@@ -270,7 +270,17 @@
             "phase": 2
         },
         {
-            "description": "Spoon_Stone_Flower",
+            "description": "Pot_Brick_2_Apple",
+            "cardType": "Appliance",
+            "costType": {
+                "Brick": 2,
+                "Apple": 1
+            },
+            "rewardType": {"Pot": 1},
+            "phase": 2
+        },
+        {
+            "description": "Spoon_Stone_2_Flower",
             "cardType": "Appliance",
             "costType": {
                 "Stone": 2, 
@@ -290,44 +300,14 @@
             "phase": 2
         },
         {
-            "description": "Water_Grass_Apple",
-            "cardType": "Market",
-            "costType": {"Brick": 2},
-            "rewardType": {
-                "Water": 1, 
-                "Grass": 1,
-                "Apple": 1
-            },
-            "phase": 1
-        },
-        {
-            "description": "Brick_Stone_Mud_Stick",
-            "cardType": "Market",
-            "costType": {"Stick": 2},
-            "rewardType": {
-                "Brick": 1, 
-                "Stone": 1,
-                "Mud": 1, 
-                "Stick": 1
-            },
-            "phase": 1
-        },
-        {
-            "description": "Resource_Left_Right_Center",
-            "cardType": "Market",
-            "costType": "",
-            "rewardType": {"Coin": ["Resource", true, true, true]},
-            "phase": 2
-        },
-        {
-            "description": "VP_5",
+            "description": "VP_5_ADDCOLOR",
             "cardType": "Victory",
             "costType": {"Stone": 3},
             "rewardType": {"Victory": 5},
             "phase": 2
         },
         {   
-            "description": "VP_3",
+            "description": "VP_3_ADDCOLOR",
             "cardType": "Victory",
             "costType": {
                 "Stick": 1,
@@ -355,6 +335,36 @@
                 "Flower": 1
             },
             "rewardType": {"Victory": 3},
+            "phase": 2
+        },
+        {
+            "description": "Flower_Water_Apple",
+            "cardType": "Market",
+            "costType": {"Brick": 2},
+            "rewardType": {
+                "Flower": 1, 
+                "Water": 1,
+                "Apple": 1
+            },
+            "phase": 2
+        },
+        {
+            "description": "Brick_Stone_Mud_Stick",
+            "cardType": "Market",
+            "costType": {"Stick": 2},
+            "rewardType": {
+                "Brick": 1, 
+                "Stone": 1,
+                "Mud": 1, 
+                "Stick": 1
+            },
+            "phase": 2
+        },
+        {
+            "description": "Resource_Left_Right_Center",
+            "cardType": "Market",
+            "costType": {},
+            "rewardType": {"Coin": ["Resource", true, true, true]},
             "phase": 2
         }
     ]
