@@ -66,7 +66,7 @@ module.exports = function () {
         }
 
         // Remove selected card from clientIdsToCardsMap
-        let currentCards = clientIdsToCardsMap.get(clientId)
+        let currentCards = clientIdsToCardsMap.get(clientId) ? clientIdsToCardsMap.get(clientId) : []
         let cardToRemoveIndex = 0
         currentCards.forEach(function (item, index) {
             if (item.description === selectedCard.description) {
