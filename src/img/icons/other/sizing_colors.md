@@ -1,26 +1,38 @@
 ## Image Size and Background Color Guide
 
-## Image Size
+## Reward Size
 
 2 icons: 45%
 
 3 icons: 30%
 
-Cost icon: 20%
+2 vp icons: 30%
+
+3 vp icons: 30%
+
+4 vp icons: 20%
+
+## Cost Size
+
+1 cost icon: 20%
 
 2 cost icons: 15%
 
 3 cost icons: 15%
 
-Card size: 375 x 500 px
-
-Slash size: 25%
+## Market Size
 
 Market icons: 30%
 
 Market coin: 25%
 
 Market arrow: 25%
+
+## Other Size
+
+Card: 375 x 500 px
+
+Slash: 25%
 
 ## Background Colors
 
