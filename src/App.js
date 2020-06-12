@@ -16,7 +16,6 @@ export default class App extends React.Component {
                 () => this.setEnableRevealCardsButton(),
                 (updatedCards) => this.updateCards(updatedCards)
             ),
-            gameCode: null,
             board: null,
             cards: null,
             opponentsStats: new Map(),
@@ -28,9 +27,6 @@ export default class App extends React.Component {
         }
 
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
-        this.startGame = this.startGame.bind(this)
-        this.joinGame = this.joinGame.bind(this)
-        this.launchGameBoard = this.launchGameBoard.bind(this)
         this.setSelectedCard = this.setSelectedCard.bind(this)
         this.updateOpponentsStats = this.updateOpponentsStats.bind(this)
     }
@@ -48,35 +44,35 @@ export default class App extends React.Component {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
 
-    startGame() {
-        this.state.client.startGame((error, gameCode) => {
-            if (error) return console.error(error);
-            this.setState({ gameCode })
-        })
-    }
+    // startGame() {
+    //     this.state.client.startGame((error, gameCode) => {
+    //         if (error) return console.error(error);
+    //         this.setState({ gameCode })
+    //     })
+    // }
 
-    joinGame(gameCode) {
-        this.state.client.joinGame((error, gameCode) => {
-            if (error) return console.error(error);
+    // joinGame(gameCode) {
+    //     this.state.client.joinGame((error, gameCode) => {
+    //         if (error) return console.error(error);
 
-            this.setState({ gameCode: gameCode })
-            this.launchGameBoard()
-        }, gameCode)
-    }
+    //         this.setState({ gameCode: gameCode })
+    //         this.launchGameBoard()
+    //     }, gameCode)
+    // }
 
-    launchGameBoard() {
-        this.state.client.getRandomBoard((error, board) => {
-            if (error) return console.error(error);
-            this.setState({ board })
-            this.state.client.registerEnableViewCardsButtonHandler()
-            this.state.client.initializeStats(this.state.gameCode)
-        });
+    // launchGameBoard() {
+    //     this.state.client.getRandomBoard((error, board) => {
+    //         if (error) return console.error(error);
+    //         this.setState({ board })
+    //         this.state.client.registerEnableViewCardsButtonHandler()
+    //         this.state.client.initializeStats(this.state.gameCode)
+    //     });
 
-        this.state.client.getRandomCards((error, cards) => {
-            if (error) return console.error(error);
-            this.setState({ cards })
-        })
-    }
+    //     this.state.client.getRandomCards((error, cards) => {
+    //         if (error) return console.error(error);
+    //         this.setState({ cards })
+    //     })
+    // }
 
     setSelectedCard(selectedCard, selectOrDiscard, opponentsToChooseFrom) {
         this.setState({ enableRevealCardsButton: false })
@@ -115,16 +111,7 @@ export default class App extends React.Component {
                 setSelectedCardOnBackend={this.setSelectedCard}
                 updateOpponentsStatsOnBackend={this.updateOpponentsStats} />
         } else {
-            return (
-                <CreateOrJoinGame 
-                    width={this.state.width} 
-                    height={this.state.height}
-                    gameCode={this.state.gameCode}
-                    startGame={this.startGame}
-                    joinGame={this.joinGame}
-                    launchGameBoard={this.launchGameBoard}
-                />
-            );
+            return <CreateOrJoinGame height={this.state.height} />
         }
     }
 }

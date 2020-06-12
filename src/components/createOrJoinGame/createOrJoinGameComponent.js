@@ -4,7 +4,6 @@ import './createOrJoinGameComponent.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-// TODO: Determine whether or not need to convert CreateOrJoinGame into a function
 let CreateOrJoinGame = () => {
     const dispatch = useDispatch();
 
@@ -25,7 +24,7 @@ let CreateOrJoinGame = () => {
                     variant="extended"
                     color="inherit"
                     className="JoinGameFab"
-                    onClick={() => {}}
+                    onClick={() => dispatch(lanchGame(gameCode))}
                 >
                     Join Game
                 </Fab>
@@ -43,7 +42,7 @@ let CreateOrJoinGame = () => {
                     variant="extended"
                     color="inherit"
                     className="JoinGameFab"
-                    onClick={() => {}}
+                    onClick={() => dispatch(lanchGame(gameCode))}
                 >
                     Launch Game Board
                 </Fab>
@@ -65,7 +64,7 @@ let CreateOrJoinGame = () => {
                 variant="extended"
                 color="inherit"
                 className="JoinGameFab"
-                // onClick={() => dispatch(joinGame(gameCode))}
+                onClick={() => dispatch(joinGame(gameCode))}
             >
                 Join Existing Game
             </Fab>
