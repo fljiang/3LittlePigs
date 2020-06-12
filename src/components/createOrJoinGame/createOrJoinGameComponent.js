@@ -1,140 +1,76 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
 import { Fab, Typography, TextField } from '@material-ui/core';
-import { green, blue } from '@material-ui/core/colors';
+import './createOrJoinGameComponent.css';
 
-import { connect } from 'react-redux';
-import { setGameToJoin } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
 
-const useStyles = makeStyles(theme => ({
-    fab: {
-        width: "250px",
-        height: "40px",
-        marginTop: "10px",
-        marginBottom: "10px"
-    },
-    greenFab: {
-        color: theme.palette.common.white,
-        backgroundColor: green[500],
-        '&:hover': {
-            backgroundColor: green[600],
-        }
-    },
-    blueFab: {
-        width: "250px",
-        height: "40px",
-        marginTop: "10px",
-        marginBottom: "10px",
-        color: theme.palette.common.white,
-        backgroundColor: blue[500],
-        '&:hover': {
-            backgroundColor: blue[600],
-        }
-    }
-}))
+// TODO: Determine whether or not need to convert CreateOrJoinGame into a function
+let CreateOrJoinGame = () => {
+    const dispatch = useDispatch();
 
-let CreateOrJoinGame = ({ 
-    width, 
-    height, 
-    gameCode, 
-    startGame, 
-    joinGame, 
-    launchGameBoard,
-    setGameToJoin,
-    gameToJoin = false
-}) => {
-    const classes = useStyles();
+    const [gameCode, setGameCode] = useState("");
 
-    if (gameCode != null && !gameToJoin) {
+    const joinedGame = useSelector(state => state.joinedGame);
+
+    if (!joinedGame) {
         return (
-            <div style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: height,
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-                <Typography style={{ marginBottom: 5, fontSize: 18 }}>
+            <div className="LaunchGameModalContainer" height={height}>
+                <Typography className="GameCodeDisplay">
+                    Enter game code below:
+                </Typography>
+                <TextField className="GameCodeInput"
+                    onChange={(event) => setGameCode(event.target.value)}
+                />
+                <Fab
+                    variant="extended"
+                    color="inherit"
+                    className="JoinGameFab"
+                    onClick={() => {}}
+                >
+                    Join Game
+                </Fab>
+            </div>
+        )
+    }
+
+    if (gameCode != "") {
+        return (
+            <div className="LaunchGameModalContainer" height={height}>
+                <Typography className="GameCodeDisplay">
                     Game Code: { gameCode }
                 </Typography>
                 <Fab
                     variant="extended"
                     color="inherit"
-                    className={classes.fab, classes.greenFab}
-                    onClick={() => launchGameBoard()}
-                > 
+                    className="JoinGameFab"
+                    onClick={() => {}}
+                >
                     Launch Game Board
-                </Fab>  
-            </div>
-        )
-    } else if (gameToJoin) {
-        return (
-            <div style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: height,
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-                <Typography style={{ marginBottom: 5 }}>
-                    Enter game code below:
-                </Typography>
-                <TextField 
-                    style={{ marginBottom: 10 }}
-                    onChange={(event) => gameCode = event.target.value} 
-                />
-                <Fab
-                    variant="extended"
-                    color="inherit"
-                    className={classes.fab, classes.greenFab}
-                    onClick={() => joinGame(gameCode)}
-                > 
-                    Join Game
-                </Fab>  
-            </div>
-        )
-    } else {
-        return (
-            <div style={{ 
-                position: 'absolute', 
-                left: (width - 250) / 2, 
-                top: (height - 120) / 2,
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-                <Fab
-                    variant="extended"
-                    color="inherit"
-                    className={classes.fab, classes.blueFab}
-                    onClick={() => startGame()}
-                > 
-                    Create New Game
-                </Fab>   
-                <Fab
-                    variant="extended"
-                    color="inherit"
-                    className={classes.fab, classes.greenFab}
-                    onClick={() => setGameToJoin()}
-                > 
-                    Join Existing Game
-                </Fab>      
+                </Fab>
             </div>
         )
     }
+   
+    return (
+        <div className="CreateOrJoinGameModalContainer">
+            <Fab 
+                variant="extended"
+                color="inherit"
+                className="CreateGameFab"
+                onClick={() => dispatch(createGame())}
+            >
+                Create New Game
+            </Fab>
+            <Fab 
+                variant="extended"
+                color="inherit"
+                className="JoinGameFab"
+                // onClick={() => dispatch(joinGame(gameCode))}
+            >
+                Join Existing Game
+            </Fab>
+        </div>
+    )
 }
-
-const mapDispatchToProps = {
-    setGameToJoin: setGameToJoin
-};
-
-CreateOrJoinGame = connect(null, mapDispatchToProps)(CreateOrJoinGame);
-
-const mapStateToProps = (state) => ({
-    gameToJoin: state.gameToJoin
-});
-
-CreateOrJoinGame = connect(mapStateToProps, null)(CreateOrJoinGame);
 
 export default CreateOrJoinGame;

@@ -1,0 +1,50 @@
+.CreateOrJoinGameModalContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: (width - 250px) / 2;
+    top: (height - 120px) / 2;
+}
+
+.CreateGameFab {
+    width: 250px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #009900;
+}
+
+.CreateGameFab:hover {
+    background-color: #008000;
+}
+
+.JoinGameFab {
+    width: 250px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #0da2ff;
+}
+
+.JoinGameFab:hover {
+    background-color: #009dff;
+}
+
+.LaunchGameModalContainer {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.GameCodeDisplay {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.GameCodeInput {
+    margin-bottom: 10px;
+}
