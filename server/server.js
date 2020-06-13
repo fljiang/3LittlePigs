@@ -14,8 +14,6 @@ const statsManager = StatsManager()
 
 io.on('connection', function (client) {
     const {
-        handleStartGame,
-        handleJoinGame,
         handleGetRandomBoard,
         handleGetRandomCards,
         handleInitializeStats,
@@ -27,9 +25,7 @@ io.on('connection', function (client) {
 
     console.log('client connected...', client.id)
 
-    client.on('startGame', handleStartGame)
-
-    client.on('joinGame', handleJoinGame)
+    
 
     client.on('getRandomBoard', handleGetRandomBoard)
 

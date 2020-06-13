@@ -111,7 +111,9 @@ export default class App extends React.Component {
                 setSelectedCardOnBackend={this.setSelectedCard}
                 updateOpponentsStatsOnBackend={this.updateOpponentsStats} />
         } else {
-            return <CreateOrJoinGame height={this.state.height} />
+            return <CreateOrJoinGame 
+                height={this.state.height} 
+                socket={this.state.client} />
         }
     }
 }

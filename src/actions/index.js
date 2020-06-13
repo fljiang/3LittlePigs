@@ -1,6 +1,4 @@
-export const setGameToJoin = () => ({
-    type: 'SET_GAME_TO_JOIN'
-})
+export * from './createOrJoinGame.js';
 
 export const setCards = (board, cards) => ({
     type: 'SET_CARDS',

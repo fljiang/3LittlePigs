@@ -4,14 +4,14 @@ import './createOrJoinGameComponent.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-let CreateOrJoinGame = () => {
+let CreateOrJoinGame = ({height, socket }) => {
     const dispatch = useDispatch();
 
     const [gameCode, setGameCode] = useState("");
 
-    const joinedGame = useSelector(state => state.joinedGame);
+    const inGame = useSelector(state => state.inGame);
 
-    if (!joinedGame) {
+    if (inGame != null && !inGame) {
         return (
             <div className="LaunchGameModalContainer" height={height}>
                 <Typography className="GameCodeDisplay">
@@ -24,7 +24,7 @@ let CreateOrJoinGame = () => {
                     variant="extended"
                     color="inherit"
                     className="JoinGameFab"
-                    onClick={() => dispatch(lanchGame(gameCode))}
+                    onClick={() => dispatch(lanchGame(socket, gameCode))}
                 >
                     Join Game
                 </Fab>
@@ -32,7 +32,7 @@ let CreateOrJoinGame = () => {
         )
     }
 
-    if (gameCode != "") {
+    if (expectingGameCode != null && !expectingGameCode) {
         return (
             <div className="LaunchGameModalContainer" height={height}>
                 <Typography className="GameCodeDisplay">
@@ -42,7 +42,7 @@ let CreateOrJoinGame = () => {
                     variant="extended"
                     color="inherit"
                     className="JoinGameFab"
-                    onClick={() => dispatch(lanchGame(gameCode))}
+                    onClick={() => dispatch(lanchGame(socket, gameCode))}
                 >
                     Launch Game Board
                 </Fab>
@@ -56,7 +56,7 @@ let CreateOrJoinGame = () => {
                 variant="extended"
                 color="inherit"
                 className="CreateGameFab"
-                onClick={() => dispatch(createGame())}
+                onClick={() => dispatch(createGame(socket))}
             >
                 Create New Game
             </Fab>
@@ -64,7 +64,7 @@ let CreateOrJoinGame = () => {
                 variant="extended"
                 color="inherit"
                 className="JoinGameFab"
-                onClick={() => dispatch(joinGame(gameCode))}
+                // onClick={() => dispatch(joinGame())}
             >
                 Join Existing Game
             </Fab>
