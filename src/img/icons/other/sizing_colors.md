@@ -42,7 +42,7 @@ Special resource color: YR04
 
 Wolf color: R46
 
-VP color: E35, Y08, RV04
+VP color: E35, Y08, RV04, C04
 
 Appliance color: V04
 
