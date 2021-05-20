@@ -4,11 +4,11 @@ import { Fab, Box, Popover } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import { Check } from '@material-ui/icons';
 
-import stone from './../../img/icons/stone_icon.png'
-import stick from './../../img/icons/stick_icon.png'
-import brick from './../../img/icons/brick_icon.png'
-import mud from './../../img/icons/mud_icon.png'
-import slash from './../../img/icons/other/slash.png'
+import stone from './../../img/icons/stone_icon.png';
+import stick from './../../img/icons/stick_icon.png';
+import brick from './../../img/icons/brick_icon.png';
+import mud from './../../img/icons/mud_icon.png';
+import slash from './../../img/icons/other/slash.png';
 
 import { connect } from 'react-redux';
 import { toggleShowSlashCardResources, switchResources } from '../../actions';
@@ -159,7 +159,7 @@ ChooseResources = connect(null, mapDispatchToProps)(ChooseResources);
 const mapStateToProps = (state) => ({
     showSlashCardResources: state.showSlashCardResources,
     updatedResourceSlashCards: state.resourceSlashCards
-})
+});
 
 ChooseResources = connect(mapStateToProps, null)(ChooseResources);
 
