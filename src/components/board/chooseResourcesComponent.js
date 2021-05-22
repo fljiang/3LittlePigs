@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         height: "40px",
         marginLeft: "40px"
     }
-  }));
+ }));
 
 let ChooseResources = ({ 
     height, 
